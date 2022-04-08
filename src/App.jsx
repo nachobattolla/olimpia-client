@@ -10,8 +10,8 @@ function App() {
                 <Routes>
                     <Route exact path="/login" element={<LoginPage/>} />
                     <Route exact path="/register" element={<RegisterPage/>} />
-                    <Route exact path="/home" element={<RegisterPage/>} />
-                    <Route exact path="/adminHome" element={<RegisterPage/>} />
+                    <Route exact path="/home" element={<homePage/>} />
+                    <Route exact path="/adminHome" element={<adminHomePage/>} />
                 </Routes>
             </Router>
         </div>

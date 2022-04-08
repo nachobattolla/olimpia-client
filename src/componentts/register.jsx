@@ -1,9 +1,11 @@
 import "../pages/RegisterPage.css"
 import {useNavigate} from "react-router-dom";
 import {IconName, IoIosLock, IoIosPerson, IoMdKey} from "react-icons/io";
-import BadgeIcon from '@mui/icons-material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import PhoneIcon from '@mui/icons-material/Phone';
+import {useState} from "react";
+import {post} from "../utils/http";
 
 const RegisterBox = () => {
 
@@ -12,7 +14,19 @@ const RegisterBox = () => {
     }
 
     let navigate = useNavigate();
+    const [user, setUser] = useState({username:"",email:"",password:"",password2:"",phone:"",isAdmin:false})
+    const [errorMessage, setErrorMessage] = useState("");
 
+    const RegisterRequest = () => {
+        post("olimpia/register/", user)
+            .then((res) => {
+                navigate("/login");
+            })
+            .catch(err => {
+                setErrorMessage(err)
+            })
+    }
+    
     const Login = () => {
         navigate('/login')
     }
@@ -22,12 +36,15 @@ const RegisterBox = () => {
             <a href="/login" className="d-flex justify-content-start"><ArrowLeftIcon className="arrow"/></a>
             <label typeof="title" className="title">REGISTER</label>
             <div>
-                <BadgeIcon/>
+                <IoIosPerson/>
                 <input
                     type="text"
-                    name="Full Name"
+                    name="Username"
                     className="register-input"
-                    placeholder="Full Name" />
+                    placeholder="Username"
+                    value={user.username}
+                    onChange={e => setUser({...user,username: e.target.value})}
+                />
             </div>
             <div>
                 <MailIcon/>
@@ -35,15 +52,10 @@ const RegisterBox = () => {
                     type="text"
                     name="Mail"
                     className="register-input"
-                placeholder="Mail" />
-            </div>
-            <div>
-                <IoIosPerson/>
-                <input
-                    type="text"
-                    name="Username"
-                    className="register-input"
-                    placeholder="Username" />
+                    placeholder="Mail"
+                    value={user.email}
+                    onChange={e => setUser({...user,email: e.target.value})}
+                />
             </div>
             <div>
                 <IoIosLock/>
@@ -51,7 +63,10 @@ const RegisterBox = () => {
                     type="password"
                     name="password"
                     className="register-input"
-                    placeholder="Password" />
+                    placeholder="Password"
+                    value={user.password}
+                    onChange={e => setUser({...user,password: e.target.value})}
+                />
             </div>
             <div>
                 <IoIosLock/>
@@ -59,17 +74,32 @@ const RegisterBox = () => {
                     type="password"
                     name="password2"
                     className="register-input"
-                    placeholder="Password" />
+                    placeholder="Password"
+                    value={user.password2}
+                    onChange={e => setUser({...user,password2: e.target.value})}
+                />
             </div>
             <div>
-                <input type='checkbox' className="tik"/>
+                <PhoneIcon/>
+                <input
+                    type="text"
+                    name="phone"
+                    className="register-input"
+                    placeholder="Phone"
+                    value={user.phone}
+                    onChange={e => setUser({...user,phone: e.target.value})}
+                />
+            </div>
+            <div>
+                <input type='checkbox' className="tik" onChange={e => setUser({...user,isAdmin: !user.isAdmin})}/>
                 <label className= "isWorker ml-2">Rental court?</label>
             </div>
-                <button
-                    type="button"
-                    className="Register-button"
-                    onClick={Login}>Sign Up
-                </button>
+            {errorMessage && <div className="error"> {errorMessage} </div>}
+            <button
+                type="button"
+                className="Register-button"
+                onClick={RegisterRequest}>Sign Up
+            </button>
         </div>
     );
 }

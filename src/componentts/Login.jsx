@@ -1,8 +1,10 @@
 import "../pages/LoginPage.css"
 import {IoIosLock, IoIosPerson} from "react-icons/io";
+import MailIcon from '@mui/icons-material/Mail';
 import {useNavigate} from "react-router-dom";
 import React, {useContext, useState} from "react";
-import {post} from "../utils/http";
+import {get, post} from "../utils/http";
+import Axios from 'axios';
 
 
 const LoginBox = () => {
@@ -12,26 +14,19 @@ const LoginBox = () => {
     }
 
     let navigate = useNavigate();
-    const [user, setUser] = useState({userName:"",password:"",rentalCourt:false})
+    const [user, setUser] = useState({email:"",password:"",isAdmin:false})
     const [passwordShown, setPasswordShown] = useState(false);
 
-    const togglePasswordVisibility = () => {
-        setPasswordShown(!passwordShown);
-    };
-    function handleSubmit(event) {
-        event.preventDefault();
-    }
-
     const loginRequest = () => {
-        post("auth/login/", user)
-            .then(() => {
-                if (user.rentalCourt) {
+        post("olimpia/login/", user)
+            .then((res) => {
+                if (user.isAdmin) {
                     navigate("/adminHome");
                 }else {
                     navigate("/home");
                 }
             })
-            .catch(err => {
+            .catch(error => {
 
             })
     }
@@ -44,18 +39,17 @@ const LoginBox = () => {
         <div className="form-contain">
                 <div>
                     <span>
-                        <IoIosPerson/>
+                        <MailIcon/>
                         <input
                             type="text"
-                            name="Username"
+                            name="Mail"
                             className="login-input"
-                            placeholder="Username"
-                            value={user.userName}
-                            onChange={e => setUser({...user,userName: e.target.value})}
+                            placeholder="Mail"
+                            value={user.email}
+                            onChange={e => setUser({...user,email: e.target.value})}
                         />
                     </span>
                 </div>
-
                 <div>
                     <span>
                         <IoIosLock/>
@@ -71,7 +65,7 @@ const LoginBox = () => {
                 </div>
 
                 <div>
-                    <input type='checkbox' className="tik" onChange={e => setUser({...user,rentalCourt: !user.rentalCourt})}/>
+                    <input type='checkbox' className="tik" onChange={e => setUser({...user,isAdmin: !user.isAdmin})}/>
                     <label className = "isWorker ml-2"> Rental Court? </label>
                     <a href="#" className="login-forgot-pass">Forgot password?</a>
                 </div>
