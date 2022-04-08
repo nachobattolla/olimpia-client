@@ -20,10 +20,10 @@ const LoginBox = () => {
     const loginRequest = () => {
         post("olimpia/login/", user)
             .then((res) => {
-                if (user.isAdmin) {
-                    navigate("/adminHome");
-                }else {
+                if (!user.isAdmin) {
                     navigate("/home");
+                }else {
+                    navigate("/adminHome");
                 }
             })
             .catch(error => {

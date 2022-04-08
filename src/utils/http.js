@@ -11,7 +11,7 @@ const _request = async (url, method, data, config = {}) => {
         data,
         ...config.headers, ...config.options
     }).then((res) => {
-        if (res.status === 200 || res.status === 201 || res.status === 204) return res.data;
+        if (res.status === 200 || res.status === 201 || res.status === 202 || res.status === 204) return res.data;
     else throw (res.data);
     }).catch(errorResponse => {
         throw (errorResponse.response || {status: 500})
