@@ -1,9 +1,6 @@
-body{
-    overflow: scroll;
-}
-
 .Register {
     text-align: center;
+    overflow-y: scroll;
 }
 
 .Olimpia-logoRegister {

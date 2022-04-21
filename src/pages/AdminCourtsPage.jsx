@@ -8,7 +8,7 @@ export const AdminCourtsPage = () =>{
     return (
         <div className="adminHome">
             <div><NavBar/></div>
-            <div className = "container-fluid bg-dark">
+            <div>
                 <AdminCourts/>
             </div>
         </div>

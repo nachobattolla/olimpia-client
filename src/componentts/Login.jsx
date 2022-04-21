@@ -18,12 +18,12 @@ const LoginBox = () => {
     const [passwordShown, setPasswordShown] = useState(false);
 
     const loginRequest = () => {
-        post("olimpia/login/", user)
+        post("olimpia/login/", user, {options: {withCredentials: true}})
             .then((res) => {
                 if (!user.isAdmin) {
                     navigate("/home");
                 }else {
-                    navigate("/adminHome");
+                    navigate("/adminHome/courts");
                 }
             })
             .catch(error => {

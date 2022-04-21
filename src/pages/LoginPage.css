@@ -1,10 +1,7 @@
-body{
-    overflow: hidden;
-}
-
 .Login {
     text-align: center;
     background-image: url("../resources/background.png");
+    overflow: hidden;
 }
 
 .Olimpia-logo {

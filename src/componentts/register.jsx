@@ -9,10 +9,6 @@ import {post} from "../utils/http";
 
 const RegisterBox = () => {
 
-    const submitRegister = () => {
-
-    }
-
     let navigate = useNavigate();
     const [user, setUser] = useState({username:"",email:"",password:"",password2:"",phone:"",isAdmin:false})
     const [errorMessage, setErrorMessage] = useState("");

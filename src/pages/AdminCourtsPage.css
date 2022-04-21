@@ -1,0 +1,9 @@
+
+body {
+    text-align: center;
+    background-image: url("../resources/background3.png");
+}
+
+.adminHome{
+    overflow: hidden;
+}
