@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
-import "../pages/AdminProfilePage"
-import {deleteRequest, post} from "../utils/http";
+import "../../pages/AdminProfilePage"
+import {deleteRequest, post} from "../../utils/http";
 import EditCourtModal from "./EditCourtModal"
 
 const CourtCard = ({court: {name, sport, location, description, price}, onDeleteCourt, onEditCourt, userMode}) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import "../AdminProfile";
+import "./AdminProfile";
 import "../../pages/AdminProfilePage"
 import logo from "../../resources/logo.png";
 import {BiLogOut, BiUserCircle} from "react-icons/bi";

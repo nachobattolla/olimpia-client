@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react';
 import "../../pages/AdminCourtsPage"
 import {IoAdd} from "@react-icons/all-files/io5/IoAdd";
 import {GiSoccerField} from "@react-icons/all-files/gi/GiSoccerField";
-import AdminCourts from "../AdminCourts";
+import AdminCourts from "./AdminCourts";
 import {post} from "../../utils/http";
 
 

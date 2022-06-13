@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from "../resources/logo.png";
 import './LoginPage.css';
-import LoginBox from "../componentts/Login";
+import LoginBox from "../componentts/LoginRegister/Login";
 
 export const LoginPage = () =>{
     return (

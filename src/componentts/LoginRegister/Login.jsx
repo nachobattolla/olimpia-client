@@ -1,10 +1,11 @@
-import "../pages/LoginPage.css"
+import "../../pages/LoginPage.css"
 import {IoIosLock, IoIosPerson} from "react-icons/io";
 import MailIcon from '@mui/icons-material/Mail';
 import {useNavigate} from "react-router-dom";
 import React, {useContext, useState} from "react";
-import {get, post} from "../utils/http";
+import {get, post} from "../../utils/http";
 import Axios from 'axios';
+import data from "bootstrap/js/src/dom/data";
 
 
 const LoginBox = () => {
@@ -14,13 +15,14 @@ const LoginBox = () => {
     }
 
     let navigate = useNavigate();
-    const [user, setUser] = useState({email:"",password:"",isAdmin:false})
+    const [user, setUser] = useState({email:"",password:"",isAdmin2:false})
     const [passwordShown, setPasswordShown] = useState(false);
 
     const loginRequest = () => {
         post("olimpia/login/", user, {options: {withCredentials: true}})
             .then((res) => {
-                if (!user.isAdmin) {
+                if (!res.isAdmin) {
+                    console.log("dfsdvdsfvf")
                     navigate("/home");
                 }else {
                     navigate("/adminHome/courts");
@@ -65,8 +67,6 @@ const LoginBox = () => {
                 </div>
 
                 <div>
-                    <input type='checkbox' className="tik" onChange={e => setUser({...user,isAdmin: !user.isAdmin})}/>
-                    <label className = "isWorker ml-2"> Rental Court? </label>
                     <a href="#" className="login-forgot-pass">Forgot password?</a>
                 </div>
 

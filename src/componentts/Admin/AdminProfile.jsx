@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import "../pages/AdminProfilePage"
+import "../../pages/AdminProfilePage"
 
 const AdminProfile = () => {
 

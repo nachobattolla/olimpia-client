@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import "../pages/AdminCourtsPage"
-import AddCourtModal from "./Admin/AddCourtModal";
+import "../../pages/AdminCourtsPage"
+import AddCourtModal from "./AddCourtModal";
 import CourtCard from "./CourtCard";
-import {get} from "../utils/http";
+import {get} from "../../utils/http";
 import "./AdminCourts.css";
 
 const AdminCourts = () => {

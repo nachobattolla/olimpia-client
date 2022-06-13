@@ -1,9 +1,9 @@
 import React, {useCallback, useState} from 'react';
-import "../pages/AdminCourtsPage"
+import "../../pages/AdminCourtsPage"
 import {IoAdd} from "@react-icons/all-files/io5/IoAdd";
 import {GiSoccerField} from "@react-icons/all-files/gi/GiSoccerField";
 import AdminCourts from "./AdminCourts";
-import {get, post} from "../utils/http";
+import {get, post} from "../../utils/http";
 
 const EditCourtModal  = ({courtData,onEdit}) => {
     const [name, setName] = useState(courtData.name)

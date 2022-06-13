@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import "./AdminProfile";
-import "../pages/AdminProfilePage"
-import {get} from "../utils/http";
-import CourtCard from "./CourtCard";
-
+import "../Admin/AdminProfile";
+import "../../pages/AdminProfilePage"
+import {get} from "../../utils/http";
+import CourtCard from "../Admin/CourtCard";
+import "./Home.css"
 
 const Home = () => {
     const [search, setSearch] = useState('')
@@ -19,10 +19,12 @@ const Home = () => {
             <div>
                 <input type="text" onChange={(ev)=> setSearch(ev.target.value)}/>
             </div>
-            <div>
+            <div className="courtsBoxClient">
+                <div>
                 {
                     courts?.filter(({name})=> name.includes(search)).map((court)=> <CourtCard court={court} userMode={true}/>)
                 }
+                </div>
             </div>
         </div>
     );
