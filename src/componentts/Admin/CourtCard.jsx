@@ -23,6 +23,8 @@ const CourtCard = ({court: {name, sport, location, description, price}, onDelete
                     {!userMode && <a href="#" className="btn btn-success" onClick={onDelete}>Delete</a>}
                     {/*<a href="#" className="btn btn-success">Edit</a>*/}
                     {!userMode && <EditCourtModal courtData={{name, sport, location, description, price}} onEdit={onEditCourt} />}
+                    {userMode && <div className="btn btn-success">View Establishment</div>}
+                    {userMode && <div className="btn btn-success">Reserve</div>}
                 </div>
         </div>
     );

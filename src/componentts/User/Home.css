@@ -3,3 +3,18 @@
     width: 900px;
     background-color: rgba(0,0,0,0.8);
 }
+
+.searchCourt{
+    background-color: lightgray;
+    padding-left: 2px;
+    color: black;
+    border-radius: 10px;
+    border: 2px solid black;
+    width: 30%;
+    display: inline;
+    margin: 10px auto;
+}
+
+.searchCourt::placeholder{
+    color: black;
+}

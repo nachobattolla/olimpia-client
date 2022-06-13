@@ -4,6 +4,8 @@ import "../../pages/AdminProfilePage"
 import {get} from "../../utils/http";
 import CourtCard from "../Admin/CourtCard";
 import "./Home.css"
+import EditCourtModal from "../Admin/EditCourtModal";
+import FilterModal from "./FilterModal";
 
 const Home = () => {
     const [search, setSearch] = useState('')
@@ -17,7 +19,8 @@ const Home = () => {
     return (
         <div>
             <div>
-                <input type="text" onChange={(ev)=> setSearch(ev.target.value)}/>
+                <input className="searchCourt" placeholder="search court" type="text" onChange={(ev)=> setSearch(ev.target.value)}/>
+                {<FilterModal />}
             </div>
             <div className="courtsBoxClient">
                 <div>
