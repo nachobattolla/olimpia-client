@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminProfile from "../componentts/AdminProfile";
 import adminHomeStyle from './AdminProfilePage.css'
-import NavBar from "../componentts/NavBar";
+import NavBar from "../componentts/Admin/NavBar";
 
 export const AdminProfilePage = () =>{
 

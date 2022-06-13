@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from "../componentts/NavBar";
+import NavBar from "../componentts/Admin/NavBar";
 import './AdminCourtsPage.css'
 import AdminCourts from "../componentts/AdminCourts";
 

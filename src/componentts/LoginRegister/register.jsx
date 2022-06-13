@@ -1,27 +1,35 @@
-import "../pages/RegisterPage.css"
+import "../../pages/RegisterPage.css"
 import {useNavigate} from "react-router-dom";
 import {IconName, IoIosLock, IoIosPerson, IoMdKey} from "react-icons/io";
 import MailIcon from '@mui/icons-material/Mail';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import PhoneIcon from '@mui/icons-material/Phone';
-import {useState} from "react";
-import {post} from "../utils/http";
+import {useEffect, useState} from "react";
+import {post} from "../../utils/http";
 
 const RegisterBox = () => {
 
     let navigate = useNavigate();
     const [user, setUser] = useState({username:"",email:"",password:"",password2:"",phone:"",isAdmin:false})
     const [errorMessage, setErrorMessage] = useState("");
+    const [errored, setErrored] = useState(false);
 
     const RegisterRequest = () => {
         post("olimpia/register/", user)
             .then((res) => {
                 navigate("/login");
+                setErrored(false);
             })
             .catch(err => {
-                setErrorMessage(err)
+                //console.log("err" + err);
+                //setErrorMessage(err)
+                //navigate("/register");
+                setErrored(true);
             })
     }
+
+
+
     
     const Login = () => {
         navigate('/login')
@@ -86,6 +94,9 @@ const RegisterBox = () => {
                     onChange={e => setUser({...user,phone: e.target.value})}
                 />
             </div>
+            {errored ? (<div className="alert alert-danger" role="alert">
+                ERROR!
+            </div>) : <div/>}
             <div>
                 <input type='checkbox' className="tik" onChange={e => setUser({...user,isAdmin: !user.isAdmin})}/>
                 <label className= "isWorker ml-2">Rental court?</label>

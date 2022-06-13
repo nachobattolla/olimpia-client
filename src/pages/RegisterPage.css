@@ -14,7 +14,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #228b22 ;
-    min-height: 800px;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,7 +26,7 @@
 .content2 {
     background-color: rgba(0,183,102,0.8);
     width: 700px;
-    height: 120vh;
+    min-height: 120vh;
     padding: 50px;
 }
 

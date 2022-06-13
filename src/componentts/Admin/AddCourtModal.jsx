@@ -1,9 +1,9 @@
 import React, {useCallback, useState} from 'react';
-import "../pages/AdminCourtsPage"
+import "../../pages/AdminCourtsPage"
 import {IoAdd} from "@react-icons/all-files/io5/IoAdd";
 import {GiSoccerField} from "@react-icons/all-files/gi/GiSoccerField";
-import AdminCourts from "./AdminCourts";
-import {post} from "../utils/http";
+import AdminCourts from "../AdminCourts";
+import {post} from "../../utils/http";
 
 
 const AddCourtModal = ({onNewCourt}) => {
@@ -12,6 +12,12 @@ const AddCourtModal = ({onNewCourt}) => {
     const [location, setLocation] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState(0)
+    const [view, setView] = useState(false)
+
+
+    // function toggleModal() {
+    //     setView(!view);
+    // }
 
     const onClick = useCallback( async ()=>{
         try {
@@ -30,7 +36,7 @@ const AddCourtModal = ({onNewCourt}) => {
             )
             onNewCourt()
             console.log(res)
-
+            // toggleModal()
         } catch (e) {
 
         }

@@ -1,0 +1,6 @@
+.courtsBox{
+    /*py-3 w-100 bg-dark bg-opacity-50*/
+    padding: 30px;
+    width: 100px;
+    background-color: rgba(0,0,0,0.8);
+}

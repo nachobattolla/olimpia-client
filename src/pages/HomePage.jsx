@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBarHome from "../componentts/NavBarClient";
+import NavBarHome from "../componentts/User/NavBarClient";
 import Home from "../componentts/Home";
 
 export const HomePage = () => {

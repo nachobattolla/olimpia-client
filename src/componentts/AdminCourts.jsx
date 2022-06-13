@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import "../pages/AdminCourtsPage"
-import AddCourtModal from "./AddCourtModal";
+import AddCourtModal from "./Admin/AddCourtModal";
 import CourtCard from "./CourtCard";
 import {get} from "../utils/http";
+import "./AdminCourts.css";
 
 const AdminCourts = () => {
 
@@ -23,9 +24,8 @@ const AdminCourts = () => {
                     </div>
                 </div>
                 <div className="col-10">
-
-                    <div className= "py-3 w-100 bg-dark">
-                        <label className="">MY COURTS</label>
+                    <div className= "courtsBox">
+                        <label className="justify-content-center">MY COURTS</label>
                         {
                             courts.map((el)=> <CourtCard court={el} onDeleteCourt={()=> {setRefresh(!refresh)}} onEditCourt={()=> {setRefresh(!refresh)}} />)
                         }

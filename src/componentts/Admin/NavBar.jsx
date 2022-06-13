@@ -1,7 +1,7 @@
 import React from 'react';
-import "./AdminProfile";
-import "../pages/AdminProfilePage"
-import logo from "../resources/logo.png";
+import "../AdminProfile";
+import "../../pages/AdminProfilePage"
+import logo from "../../resources/logo.png";
 import {BiLogOut, BiUserCircle} from "react-icons/bi";
 import {GiSoccerField} from "react-icons/gi";
 import {VscRequestChanges} from "@react-icons/all-files/vsc/VscRequestChanges";
