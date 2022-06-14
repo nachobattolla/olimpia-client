@@ -33,14 +33,16 @@ const FilterModal  = () => {
                                     <option value="Paddle">Paddle</option>
                                 </select>
                             </div>
-                            <div>
+                            <div className="text-success bg-white p-2">
+                                <div className="form-label">INITIAL TIME</div>
                                 <DateTimePicker onChange={onChange} value={value} />
+                                <div className="form-label">FINAL TIME</div>
                                 <DateTimePicker onChange={onChange} value={value} />
                             </div>
-                            <label> Location </label>
-                            <div></div>
                             <label> Hourly price </label>
                             <input type="number" className="form-control" />
+                            <label> Location </label>
+                            <div></div>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
