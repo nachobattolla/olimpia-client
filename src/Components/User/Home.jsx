@@ -4,7 +4,6 @@ import "../../pages/AdminProfilePage"
 import {get} from "../../utils/http";
 import CourtCard from "../Admin/CourtCard";
 import "./Home.css"
-import EditCourtModal from "../Admin/EditCourtModal";
 import FilterModal from "./FilterModal";
 
 const Home = () => {
@@ -25,7 +24,7 @@ const Home = () => {
             <div className="courtsBoxClient">
                 <div>
                 {
-                    courts?.filter(({name})=> name.includes(search)).map((court)=> <CourtCard court={court} userMode={true}/>)
+                    courts?.filter(({name})=> name.includes(search)).map((court)=> <CourtCard court={court} userMode={true} profileMode={false}/>)
                 }
                 </div>
             </div>

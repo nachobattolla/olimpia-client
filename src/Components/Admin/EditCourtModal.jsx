@@ -6,6 +6,7 @@ import AdminCourts from "./AdminCourts";
 import {get, post} from "../../utils/http";
 
 const EditCourtModal  = ({courtData,onEdit}) => {
+
     const [name, setName] = useState(courtData.name)
     const [sport, setSport] = useState(courtData.sport)
     const [location, setLocation] = useState('')

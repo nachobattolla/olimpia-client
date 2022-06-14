@@ -4,6 +4,7 @@ import {deleteRequest, post} from "../../utils/http";
 import EditCourtModal from "./EditCourtModal"
 
 const CourtCard = ({court: {name, sport, location, description, price}, onDeleteCourt, onEditCourt, userMode}) => {
+
     const onDelete = useCallback(()=> {
         deleteRequest('adminDashboard/delete-court', {name}, {options: {withCredentials: true}}).then(()=> {
             onDeleteCourt()
