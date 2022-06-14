@@ -12,7 +12,12 @@ const AdminCourts = () => {
     const [refresh, setRefresh] = useState(true)
 
     useEffect(()=> {
-        get('adminDashboard/my-courts', {options: {withCredentials: true}}).then(data=>setCourts(data || []))
+        get('adminDashboard/my-courts', {options: {withCredentials: true}}).then(
+            data=>{
+                console.log(data)
+                setCourts(data || [])
+                console.log(courts)
+            })
     }, [refresh])
 
     return (

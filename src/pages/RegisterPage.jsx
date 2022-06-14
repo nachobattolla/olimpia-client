@@ -1,8 +1,8 @@
 import React from 'react'
 import logo from "../resources/logo.png";
 import './RegisterPage.css';
-import RegisterBox from "../componentts/LoginRegister/register";
-import LoginBox from "../componentts/LoginRegister/Login";
+import RegisterBox from "../Components/LoginRegister/register";
+import LoginBox from "../Components/LoginRegister/Login";
 
 export const RegisterPage = () =>{
 

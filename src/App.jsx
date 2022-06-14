@@ -6,7 +6,7 @@ import {AdminProfilePage} from "./pages/AdminProfilePage";
 import {HomePage} from "./pages/HomePage";
 import {Test} from "./pages/Test";
 import {AdminCourtsPage} from "./pages/AdminCourtsPage";
-
+import {PendingReserves} from "./pages/PendingReserves";
 function App() {
     return(
         <div>
@@ -18,6 +18,7 @@ function App() {
                     <Route exact path="/adminHome/profile" element={<AdminProfilePage/>} />
                     <Route exact path="/adminHome/courts" element={<AdminCourtsPage/>} />
                     <Route exact path="/test" element={<Test/>} />
+                    <Route exact path = "/adminHome/myReserves" element={<PendingReserves/>}/>
                 </Routes>
             </Router>
         </div>

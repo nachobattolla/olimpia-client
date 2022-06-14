@@ -1,6 +1,6 @@
 import React from 'react'
-import NavBarHome from "../componentts/User/NavBarClient";
-import Home from "../componentts/User/Home";
+import NavBarHome from "../Components/User/NavBarClient";
+import Home from "../Components/User/Home";
 
 export const HomePage = () => {
 
