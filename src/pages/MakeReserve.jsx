@@ -2,35 +2,54 @@ import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import DateTimePicker from "react-datetime-picker";
 import {post} from "../utils/http";
-
+import Calendar from "react-calendar";
+import {HourBox} from "../Components/User/HourBox"
+import "./MakeReserve.css"
 export const MakeReserve = () => {
 
-    const courtId = useParams();
+    let courtId = useParams();
     let initialState = [{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null},{isAvailable:false, startTime: null, endTime: null}]
-    const[hours, SetHours] = useState(initialState)
-    const[day, setDay] = useState(null)
+    const[hours, SetHours] = useState(initialState);
+    const[day, setDay] = useState(new Date());
+   // const[startDate,setStartDate] = useState(0);
+    //const[endDate,setEndDate] = useState(0);
+    const [next, setNext] = useState(false)
+
+    const calculateAvailable = ()=>{
+        let dayInNumber = Date.parse(day.toString())- (3*60*60*1000);
+        console.log(dayInNumber)
+        for (let i = 0; i < 24; i++) {
+            let startDate = dayInNumber+ i*60*60*1000
+            let endDate  = dayInNumber + (i+1)*60*60*1000
+            console.log("1 "+startDate)
+            console.log("2 "+endDate)
+                post('dashboard/availableTime',{startDate,endDate,courtId},{options: {withCredentials: true}}).then(res=>{
+                    initialState[i] = res
+                    SetHours(initialState)
+                    setNext(true)
+                })
+
+
+        }
+        console.log(hours)
+    }
 
 
     useEffect(()=>{
-        let dayInNumber = Date.parse(day.toString())
-        for (let i = 0; i < hours.length; i++) {
-            let startDate= dayInNumber+ i*60*60*1000;
-            let  endDate= dayInNumber + (i+1)*60*60*1000
-            post('dashboard/availableTime',{startDate,endDate,courtId},{options: {withCredentials: true}}).then(res=>{
-                if (res.isAvailable){
-                    initialState[i] = {isAvailable:true, startTime: i, endTime: i+1,}
-                    SetHours(initialState)
-                }else{
-                    initialState[i] = {isAvailable:false, startTime:i, endTime:i+1,}
-                }
-                console.log(hours)
-            })
+        console.log("1")
+        if (day != null){
+            calculateAvailable()
         }
     },[day])
 
   return(
       <div>
-          <DateTimePicker onChange={()=>setDay(day)} value={day} minDate={new Date()} disableClock={true} />
+          <Calendar onChange={setDay} value={day} minDate={new Date()} disableClock={true} />
+          <div >
+              {
+                  hours?.map(hour => <HourBox data={hour} ></HourBox>)
+              }
+          </div>
       </div>
   )
 
