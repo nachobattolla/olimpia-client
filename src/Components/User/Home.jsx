@@ -24,7 +24,7 @@ const Home = () => {
             <div className="courtsBoxClient">
                 <div>
                 {
-                    courts?.filter(({name})=> name.includes(search)).map((court)=> <CourtCard court={court} userMode={true} profileMode={false}/>)
+                    courts?.filter(({name})=> name.includes(search)).map((court)=> <CourtCard court={court} userMode={true}/>)
                 }
                 </div>
             </div>

@@ -22,7 +22,6 @@ const LoginBox = () => {
         post("olimpia/login/", user, {options: {withCredentials: true}})
             .then((res) => {
                 if (!res.isAdmin) {
-                    console.log("dfsdvdsfvf")
                     navigate("/home");
                 }else {
                     navigate("/adminHome/courts");
