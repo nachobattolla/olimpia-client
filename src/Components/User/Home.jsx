@@ -7,14 +7,15 @@ import "./Home.css"
 import {FilterModal} from "./FilterModal";
 
 const Home = () => {
+
     const [search, setSearch] = useState('')
     const [courts, setCourts] = useState([])
     const[allCourts, setAllCourts]= useState([])
     const [sport, setSport] = useState(null)
     const [startDate, setStartDate] = useState("")
-     const [endDate, setEndDate] = useState("")
-     const[price, setPrice] = useState(999999)
-      const [refresh, setRefresh] = useState(true)
+    const [endDate, setEndDate] = useState("")
+    const[price, setPrice] = useState(999999)
+    const [refresh, setRefresh] = useState(true)
 
      const changeSport = e => {
         setSport(e)
@@ -63,6 +64,7 @@ const Home = () => {
             setCourts(data || [])
             setAllCourts(data || [])})
     }, [])
+
     useEffect(()=>{
         filterCourts(courts)
     },[refresh])

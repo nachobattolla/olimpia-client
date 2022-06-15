@@ -3,6 +3,7 @@ import {post} from "../../utils/http";
 import {IoMdColorFilter} from "react-icons/io";
 import DateTimePicker from 'react-datetime-picker'
 import Select from 'react-select';
+import RentCourts from "./RentCourts";
 
  export const FilterModal  = (props) => {
 
@@ -74,4 +75,6 @@ import Select from 'react-select';
     );
 
 }
+
+export default FilterModal;
 
