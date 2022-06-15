@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import {post} from "../utils/http";
 import {useState} from "react";
 
-const ViewEstablishment = ()=>{
+export const ViewEstablishment = ()=>{
     const{id} = useParams()
     const [admin, setAdmin]= useState({})
     const [courts, setCourts]= useState({})
@@ -13,4 +13,10 @@ const ViewEstablishment = ()=>{
     post('dashboard/adminCourts', {id}, {options: {withCredentials: true}}).then(courts =>{
         setCourts(courts)
     })
+
+    return(
+        <div>
+            <h1>{admin.username}</h1>
+        </div>
+    )
 }
