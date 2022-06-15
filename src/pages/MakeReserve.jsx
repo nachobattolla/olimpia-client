@@ -14,7 +14,7 @@ export const MakeReserve = () => {
    // const[startDate,setStartDate] = useState(0);
     //const[endDate,setEndDate] = useState(0);
     const [next, setNext] = useState(false)
-
+    let dayInNumber;
     const calculateAvailable = ()=>{
         let dayInNumber = Date.parse(day.toString())- (3*60*60*1000);
         console.log(dayInNumber)
@@ -47,7 +47,7 @@ export const MakeReserve = () => {
           <Calendar onChange={setDay} value={day} minDate={new Date()} disableClock={true} />
           <div >
               {
-                  hours?.map(hour => <HourBox data={hour} ></HourBox>)
+                  hours?.map(hour => <HourBox data={{hour,courtId,dayInNumber}} ></HourBox>)
               }
           </div>
       </div>
