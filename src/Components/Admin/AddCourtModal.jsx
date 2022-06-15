@@ -12,6 +12,8 @@ const AddCourtModal = ({onNewCourt}) => {
     const [location, setLocation] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState(0)
+    const [openHour,setOpenHour] = useState(0)
+    const [closeHour,setCloseHour] = useState(0)
     const [view, setView] = useState(false)
 
 
@@ -30,6 +32,8 @@ const AddCourtModal = ({onNewCourt}) => {
                 sport,
                 description,
                 price: parseInt(price),
+                openHour: parseInt(openHour),
+                closeHour: parseInt(closeHour),
             }, {
                 options: {withCredentials: true}
             }
@@ -59,7 +63,7 @@ const AddCourtModal = ({onNewCourt}) => {
                         </div>
                         <div className="modal-body">
                             <label> Name </label>
-                            <input className="form-control" value={name} onChange={(event)=> {setName(event.target.value)}}></input>
+                            <input className="form-control" value={name} onChange={(event)=> {setName(event.target.value)}}/>
                             <label className="m-2"> Sport </label>
                             <div className="my-3">
                             <select className="form-select" aria-label="Default select example" value={sport} onChange={(event)=> {setSport(event.target.value)}}>
@@ -71,11 +75,15 @@ const AddCourtModal = ({onNewCourt}) => {
                             </select>
                             </div>
                             <label> Location </label>
-                            <input className="form-control" value={location} onChange={(event)=> {setLocation(event.target.value)}}></input>
+                            <input className="form-control" value={location} onChange={(event)=> {setLocation(event.target.value)}}/>
                             <label> Description </label>
-                            <input className="form-control" value={description} onChange={(event)=> {setDescription(event.target.value)}}></input>
+                            <input className="form-control" value={description} onChange={(event)=> {setDescription(event.target.value)}}/>
                             <label> Hourly price </label>
-                            <input className="form-control" type="number" value={price} onChange={(event)=> {setPrice(event.target.value)}}></input>
+                            <input className="form-control" type="number" value={price} onChange={(event)=> {setPrice(event.target.value)}}/>
+                            <label> Open Hour </label>
+                            <input className="form-control" type="time" value={openHour} onChange={(event)=> {setOpenHour(event.target.value)}}/>
+                            <label> Close Hour </label>
+                            <input className="form-control" type="time" value={closeHour} onChange={(event)=> {setCloseHour(event.target.value)}}/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>

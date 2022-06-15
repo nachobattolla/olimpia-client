@@ -3,15 +3,19 @@ import "../../pages/AdminProfilePage"
 import './AdminProfile.css'
 import MailIcon from '@mui/icons-material/Mail';
 import {AiTwotonePhone} from "@react-icons/all-files/ai/AiTwotonePhone";
-import CourtCard from "./CourtCard";
 import {get} from "../../utils/http";
 import ProfileCourtCard from "./ProfileCourtCard";
+import EditCourtModal from "./EditCourtModal";
+import EditProfileModal from "./EditProfileModal";
 
 const AdminProfile = () => {
 
     const [courts, setCourts] = useState([])
     const [refresh, setRefresh] = useState(true)
-    const [adminId, setAdminId] = useState("")
+    const [refreshProfile, setRefreshProfile] = useState(true)
+    const [adminUsername, setAdminUsername] = useState("")
+    const [adminEmail, setAdminEmail] = useState("")
+    const [adminPhone, setAdminPhone] = useState("")
 
 
     useEffect(()=> {
@@ -23,22 +27,29 @@ const AdminProfile = () => {
             })
     }, [refresh])
 
-    useEffect(()=> {
-        get('', {options: {withCredentials: true}}).then(data=>setAdminId(data))
-    }, [])
+    useEffect(() => {
+        get('adminDashboard/profile', {options: {withCredentials: true}})
+            .then((data) => {
+                console.log(data)
+                setAdminUsername(data.username);
+                setAdminEmail(data.email)
+                setAdminPhone(data.phone)
+            })
+    }, [refreshProfile])
 
-
+    // let userMode = false;
     return (
         <div className="Profile">
             <header className="Profile-header">
                 <div className="content-profile">
                     <div className="profile-box">
-                        <div className="card-title"> NOMBRE ESTABLECIMIENTO </div>
-                        <div className="col-form-label"> <MailIcon/> : </div>
-                        <div className="col-form-label"> <AiTwotonePhone/> : </div>
+                        <div className="h1"> {adminUsername}'s Establishment  </div>
+                        <div className="col-form-label"> <MailIcon/> : {adminEmail} </div>
+                        <div className="col-form-label"> <AiTwotonePhone/> : {adminPhone} </div>
+                        {/*{!userMode}&&*/ <EditProfileModal adminData={{adminUsername, adminEmail, adminPhone}} onEditProfile={() => {setRefreshProfile(!refreshProfile)}} />}
                     </div>
                     <div className= "courtsBox">
-                        <label className="justify-content-center">MY COURTS</label>
+                        <label className="justify-content-center">RENT A COURT</label>
                         {
                             courts.map((el)=> <ProfileCourtCard court={el}/>)
                         }

@@ -12,14 +12,17 @@ const EditCourtModal  = ({courtData,onEdit}) => {
     const [location, setLocation] = useState('')
     const [description, setDescription] = useState(courtData.description)
     const [price, setPrice] = useState(courtData.price)
+    const [openHour,setOpenHour] = useState(courtData.openHour)
+    const [closeHour,setCloseHour] = useState(courtData.closeHour)
 
     console.log(courtData)
     console.log(name,sport)
+
     const onClick = useCallback(()=> {
         const newCourtData = {name, sport, location:  {
                 type: 'Point',
                 coordinates: [14,32],
-            }, description, price: parseInt(price)}
+            }, description, price: parseInt(price), openHour: parseInt(openHour), closeHour: parseInt(closeHour)}
         post('adminDashboard/edit-court',newCourtData , {options: {withCredentials: true}}).then(()=> {
             onEdit(newCourtData)
         })
@@ -56,6 +59,10 @@ const EditCourtModal  = ({courtData,onEdit}) => {
                             <input className="form-control" value={description} onChange={(ev)=>setDescription(ev.target.value)}/>
                             <label> Hourly price </label>
                             <input type="number" className="form-control" value={price} onChange={(ev)=>setPrice(ev.target.value)}/>
+                            <label> Open Hour </label>
+                            <input className="form-control" type="time" value={openHour} onChange={(event)=> {setOpenHour(event.target.value)}}/>
+                            <label> Close Hour </label>
+                            <input className="form-control" type="time" value={closeHour} onChange={(event)=> {setCloseHour(event.target.value)}}/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
