@@ -2,14 +2,38 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {post} from "../../utils/http";
 import {IoMdColorFilter} from "react-icons/io";
 import DateTimePicker from 'react-datetime-picker'
+import Select from 'react-select';
 
+ export const FilterModal  = (props) => {
 
-const FilterModal  = () => {
+    const [selectedOption, setSelectedOption] = useState(null)
+     const [value1,setValue1] = useState(null)
+         const [value2,setValue2] = useState(null)
+     const options = [
+         {value: null, label: '----------------------------' },
+         { value: 'Football', label: 'Football' },
+         { value: 'Basketball', label: 'Basketball' },
+         { value: 'Tennis', label: 'Tennis' },
+         { value: 'Paddle', label: 'Paddle' },
 
-    const [value, onChange] = useState(new Date());
-
-
-
+     ];
+    useEffect(()=>{
+        if (selectedOption != null){
+            props.changeSport(selectedOption.value)
+        }
+    },[selectedOption])
+     useEffect(()=>{
+         console.log(value1)
+         if (value1 != null){
+             props.changeStartDate(value1)
+         }
+     },[value1])
+     useEffect(()=>{
+         console.log(value2)
+         if (value2 != null){
+             props.changeEndDate(value2)
+         }
+     },[value2])
     return (
         <>
             <div className="btn rounded-pill btn-outline-success bg-primary pe-5" data-bs-toggle="modal" data-bs-target="#new-edit-modal" >
@@ -25,28 +49,23 @@ const FilterModal  = () => {
                         <div className="modal-body">
                             <label className="m-2"> Sport </label>
                             <div className="my-3">
-                                <select className="form-select" aria-label="Default select example">
-                                    <option selected>--------------------------------------------------------------------------</option>
-                                    <option value="Football">Football</option>
-                                    <option value="Basketball">Basketball</option>
-                                    <option value="Tennis">Tennis</option>
-                                    <option value="Paddle">Paddle</option>
-                                </select>
+                                <Select className="form-select" aria-label="Default select example"  options={options}  value={selectedOption} onChange={setSelectedOption}/>
+
                             </div>
                             <div className="text-success bg-white p-2">
                                 <div className="form-label">INITIAL TIME</div>
-                                <DateTimePicker onChange={onChange} value={value} />
+                                <DateTimePicker onChange={setValue1} value={value1}/>
                                 <div className="form-label">FINAL TIME</div>
-                                <DateTimePicker onChange={onChange} value={value} />
+                                <DateTimePicker onChange={setValue2} value={value2} minDate={value1} />
                             </div>
                             <label> Hourly price </label>
-                            <input type="number" className="form-control" />
+                            <input type="number" className="form-control"  onChange={(e)=>props.changePrice(parseInt(e.target.value))}/>
                             <label> Location </label>
                             <div></div>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-success">Save changes</button>
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={()=>{props.toggleRefresh()}}>Save</button>
                         </div>
                     </div>
                 </div>
@@ -56,4 +75,3 @@ const FilterModal  = () => {
 
 }
 
-export default FilterModal;

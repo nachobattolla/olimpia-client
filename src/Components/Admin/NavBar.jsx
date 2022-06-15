@@ -22,7 +22,7 @@ const NavBar = () => {
                         <img src={logo} width='80'className="m-3"/>
                     </button>
                     <div>
-                        <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/adminHome/requests"><VscRequestChanges size={35}/></a>
+                        <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/adminHome/myReserves"><VscRequestChanges size={35}/></a>
                         <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/adminHome/courts"><GiSoccerField size={40}/></a>
                         <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/adminHome/profile"><BiUserCircle size={40}/></a>
                         <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/login" onClick={logOut}><BiLogOut size={40}/></a>

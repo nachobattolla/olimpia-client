@@ -17,7 +17,7 @@ const _request = async (url, method, data, config = {}) => {
         throw (errorResponse.response || {status: 500})
     })
 }
-export const getBody = (url,body,config) =>_request(url, "GET", body,config)
+
 export const get = (url, config) => _request(url, "GET", null, config);
 export const post = (url, body, config = {}) => _request(url, "POST", body, config);
 export const put = (url, body, config = {}) => _request(url, "PUT", body, config);

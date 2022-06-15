@@ -19,7 +19,7 @@ const PendingReservesTable = () => {
                     <div className= "courtsBox">
                         <label className="justify-content-center">MY COURTS</label>
                         {
-                            reserves.map((el)=> <ReservesCard reserve={el} onAcceptRequest={()=> setRefresh(!refresh)}/>)
+                            reserves.map((el)=> <ReservesCard reserve={el} onAcceptRequest={()=> setRefresh(!refresh)} onRejectRequest={()=>setRefresh(!refresh)}/>)
                         }
                     </div>
                 </div>
