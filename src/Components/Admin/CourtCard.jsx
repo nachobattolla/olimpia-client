@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 
 
 
-const CourtCard = ({court: {adminId,name, sport, location, description, price,openHour,closeHour}, onDeleteCourt, onEditCourt, userMode}) => {
+const CourtCard = ({court: {adminId,name, sport, location, description, price,openHour,closeHour,_id}, onDeleteCourt, onEditCourt, userMode}) => {
     let navigate = useNavigate();
     const onDelete = useCallback(()=> {
         deleteRequest('adminDashboard/delete-court', {name}, {options: {withCredentials: true}}).then(()=> {
@@ -29,7 +29,7 @@ const CourtCard = ({court: {adminId,name, sport, location, description, price,op
                     {/*<a href="#" className="btn btn-success">Edit</a>*/}
                     {!userMode && <EditCourtModal courtData={{name, sport, location, description, price,openHour,closeHour}} onEdit={onEditCourt} />}
                     {userMode && <div className="btn btn-success" onClick={()=>{navigate(`/${adminId}`)}}>View Establishment</div>}
-                    {userMode && <div className="btn btn-success">Reserve</div>}
+                    {userMode && <div className="btn btn-success" onClick={()=>{navigate(`/reserve/${_id}`)}}>Reserve</div>}
                 </div>
         </div>
     );
