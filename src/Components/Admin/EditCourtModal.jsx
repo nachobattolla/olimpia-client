@@ -27,7 +27,7 @@ const EditCourtModal  = ({courtData,onEdit}) => {
             onEdit(newCourtData)
         })
     })
-
+    console.log(name)
     return (
         <>
             <div className="btn rounded-pill btn-outline-success bg-primary pe-5" data-bs-toggle="modal" data-bs-target="#new-edit-modal" >
@@ -66,7 +66,7 @@ const EditCourtModal  = ({courtData,onEdit}) => {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-success" onClick={onClick}>Save changes</button>
+                            <button type="button" className="btn btn-success" data-bs-toggle="modal" onClick={onClick}>Save changes</button>
                         </div>
                     </div>
                 </div>

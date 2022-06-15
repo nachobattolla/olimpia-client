@@ -17,8 +17,7 @@ const ProfileCourtCard = ({court: {name, sport, location, description, price, op
                     <h4 className="card-subtitle mb-2 text-muted">Open: {openHour} hs / Close: {closeHour} hs  </h4>
                     <h6 className="card-text mb-2 text-muted">Description: {description}</h6>
                 </div>
-                {<div className="btn btn-success">Reserve</div>}
-                {<div className="btn btn-success">View free hours</div>}
+                {<div h="#" a="./" className="btn btn-success">Reserve</div>}
             </div>
         </div>
 

@@ -1,13 +1,8 @@
-.flex{
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-.Reserve {
+.RentCourts {
     text-align: center;
 }
 
-.Reserve-header {
+.RentCourts-header {
     background-size: cover;
     min-height: 800px;
     display: flex;
@@ -18,21 +13,14 @@
     color: white;
 }
 
-.content-Reserve{
+.content-RentCourts{
     background-color: rgba(34,139,34,0.7);
     width: 1200px;
-    height: 900vh;
+    height: 400vh;
     padding: 30px;
 }
 
-.Reserve-box{
+.rentCourts-box{
     margin-top: 40px;
-    background-color: rgba(0,0,0,0.7);
-}
-
-.courtsBox-Reserve{
-    padding: 30px;
-    width: 1140px;
-    margin-top: 30px;
     background-color: rgba(0,0,0,0.7);
 }

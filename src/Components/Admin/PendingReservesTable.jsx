@@ -6,22 +6,25 @@ import ReservesCard from "./ReservesCard";
 
 
 const PendingReservesTable = () => {
+
      const [reserves,setReserves] = useState([])
     const [refresh, setRefresh] = useState(true)
+
     useEffect(()=> {
         get('adminDashboard/requests-table',{options: {withCredentials: true}}).then(
             data=>{
                 setReserves(data.result || [])
             })
     }, [refresh])
+
     return(
         <div className="container-fluid my-5">
             <div className="row">
                 <div className="col-10">
                     <div className= "courtsBox">
-                        <label className="justify-content-center">MY COURTS</label>
+                        <label className="justify-content-center">MY REQUESTS</label>
                         {
-                            reserves.map((el)=> <ReservesCard reserve={el} onAcceptRequest={()=> setRefresh(!refresh)} onRejectRequest={()=>setRefresh(!refresh)}/>)
+                            reserves.map((el)=> <ReservesCard reserve={el} onAcceptRequest={()=> setRefresh(!refresh)} onRejectRequest={()=> setRefresh(!refresh)}/>)
                         }
                     </div>
                 </div>

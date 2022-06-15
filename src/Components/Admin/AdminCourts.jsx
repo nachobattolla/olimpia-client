@@ -8,6 +8,7 @@ import "./AdminCourts.css";
 const AdminCourts = () => {
 
     const [courts, setCourts] = useState([])
+    const [selectedCourt, setSelectedCourt] = useState({})
 
     const [refresh, setRefresh] = useState(true)
 

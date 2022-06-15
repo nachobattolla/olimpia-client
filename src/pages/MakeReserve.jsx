@@ -5,6 +5,11 @@ import {post} from "../utils/http";
 import Calendar from "react-calendar";
 import {HourBox} from "../Components/User/HourBox"
 import "./MakeReserve.css"
+import NavBarClient from "../Components/User/NavBarClient";
+import MailIcon from "@mui/icons-material/Mail";
+import {AiTwotonePhone} from "@react-icons/all-files/ai/AiTwotonePhone";
+import EditProfileModal from "../Components/Admin/EditProfileModal";
+import ProfileCourtCard from "../Components/Admin/ProfileCourtCard";
 export const MakeReserve = () => {
 
     let courtId = useParams();
@@ -14,7 +19,9 @@ export const MakeReserve = () => {
    // const[startDate,setStartDate] = useState(0);
     //const[endDate,setEndDate] = useState(0);
     const [next, setNext] = useState(false)
-    let dayInNumber;
+
+    let dayInNumber = 0;
+
     const calculateAvailable = ()=>{
         let dayInNumber = Date.parse(day.toString())- (3*60*60*1000);
         console.log(dayInNumber)
@@ -43,14 +50,33 @@ export const MakeReserve = () => {
     },[day])
 
   return(
-      <div>
-          <Calendar onChange={setDay} value={day} minDate={new Date()} disableClock={true} />
-          <div >
-              {
-                  hours?.map(hour => <HourBox data={{hour,courtId,dayInNumber}} ></HourBox>)
-              }
-          </div>
-      </div>
+    <>
+
+        <NavBarClient/>
+        <div className="Reserve">
+            <header className="Reserve-header">
+                <div className="content-Reserve">
+                    <div className="Reserve-box">
+                        <div className="card-title">MAKE YOUR RESERVATION:</div>
+                        <div>
+                            <div className="col-form-label-m m-4">
+                                1. Pick a day ->
+                                2. Reserve an hour ->
+                                3. Wait for the establishment to accept your request
+                            </div>
+                            <Calendar onChange={setDay} value={day} minDate={new Date()} disableClock={true} />
+                        </div>
+                        <div >
+                            {
+                                hours?.map(hour => <HourBox data={{hour,courtId,dayInNumber}}/>)
+                            }
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+    </>
   )
 
 }

@@ -7,8 +7,10 @@ import {HomePage} from "./pages/HomePage";
 import {Test} from "./pages/Test";
 import {AdminCourtsPage} from "./pages/AdminCourtsPage";
 import {PendingReserves} from "./pages/PendingReserves";
-import {ViewEstablishment} from "./pages/ViewEstablishment"
-import {MakeReserve} from "./pages/MakeReserve"
+import {RentCourtsPage} from "./pages/RentCourtsPage";
+import {ViewEstablishment} from "./pages/ViewEstablishment";
+import {MakeReserve} from "./pages/MakeReserve";
+
 function App() {
     return(
         <div>
@@ -21,6 +23,7 @@ function App() {
                     <Route exact path="/adminHome/courts" element={<AdminCourtsPage/>} />
                     <Route exact path="/test" element={<Test/>} />
                     <Route exact path = "/adminHome/myReserves" element={<PendingReserves/>}/>
+                    <Route exact path = "/home/myReserves" element={<RentCourtsPage/>}/>
                     <Route exact path= "/:id" element={<ViewEstablishment/>}/>
                     <Route exact path="/reserve/:courtId" element={<MakeReserve/>}/>
                 </Routes>

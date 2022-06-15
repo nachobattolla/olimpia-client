@@ -21,8 +21,8 @@ const NavBarHome = () => {
                         <a href="/home"/>
                     </button>
                     <div>
-                        <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/Home/notifications"><VscRequestChanges size={35}/></a>
-                        <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/Home/courts"><GiSoccerField size={40}/></a>
+                        <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/home/myReserves"><VscRequestChanges size={35}/></a>
+                        <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/home"><GiSoccerField size={40}/></a>
                         <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/home/profile"><BiUserCircle size={40}/></a>
                         <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/login" onClick={logOut}><BiLogOut size={40}/></a>
                     </div>

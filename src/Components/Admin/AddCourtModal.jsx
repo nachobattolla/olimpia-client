@@ -87,7 +87,7 @@ const AddCourtModal = ({onNewCourt}) => {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-success" onClick={()=> onClick()}>Save changes</button>
+                            <button type="button" className="btn btn-success" data-bs-toggle="modal" onClick={()=> onClick()}>Save changes</button>
                         </div>
                     </div>
                 </div>

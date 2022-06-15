@@ -1,19 +1,20 @@
 import React, {useCallback} from "react";
 import {deleteRequest, post} from "../../utils/http";
-import EditCourtModal from "./EditCourtModal";
+
 const ReservesCard= ({reserve: {_id, courtId, isAccepted,startDate,endDate,courtName}, onAcceptRequest,onRejectRequest,userMode,}) => {
+
     const onAccept = useCallback(()=> {
         post('adminDashboard/accept-request', {_id}, {options: {withCredentials: true}}).then((res)=> {
             console.log(res)
             onAcceptRequest()
         })
     })
+
     const onReject = useCallback(()=> {
         deleteRequest('dashboard/deleteReserve',{_id},{options: {withCredentials: true}}).then((res)=> {
             onRejectRequest()
         })
     })
-
 
     return (
         <div className="card">
@@ -25,6 +26,7 @@ const ReservesCard= ({reserve: {_id, courtId, isAccepted,startDate,endDate,court
                 </div>
                 {!userMode && <a href="#" className="btn btn-success" onClick={onAccept}>Accept</a>}
                 {!userMode && <a href="#" className="btn btn-success" onClick={onReject}>Reject</a>}
+                {userMode && <a href="#" className="btn btn-success" onClick={onReject}>Cancel Reservation</a> }
             </div>
         </div>
     );
