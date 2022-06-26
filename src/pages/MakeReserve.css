@@ -10,3 +10,8 @@ h4{
     color: black;
     font-size: 12px;
 }
+.court-name{
+    position: absolute;
+    left: 20%;
+    top:25%
+}

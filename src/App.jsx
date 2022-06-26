@@ -9,7 +9,10 @@ import {AdminCourtsPage} from "./pages/AdminCourtsPage";
 import {PendingReserves} from "./pages/PendingReserves";
 import {ViewEstablishment} from "./pages/ViewEstablishment"
 import {MakeReserve2} from "./pages/MakeReserve2"
+import {useEffect} from "react";
+import MyReservations from "./pages/MyReservations";
 function App() {
+    useEffect(()=>{})
     return(
         <div>
             <Router>
@@ -23,6 +26,7 @@ function App() {
                     <Route exact path = "/adminHome/myReserves" element={<PendingReserves/>}/>
                     <Route exact path= "/:id" element={<ViewEstablishment/>}/>
                     <Route exact path="/reserve/:courtId" element={<MakeReserve2/>}/>
+                    <Route exact path = "/home/myReserves" element={<MyReservations/>}/>
                 </Routes>
             </Router>
         </div>

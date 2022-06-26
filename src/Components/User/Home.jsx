@@ -37,13 +37,16 @@ const Home = () => {
     function filterCourts(courts) {
         let courtsAux=[]
         console.log(price)
-        allCourts.map(court=>{
-            if ((court.price<=price || isNaN(price)) && sport == null){
-                courtsAux.push(court)
-            }
-            if((court.price<= price || isNaN(price)) &&  sport != null){
-                if(court.sport == sport){
+        allCourts.map(court=> {
+
+            if (court.name.toLowerCase().includes(search.toLowerCase())) {
+                if ((court.price <= price || isNaN(price)) && sport == null) {
                     courtsAux.push(court)
+                }
+                if ((court.price <= price || isNaN(price)) && sport != null) {
+                    if (court.sport == sport) {
+                        courtsAux.push(court)
+                    }
                 }
             }
         })
@@ -55,8 +58,8 @@ const Home = () => {
         endDate = Date.parse(endDate.toString())
         post('dashboard/availability', {startDate,endDate},{options: {withCredentials: true}}).then(data=>{
             console.log(data)
-            setCourts(data || [])
-            setAllCourts(data || [])})
+            setCourts(data.fieldsAux || [])
+            setAllCourts(data.fieldsAux || [])})
     }
 
     useEffect(()=> {
@@ -67,9 +70,7 @@ const Home = () => {
 
     useEffect(()=>{
         filterCourts(courts)
-    },[refresh])
-
-
+    },[refresh,search])
 
     useEffect(()=>{
 
