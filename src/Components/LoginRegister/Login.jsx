@@ -6,6 +6,7 @@ import React, {useContext, useState} from "react";
 import {get, post} from "../../utils/http";
 import Axios from 'axios';
 import data from "bootstrap/js/src/dom/data";
+import {Alert} from "react-bootstrap";
 
 
 const LoginBox = () => {
@@ -17,17 +18,22 @@ const LoginBox = () => {
     let navigate = useNavigate();
     const [user, setUser] = useState({email:"",password:"",isAdmin2:false})
     const [passwordShown, setPasswordShown] = useState(false);
+    const [alert, setAlert] = useState("")
 
     const loginRequest = () => {
         post("olimpia/login/", user, {options: {withCredentials: true}})
             .then((res) => {
+                setAlert(res.message)
+                console.log(alert)
                 if (!res.isAdmin) {
                     navigate("/home");
                 }else {
                     navigate("/adminHome/courts");
                 }
+
             })
             .catch(error => {
+                setAlert(error.data.message)
 
             })
     }
@@ -78,6 +84,15 @@ const LoginBox = () => {
                     className="login-button"
                     onClick={signUp}>Sign Up
                 </button>
+                <div>
+                    {
+                        (alert !== "")?
+                        <Alert key="danger" variant="danger">
+                            {alert}
+                        </Alert>:<></>
+                    }
+
+                </div>
         </div>
     );
 }

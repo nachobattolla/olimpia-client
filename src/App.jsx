@@ -11,16 +11,18 @@ import {ViewEstablishment} from "./pages/ViewEstablishment"
 import {MakeReserve2} from "./pages/MakeReserve2"
 import {useEffect} from "react";
 import MyReservations from "./pages/MyReservations";
+import ProfilePage from "./pages/ProfilePage";
 function App() {
     useEffect(()=>{})
     return(
         <div>
             <Router>
                 <Routes>
-                    <Route exact path="/login" element={<LoginPage/>} />
+                    <Route exact path="/" element={<LoginPage/>} />
                     <Route exact path="/register" element={<RegisterPage/>} />
                     <Route exact path="/home" element={<HomePage/>} />
                     <Route exact path="/adminHome/profile" element={<AdminProfilePage/>} />
+                    <Route exact path="/home/profile" element={<ProfilePage/>} />
                     <Route exact path="/adminHome/courts" element={<AdminCourtsPage/>} />
                     <Route exact path="/test" element={<Test/>} />
                     <Route exact path = "/adminHome/myReserves" element={<PendingReserves/>}/>

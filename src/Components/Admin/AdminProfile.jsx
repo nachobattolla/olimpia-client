@@ -13,9 +13,9 @@ const AdminProfile = () => {
     const [courts, setCourts] = useState([])
     const [refresh, setRefresh] = useState(true)
     const [refreshProfile, setRefreshProfile] = useState(true)
-    const [adminUsername, setAdminUsername] = useState("")
-    const [adminEmail, setAdminEmail] = useState("")
-    const [adminPhone, setAdminPhone] = useState("")
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [phone, setPhone] = useState("")
 
 
     useEffect(()=> {
@@ -31,9 +31,9 @@ const AdminProfile = () => {
         get('adminDashboard/profile', {options: {withCredentials: true}})
             .then((data) => {
                 console.log(data)
-                setAdminUsername(data.username);
-                setAdminEmail(data.email)
-                setAdminPhone(data.phone)
+                setUsername(data.username);
+                setEmail(data.email)
+                setPhone(data.phone)
             })
     }, [refreshProfile])
 
@@ -43,10 +43,10 @@ const AdminProfile = () => {
             <header className="Profile-header">
                 <div className="content-profile">
                     <div className="profile-box">
-                        <div className="h1"> {adminUsername}'s Establishment  </div>
-                        <div className="col-form-label"> <MailIcon/> : {adminEmail} </div>
-                        <div className="col-form-label"> <AiTwotonePhone/> : {adminPhone} </div>
-                        {/*{!userMode}&&*/ <EditProfileModal adminData={{adminUsername, adminEmail, adminPhone}} onEditProfile={() => {setRefreshProfile(!refreshProfile)}} />}
+                        <div className="h1"> {username}'s Establishment  </div>
+                        <div className="col-form-label"> <MailIcon/> : {email} </div>
+                        <div className="col-form-label"> <AiTwotonePhone/> : {phone} </div>
+                        {/*{!userMode}&&*/ <EditProfileModal data={{username, email, phone}} onEditProfile={() => {setRefreshProfile(!refreshProfile)}} />}
                     </div>
                     <div className= "courtsBox">
                         <label className="justify-content-center">RENT A COURT</label>

@@ -3,18 +3,19 @@ import "../../pages/AdminCourtsPage"
 import {get, post} from "../../utils/http";
 import {FaUserEdit} from "@react-icons/all-files/fa/FaUserEdit";
 
-const EditProfileModal  = ({adminData,onEdit}) => {
+const EditProfileModal  = ({data,onEditProfile}) => {
 
-    const [username, setUsername] = useState(adminData.adminUsername)
-    const [email, setEmail] = useState(adminData.adminEmail)
-    const [phone, setPhone] = useState(adminData.adminPhone)
+    const [username, setUsername] = useState(data.username)
+    const [email, setEmail] = useState(data.email)
+    const [phone, setPhone] = useState(data.phone)
 
-    console.log(adminData)
+    console.log(data)
 
     const onClick = useCallback(()=> {  //falta el end point
-        const newAdminData = {username, email, phone}
-        post('',newAdminData , {options: {withCredentials: true}}).then(()=> {
-            onEdit(newAdminData)
+        const newData = {username, email, phone}
+        post('dashboard/editProfile',{newData} , {options: {withCredentials: true}}).then(()=> {
+            onEditProfile(newData)
+            console.log( "newData: "+ newData)
         })
         this.hide();
     })
@@ -41,7 +42,7 @@ const EditProfileModal  = ({adminData,onEdit}) => {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-success" onClick={onClick}>Save changes</button>
+                            <button type="button" className="btn btn-success" onClick={onClick} data-bs-dismiss="modal">Save changes</button>
                         </div>
                     </div>
                 </div>

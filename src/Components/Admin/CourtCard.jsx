@@ -23,8 +23,6 @@ const CourtCard = ({court: {adminId,name, sport, location, description, price,op
                         <h6 className="card-subtitle mb-2 text-muted">Price per Hour: {price}</h6>
                     </div>
                     <p className="card-text">Description: {description}</p>
-                    <p className="card-title">Open Hour: {openHour}</p>
-                    <p className="card-title">Close Hour: {closeHour}</p>
                     {!userMode && <a href="#" className="btn btn-success" onClick={onDelete}>Delete</a>}
                     {/*<a href="#" className="btn btn-success">Edit</a>*/}
                     {!userMode && <EditCourtModal courtData={{name, sport, location, description, price,openHour,closeHour}} onEdit={onEditCourt} />}
