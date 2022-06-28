@@ -11,21 +11,21 @@ const AddCourtModal = ({onNewCourt}) => {
     const [sport, setSport] = useState('')
     const [location, setLocation] = useState('')
     const [description, setDescription] = useState('')
-    const [price, setPrice] = useState(0)
-    const [openHourMon,setOpenHourMon] = useState(0)
-    const [closeHourMon,setCloseHourMon] = useState(0)
-    const [openHourTue,setOpenHourTue] = useState(0)
-    const [closeHourTue,setCloseHourTue] = useState(0)
-    const [openHourWed,setOpenHourWed] = useState(0)
-    const [closeHourWed,setCloseHourWed] = useState(0)
-    const [openHourThur,setOpenHourThur] = useState(0)
-    const [closeHourThur,setCloseHourThur] = useState(0)
-    const [openHourFri,setOpenHourFri] = useState(0)
-    const [closeHourFri,setCloseHourFri] = useState(0)
-    const [openHourSat,setOpenHourSat] = useState(0)
-    const [closeHourSat,setCloseHourSat] = useState(0)
-    const [openHourSun,setOpenHourSun] = useState(0)
-    const [closeHourSun,setCloseHourSun] = useState(0)
+    const [price, setPrice] = useState()
+    const [openHourMon,setOpenHourMon] = useState("09:00")
+    const [closeHourMon,setCloseHourMon] = useState("22:00")
+    const [openHourTue,setOpenHourTue] = useState("09:00")
+    const [closeHourTue,setCloseHourTue] = useState("22:00")
+    const [openHourWed,setOpenHourWed] = useState("09:00")
+    const [closeHourWed,setCloseHourWed] = useState("22:00")
+    const [openHourThur,setOpenHourThur] = useState("09:00")
+    const [closeHourThur,setCloseHourThur] = useState("22:00")
+    const [openHourFri,setOpenHourFri] = useState("09:00")
+    const [closeHourFri,setCloseHourFri] = useState("22:00")
+    const [openHourSat,setOpenHourSat] = useState("09:00")
+    const [closeHourSat,setCloseHourSat] = useState("22:00")
+    const [openHourSun,setOpenHourSun] = useState("09:00")
+    const [closeHourSun,setCloseHourSun] = useState("22:00")
     const [view, setView] = useState(false)
 
 
@@ -110,7 +110,8 @@ const AddCourtModal = ({onNewCourt}) => {
 
                                 <div className="col">
                                     <label> Open Hour Monday </label>
-                                    <input className="form-control" type="time" value={openHourMon} onChange={(event)=> {setOpenHourMon(event.target.value)}}/>
+                                    <input className="form-control" type="time" value={openHourMon} onChange={(event)=> {setOpenHourMon(event.target.value)
+                                    }}/>
 
                                 </div>
 

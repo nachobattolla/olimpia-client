@@ -17,7 +17,7 @@ const RegisterBox = () => {
     const RegisterRequest = () => {
         post("olimpia/register/", user)
             .then((res) => {
-                navigate("/login");
+                navigate("/");
                 setErrored(false);
             })
             .catch(err => {
