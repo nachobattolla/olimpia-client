@@ -51,7 +51,7 @@ const AdminProfile = () => {
                     <div className= "courtsBox">
                         <label className="justify-content-center">RENT A COURT</label>
                         {
-                            courts.map((el)=> <ProfileCourtCard court={el}/>)
+                            courts.map((el)=> <ProfileCourtCard court={el} isAdmin = {true}/>)
                         }
                     </div>
                 </div>

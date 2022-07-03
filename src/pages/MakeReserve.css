@@ -12,7 +12,11 @@ h4{
     font-size: 12px;
 }
 .court-name{
-    position: absolute;
-    left: 20%;
-    top:25%
+    color: darkslategray;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
 }

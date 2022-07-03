@@ -4,6 +4,7 @@ import {IoAdd} from "@react-icons/all-files/io5/IoAdd";
 import {GiSoccerField} from "@react-icons/all-files/gi/GiSoccerField";
 import AdminCourts from "./AdminCourts";
 import { post} from "../../utils/http";
+import NewContainerMap from "../Shared/NewMapContainer";
 function numToTime(num) {
     if(num<10){
         return "0"+num+":00"
@@ -13,7 +14,7 @@ function numToTime(num) {
 const EditCourtModal  = ({courtData,onEdit}) => {
     const [name, setName] = useState(courtData.name)
     const [sport, setSport] = useState(courtData.sport)
-    const [location, setLocation] = useState('')
+    const [location, setLocation] = useState(courtData.address)
     const [description, setDescription] = useState(courtData.description)
     const [price, setPrice] = useState(courtData.price)
     const [openHourMon,setOpenHourMon] = useState(numToTime(courtData.openHourMon))
@@ -62,10 +63,10 @@ const EditCourtModal  = ({courtData,onEdit}) => {
     console.log(name)
     return (
         <>
-            <div className="btn rounded-pill btn-outline-success bg-primary pe-5" data-bs-toggle="modal" data-bs-target="#new-edit-modal" >
+            <div className="btn rounded-pill btn-outline-success bg-primary pe-5" data-bs-toggle="modal" data-bs-target={`#new-edit-modal${_id}`} >
                 Edit
             </div>
-            <div className="modal fade" id="new-edit-modal" tabIndex="-1">
+            <div className="modal fade" id={`new-edit-modal${_id}`} tabIndex="-1">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -85,8 +86,12 @@ const EditCourtModal  = ({courtData,onEdit}) => {
                                     <option value="Paddle">Paddle</option>
                                 </select>
                             </div>
-                            <label> Location </label>
-                            <input className="form-control" value={location} onChange={(ev)=> setLocation(ev.target.value)}/>
+                            <div>
+                                <label> Location </label>
+                                <input className="form-control" value={location} onChange={(event)=> {setLocation(event.target.value)}}/>
+                                <NewContainerMap setLocation={setLocation} input={location} />
+                            </div>
+                            <br/>
                             <label> Description </label>
                             <input className="form-control" value={description} onChange={(ev)=>setDescription(ev.target.value)}/>
                             <label> Hourly price </label>

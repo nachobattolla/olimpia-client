@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 
 
 
-const CourtCard = ({court: {adminId,name, sport, location, description, price,reserves:{
+const CourtCard = ({court: {adminId,name, sport, location,address, description, price,reserves:{
     Monday:{
         openHour:openHourMon,
         closeHour: closeHourMon
@@ -54,7 +54,7 @@ const CourtCard = ({court: {adminId,name, sport, location, description, price,re
                     <p className="card-text">Description: {description}</p>
                     {!userMode && <a href="#" className="btn btn-success" onClick={onDelete}>Delete</a>}
                     {/*<a href="#" className="btn btn-success">Edit</a>*/}
-                    {!userMode && <EditCourtModal courtData={{name, sport, location, description, price,openHourMon,closeHourMon,openHourTue,closeHourTue,openHourWed,closeHourWed,openHourThur,closeHourThur,openHourFri,closeHourFri,openHourSat,closeHourSat,openHourSun,closeHourSun,_id}} onEdit={onEditCourt} />}
+                    {!userMode && <EditCourtModal courtData={{name, sport, location,address, description, price,openHourMon,closeHourMon,openHourTue,closeHourTue,openHourWed,closeHourWed,openHourThur,closeHourThur,openHourFri,closeHourFri,openHourSat,closeHourSat,openHourSun,closeHourSun,_id}} onEdit={onEditCourt} />}
                     {userMode && <div className="btn btn-success" onClick={()=>{navigate(`/${adminId}`)}}>View Establishment</div>}
                     {userMode && <div className="btn btn-success" onClick={()=>{navigate(`/reserve/${_id}`)}}>Reserve</div>}
                 </div>

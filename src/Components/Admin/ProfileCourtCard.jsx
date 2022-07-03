@@ -4,7 +4,7 @@ import {deleteRequest, post} from "../../utils/http";
 import EditCourtModal from "./EditCourtModal"
 import {useNavigate} from "react-router-dom";
 
-const ProfileCourtCard = ({court: {name, sport, location, description, price, openHour,closeHour,_id}}) => {
+const ProfileCourtCard = ({court: {name, sport, location, description, price, openHour,closeHour,_id},isAdmin}) => {
     let navigate = useNavigate();
 
     return (
@@ -17,7 +17,10 @@ const ProfileCourtCard = ({court: {name, sport, location, description, price, op
                     <h5 className="card-subtitle mb-2 text-muted">Price p/h: {price}</h5>
                     <h6 className="card-text mb-2 text-muted">Description: {description}</h6>
                 </div>
-                {<div h="#" a="./" className="btn btn-success" onClick={()=>{navigate(`/reserve/${_id}`)}}>Reserve</div>}
+
+                {   isAdmin?<></>:
+                    <div  h="#" a="./" className="btn btn-success" onClick={()=>{navigate(`/reserve/${_id}`)}}>Reserve</div>
+                }
             </div>
         </div>
 

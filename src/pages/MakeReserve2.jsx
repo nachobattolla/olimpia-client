@@ -15,7 +15,7 @@ export const MakeReserve2 = () => {
     const[value1,setValue1] = useState(0)
     const [value2,setValue2]= useState(0)
     const [refresh,setRefresh] = useState(false)
-    const[court, setCourt]=useState(null)
+    const[name, setName]=useState("")
     const[msg,setMessage] = useState("");
     const [loading,setLoading]=useState(true)
 
@@ -35,6 +35,8 @@ export const MakeReserve2 = () => {
             window.localStorage.setItem("sunday",JSON.stringify(res.reserves.Sunday))
 
             setLoading(false)
+            setName(res.name)
+            
         })
     },[])
 
@@ -61,9 +63,7 @@ export const MakeReserve2 = () => {
                 <NavBar></NavBar>
                 <div className="text-success bg-white p-2">
 
-                    <div>
-                        <h2 className="court-name" >{court?.name}</h2>
-                    </div>
+                        <h2 className="court-name" >{name}</h2>
                     <div className="form-label">INITIAL TIME</div>
                     <DateTimePicker onChange={setValue1} value={value1}/>
                     <div className="form-label">FINAL TIME</div>
@@ -77,9 +77,7 @@ export const MakeReserve2 = () => {
                         }
 
                     </div>
-                    {
-                        court?<ReservesTable reserves={court.reserves}/>: null
-                    }
+
                 </div>
                 <div style={{display:"flex",flexDirection:"row",justifyContent:"space-evenly",backgroundColor:"lightgray",height:"150vh",overflow:"scroll",borderTop:"2px solid black"}}>
                     <DayAvailability style={{marginTop:"20px"}} day={"monday"} isToday={date === 1}></DayAvailability>

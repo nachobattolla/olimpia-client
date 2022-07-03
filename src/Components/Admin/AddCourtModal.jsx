@@ -4,12 +4,14 @@ import {IoAdd} from "@react-icons/all-files/io5/IoAdd";
 import {GiSoccerField} from "@react-icons/all-files/gi/GiSoccerField";
 import AdminCourts from "./AdminCourts";
 import {post} from "../../utils/http";
+import NewContainerMap from "../Shared/NewMapContainer";
 
 
 const AddCourtModal = ({onNewCourt}) => {
     const [name, setName] = useState('')
     const [sport, setSport] = useState('')
-    const [location, setLocation] = useState('')
+    const [location, setLocation] = useState([])
+    const [address, setAddress] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState()
     const [openHourMon,setOpenHourMon] = useState("09:00")
@@ -39,8 +41,9 @@ const AddCourtModal = ({onNewCourt}) => {
                 name,
                 location: {
                     type: 'Point',
-                    coordinates: [14,32],
+                    coordinates: location,
                 },
+                address,
                 sport,
                 description,
                 price: parseInt(price),
@@ -99,8 +102,12 @@ const AddCourtModal = ({onNewCourt}) => {
                                 <option value="Paddle">Paddle</option>
                             </select>
                             </div>
-                            <label> Location </label>
-                            <input className="form-control"   value={location} onChange={(event)=> {setLocation(event.target.value)}}/>
+                            <div>
+                                <label> Location </label>
+                                <input className="form-control" value={address} onChange={(event)=> {setAddress(event.target.value)}}/>
+                                <NewContainerMap setLocation={setLocation} input={address} />
+                            </div>
+                            <br/>
                             <label> Description </label>
                             <input className="form-control" value={description} onChange={(event)=> {setDescription(event.target.value)}}/>
                             <label> Hourly price </label>
