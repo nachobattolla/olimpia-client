@@ -15,9 +15,7 @@ const AdminCourts = () => {
     useEffect(()=> {
         get('adminDashboard/my-courts', {options: {withCredentials: true}}).then(
             data=>{
-                console.log(data)
                 setCourts(data || [])
-                console.log(courts)
             })
     }, [refresh])
 

@@ -4,12 +4,16 @@ import {IoMdColorFilter} from "react-icons/io";
 import DateTimePicker from 'react-datetime-picker'
 import Select from 'react-select';
 import RentCourts from "./RentCourts";
+import NewContainerMap from "../Shared/NewMapContainer";
 
  export const FilterModal  = (props) => {
 
     const [selectedOption, setSelectedOption] = useState(null)
      const [value1,setValue1] = useState(null)
          const [value2,setValue2] = useState(null)
+     const[address,setAddress] = useState('')
+     const [location,setLocation] = useState([])
+
      const options = [
          {value: null, label: '----------------------------' },
          { value: 'Football', label: 'Football' },
@@ -61,8 +65,11 @@ import RentCourts from "./RentCourts";
                             </div>
                             <label> Hourly price </label>
                             <input type="number" className="form-control"  onChange={(e)=>props.changePrice(parseInt(e.target.value))}/>
-                            <label> Location </label>
-                            <div></div>
+                            <div>
+                                <label> Location </label>
+                                <input className="form-control" value={address} onChange={(event)=> {setAddress(event.target.value)}}/>
+                                <NewContainerMap setLocation={setLocation} address={address} />
+                            </div>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>

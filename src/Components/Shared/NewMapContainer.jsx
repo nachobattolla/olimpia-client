@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {GoogleMap, LoadScript } from '@react-google-maps/api';
 import { Marker } from '@react-google-maps/api';
 import Geocode from "react-geocode";
+import { useGeolocated } from "react-geolocated";
 const containerStyle = {
     width: '450px',
     height: '300px',
@@ -9,15 +10,17 @@ const containerStyle = {
     top: '10px'
 };
 
-const center = {
-    lat: -34.45560912790846,
-    lng: -58.858892611731875,
-};
 const API_KEY = process.env.REACT_APP_API_KEY
 
 function NewContainerMap(props) {
-
-    const [coords, setCoords] = useState(null)
+    const {  coords,isGeolocationAvailable, isGeolocationEnabled } =
+        useGeolocated({
+            positionOptions: {
+                enableHighAccuracy: false,
+            },
+            userDecisionTimeout: 5000,
+        });
+    const [coordinates, setCoordinates] = useState(null)
     const[center, setCenter] = useState({
         lat: -34.45560912790846,
         lng: -58.858892611731875,
@@ -40,30 +43,39 @@ function NewContainerMap(props) {
         console.log("location:" + location)
         console.log(location.lat)
         console.log(location.lng)
-        setCoords(location)
+        setCoordinates(location)
         setX(x)
         setY(y)
         props.setLocation([x,y])
     }
+    useEffect(()=>{
+        if(isGeolocationAvailable && isGeolocationEnabled){
+            console.log("coords: "+ coords)
+            if (coords){
+                setCenter({
+                    lat: coords.latitude,
+                    lng: coords.longitude
+                })
+            }
 
+        }
+    },[])
     useEffect(()=> {
-        Geocode.fromAddress(props.input).then(
+        console.log("props.input:  " + props.address)
+        Geocode.fromAddress(props.address).then(
             (response) => {
                 const { lat, lng } = response.results[0].geometry.location;
-                console.log("latLng: "+  lat, lng);
-                console.log(typeof  lat)
-                console.log(typeof  lng)
                 setX(lat)
                 setX(lng)
                 props.setLocation([lat,lng])
-                setCoords({lat,lng}  )
+                setCoordinates({lat,lng}  )
                 setCenter({lat,lng})
             },
             (error) => {
                 console.error(error);
             }
         );
-    },[props.input])
+    },[props.address])
 
     return (
         <div>
@@ -79,8 +91,8 @@ function NewContainerMap(props) {
                 }}
             >
                 {
-                    coords ?
-                        <Marker position={coords}/> : null
+                    coordinates ?
+                        <Marker position={coordinates}/> : null
                 },
                 <></>
             </GoogleMap>

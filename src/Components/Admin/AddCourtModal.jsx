@@ -67,7 +67,6 @@ const AddCourtModal = ({onNewCourt}) => {
             }
             )
             onNewCourt()
-            console.log(res)
             // toggleModal()
         } catch (e) {
 
@@ -105,7 +104,7 @@ const AddCourtModal = ({onNewCourt}) => {
                             <div>
                                 <label> Location </label>
                                 <input className="form-control" value={address} onChange={(event)=> {setAddress(event.target.value)}}/>
-                                <NewContainerMap setLocation={setLocation} input={address} />
+                                <NewContainerMap setLocation={setLocation} address={address}/>
                             </div>
                             <br/>
                             <label> Description </label>
