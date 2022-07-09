@@ -3,6 +3,7 @@ import {GoogleMap, LoadScript } from '@react-google-maps/api';
 import { Marker } from '@react-google-maps/api';
 import Geocode from "react-geocode";
 import { useGeolocated } from "react-geolocated";
+import { Circle } from '@react-google-maps/api'
 const containerStyle = {
     width: '450px',
     height: '300px',
@@ -13,13 +14,29 @@ const containerStyle = {
 const API_KEY = process.env.REACT_APP_API_KEY
 
 function NewContainerMap(props) {
-    const {  coords,isGeolocationAvailable, isGeolocationEnabled } =
-        useGeolocated({
-            positionOptions: {
-                enableHighAccuracy: false,
-            },
-            userDecisionTimeout: 5000,
-        });
+
+    useEffect(()=>{
+        let options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        };
+
+        function success(pos) {
+            let crd = pos.coords;
+
+            setCenter({
+                lat: crd.latitude,
+                lng: crd.longitude
+            })
+        };
+
+        function error(err) {
+            console.warn('ERROR(' + err.code + '): ' + err.message);
+        };
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
+    },[])
     const [coordinates, setCoordinates] = useState(null)
     const[center, setCenter] = useState({
         lat: -34.45560912790846,
@@ -48,18 +65,7 @@ function NewContainerMap(props) {
         setY(y)
         props.setLocation([x,y])
     }
-    useEffect(()=>{
-        if(isGeolocationAvailable && isGeolocationEnabled){
-            console.log("coords: "+ coords)
-            if (coords){
-                setCenter({
-                    lat: coords.latitude,
-                    lng: coords.longitude
-                })
-            }
 
-        }
-    },[])
     useEffect(()=> {
         console.log("props.input:  " + props.address)
         Geocode.fromAddress(props.address).then(
@@ -76,6 +82,9 @@ function NewContainerMap(props) {
             }
         );
     },[props.address])
+    useEffect(()=>{
+        props.changeCenter(center)
+    },[center])
 
     return (
         <div>
@@ -85,7 +94,7 @@ function NewContainerMap(props) {
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={10}
+                zoom={1000}
                 onClick={e=>{
                     addMarker(e.latLng,e.pixel.x,e.pixel.y)
                 }}
@@ -94,7 +103,12 @@ function NewContainerMap(props) {
                     coordinates ?
                         <Marker position={coordinates}/> : null
                 },
-                <></>
+
+                {
+                    props.radius?
+                    <Circle center={center} radius={parseInt(props.radius)*1000} />: null
+                }
+
             </GoogleMap>
         </LoadScript>
         </div>

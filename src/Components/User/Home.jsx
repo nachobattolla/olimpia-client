@@ -11,12 +11,14 @@ const Home = () => {
     const [search, setSearch] = useState('')
     const [courts, setCourts] = useState([])
     const[allCourts, setAllCourts]= useState([])
+    const[locationCourts, setLocationCourts]= useState([])
     const [sport, setSport] = useState(null)
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState("")
     const[price, setPrice] = useState(999999)
     const [refresh, setRefresh] = useState(true)
-
+    const [radius, setRadius] = useState(100)
+    const[center, setCenter] = useState({lat:0,lng:0})
      const changeSport = e => {
         setSport(e)
     };
@@ -28,6 +30,12 @@ const Home = () => {
        console.log("0")
         setStartDate(e)
     };
+   const changeRadius = e =>{
+       setRadius(e)
+   }
+   const changeCenter = e => {
+       setCenter(e)
+   }
    const changePrice = e => {
         setPrice(e)
     };
@@ -36,18 +44,21 @@ const Home = () => {
     }
     function filterCourts(courts) {
         let courtsAux=[]
-        console.log(price)
         allCourts.map(court=> {
-
-            if (court.name.toLowerCase().includes(search.toLowerCase())) {
-                if ((court.price <= price || isNaN(price)) && sport == null) {
-                    courtsAux.push(court)
-                }
-                if ((court.price <= price || isNaN(price)) && sport != null) {
-                    if (court.sport == sport) {
-                        courtsAux.push(court)
+            if (court.name.toLowerCase().includes(search.toLowerCase()) && locationCourts.length<=0) {
+            } else if (locationCourts.length>=0){
+                locationCourts.map(court2 =>{
+                    if (court2._id === court._id){
+                        if ((court.price <= price || isNaN(price)) && sport == null) {
+                            courtsAux.push(court)
+                        }
+                        if ((court.price <= price || isNaN(price)) && sport != null) {
+                            if (court.sport == sport) {
+                                courtsAux.push(court)
+                            }
+                        }
                     }
-                }
+                })
             }
         })
         setCourts(courtsAux)
@@ -58,7 +69,6 @@ const Home = () => {
         endDate = Date.parse(endDate.toString())
         post('dashboard/availability', {startDate,endDate},{options: {withCredentials: true}}).then(data=>{
             console.log(data)
-            setCourts(data.fieldsAux || [])
             setAllCourts(data.fieldsAux || [])})
     }
 
@@ -80,7 +90,16 @@ const Home = () => {
         }
     },[endDate,startDate])
 
-    const filterModal = FilterModal({changeSport,changeEndDate,changeStartDate,changePrice,toggleRefresh})
+    function filterByLocation() {
+        post('dashboard/location', {coordinateX:center.lat,coordinateY:center.lng,radius},{options: {withCredentials: true}}).then(data=>{
+            setLocationCourts(data.result || [])})
+    }
+
+    useEffect(()=>{
+        filterByLocation()
+    },[center,radius])
+
+    const filterModal = FilterModal({changeSport,changeEndDate,changeStartDate,changePrice,toggleRefresh,changeRadius,changeCenter,radius})
     return (
         <div>
             {filterModal}

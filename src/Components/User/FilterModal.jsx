@@ -13,6 +13,7 @@ import NewContainerMap from "../Shared/NewMapContainer";
          const [value2,setValue2] = useState(null)
      const[address,setAddress] = useState('')
      const [location,setLocation] = useState([])
+     const [radius, setRadius] = useState(0)
 
      const options = [
          {value: null, label: '----------------------------' },
@@ -66,9 +67,11 @@ import NewContainerMap from "../Shared/NewMapContainer";
                             <label> Hourly price </label>
                             <input type="number" className="form-control"  onChange={(e)=>props.changePrice(parseInt(e.target.value))}/>
                             <div>
-                                <label> Location </label>
-                                <input className="form-control" value={address} onChange={(event)=> {setAddress(event.target.value)}}/>
-                                <NewContainerMap setLocation={setLocation} address={address} />
+                                <label> Radius (Km) </label>
+                                <input type="number" className="form-control" value={radius} onChange={(event)=> {setRadius(event.target.value)
+                                props.changeRadius(event.target.value)
+                                }}/>
+                                <NewContainerMap changeCenter={props.changeCenter} address={address} radius={radius}/>
                             </div>
                         </div>
                         <div className="modal-footer">
