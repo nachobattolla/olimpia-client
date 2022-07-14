@@ -12,6 +12,7 @@ import {MakeReserve2} from "./pages/MakeReserve2"
 import {useEffect} from "react";
 import MyReservations from "./pages/MyReservations";
 import ProfilePage from "./pages/ProfilePage";
+import Payment from './pages/Payment';
 function App() {
     useEffect(()=>{})
     return(
@@ -27,6 +28,7 @@ function App() {
                     <Route exact path="/test" element={<Test/>} />
                     <Route exact path = "/adminHome/myReserves" element={<PendingReserves/>}/>
                     <Route exact path= "/:id" element={<ViewEstablishment/>}/>
+                    <Route exact path= "/payment/:id" element={<Payment/>}/>
                     <Route exact path="/reserve/:courtId" element={<MakeReserve2/>}/>
                     <Route exact path = "/home/myReserves" element={<MyReservations/>}/>
                 </Routes>

@@ -5,6 +5,7 @@ import {get, post} from "../../utils/http";
 import CourtCard from "../Admin/CourtCard";
 import "./Home.css"
 import {FilterModal} from "./FilterModal";
+import AddBalanceModal from "./AddBalanceModal";
 
 const Home = () => {
 
@@ -100,9 +101,13 @@ const Home = () => {
     },[center,radius])
 
     const filterModal = FilterModal({changeSport,changeEndDate,changeStartDate,changePrice,toggleRefresh,changeRadius,changeCenter,radius})
-    return (
+    const addBalanceModal = AddBalanceModal()
+        return(
         <div>
             {filterModal}
+            <div>
+                {addBalanceModal}
+            </div>
             <div>
                 <input className="searchCourt" placeholder="search court" type="text" onChange={(ev)=> setSearch(ev.target.value)}/>
             </div>

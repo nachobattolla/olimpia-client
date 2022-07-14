@@ -1,7 +1,7 @@
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import DateTimePicker from "react-datetime-picker";
 import React, {useEffect, useState} from "react";
-import {post} from "../utils/http";
+import {post,get} from "../utils/http";
 import "./MakeReserve.css"
 import ReservesTable from "../Components/User/ReservesTable";
 import {DayAvailability, dayAvailability} from "../Components/User/DayAvailability";
@@ -18,10 +18,17 @@ export const MakeReserve2 = () => {
     const[name, setName]=useState("")
     const[msg,setMessage] = useState("");
     const [loading,setLoading]=useState(true)
-
+    const[adminId,setAdminId]=useState('')
+    const[admin,setAdmin] = useState(null)
+    const[user,setUser] = useState(null)
     const today = new Date();
     const date= today.getDay();
 
+    useEffect(()=>{
+        get('dashboard/profile',{options: {withCredentials: true}}).then(res =>{
+            setUser(res)
+        })
+    },[])
 
     useEffect(()=>{
         post('dashboard/getCourt',{courtId},{options: {withCredentials: true}}).then(res =>{
@@ -36,23 +43,37 @@ export const MakeReserve2 = () => {
 
             setLoading(false)
             setName(res.name)
+            setAdminId(res.adminId)
+            console.log(typeof adminId)
             
         })
     },[])
-
     useEffect(()=>{
-        if (value2  != 0 && value1 != 0){
-            console.log("1")
-            let startDate= value1.toString()
-            let   endDate = value2.toString()
-            console.log(startDate)
-            console.log(endDate)
-            post('dashboard/makeReserve',{startDate, endDate, courtId },{options: {withCredentials: true}}).then((res) =>{
 
-                console.log(res)
-                setMessage(res.msg)
+        if (adminId != ''){
+            post('dashboard/establishment',{id:adminId},{options: {withCredentials: true}}).then(res =>{
+                setAdmin(res)
             })
         }
+
+    },[adminId])
+
+    useEffect(()=>{
+        if(admin !== null && user !== null){
+            if (value2  != 0 && value1 != 0){
+                console.log("1")
+                let startDate= value1.toString()
+                let   endDate = value2.toString()
+                console.log(startDate)
+                console.log(endDate)
+                post('dashboard/makeReserve',{startDate, endDate, courtId },{options: {withCredentials: true}}).then((res) =>{
+                    console.log(res.msg)
+                    setMessage(res.msg)
+                    console.log(msg)
+                })
+            }
+        }
+
     },[refresh])
 
 
@@ -68,7 +89,7 @@ export const MakeReserve2 = () => {
                     <DateTimePicker onChange={setValue1} value={value1}/>
                     <div className="form-label">FINAL TIME</div>
                     <DateTimePicker onChange={setValue2} value={value2} minDate={value1} />
-                    <button onClick={()=>setRefresh(!refresh)}> Reserve</button>
+                    <button onClick={()=> setRefresh(!refresh)}> Reserve</button>
                     <div className= "msg">
                         { (msg!=="")?
                             <Alert key= "success" variant="success">
