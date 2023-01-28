@@ -7,6 +7,7 @@ import ReservesTable from "../Components/User/ReservesTable";
 import {DayAvailability, dayAvailability} from "../Components/User/DayAvailability";
 import NavBar from "../Components/User/NavBarClient";
 import {Alert} from "react-bootstrap";
+import MapModal from "../Components/User/MapModal";
 
 export const MakeReserve2 = () => {
     let courtId = useParams();
@@ -21,6 +22,7 @@ export const MakeReserve2 = () => {
     const[adminId,setAdminId]=useState('')
     const[admin,setAdmin] = useState(null)
     const[user,setUser] = useState(null)
+    const[coordinates, setCoordinates] = useState(null)
     const today = new Date();
     const date= today.getDay();
 
@@ -44,6 +46,7 @@ export const MakeReserve2 = () => {
             setLoading(false)
             setName(res.name)
             setAdminId(res.adminId)
+            setCoordinates({lat:res.location.coordinates[0],lng:res.location.coordinates[1]})
             console.log(typeof adminId)
             
         })
@@ -90,6 +93,7 @@ export const MakeReserve2 = () => {
                     <div className="form-label">FINAL TIME</div>
                     <DateTimePicker onChange={setValue2} value={value2} minDate={value1} />
                     <button onClick={()=> setRefresh(!refresh)}> Reserve</button>
+                    <MapModal coordinates = {coordinates}/>
                     <div className= "msg">
                         { (msg!=="")?
                             <Alert key= "success" variant="success">

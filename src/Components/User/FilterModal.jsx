@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {post} from "../../utils/http";
 import {IoMdColorFilter} from "react-icons/io";
+import FilterAltTwoToneIcon from '@mui/icons-material/FilterAltTwoTone';
 import DateTimePicker from 'react-datetime-picker'
 import Select from 'react-select';
 import RentCourts from "./RentCourts";
@@ -43,7 +44,8 @@ import NewContainerMap from "../Shared/NewMapContainer";
     return (
         <>
             <div className="btn rounded-pill btn-outline-success bg-primary pe-5" data-bs-toggle="modal" data-bs-target="#new-edit-modal" >
-                <IoMdColorFilter/>
+                Filter Courts
+                <FilterAltTwoToneIcon/>
             </div>
             <div className="modal fade" id="new-edit-modal" tabIndex="-1">
                 <div className="modal-dialog">

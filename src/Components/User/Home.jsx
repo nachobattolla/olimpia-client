@@ -6,7 +6,7 @@ import CourtCard from "../Admin/CourtCard";
 import "./Home.css"
 import {FilterModal} from "./FilterModal";
 import AddBalanceModal from "./AddBalanceModal";
-
+import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 const Home = () => {
 
     const [search, setSearch] = useState('')
@@ -47,6 +47,7 @@ const Home = () => {
         let courtsAux=[]
         allCourts.map(court=> {
             if (court.name.toLowerCase().includes(search.toLowerCase()) && locationCourts.length<=0) {
+
             } else if (locationCourts.length>=0){
                 locationCourts.map(court2 =>{
                     if (court2._id === court._id){
@@ -110,6 +111,7 @@ const Home = () => {
             </div>
             <div>
                 <input className="searchCourt" placeholder="search court" type="text" onChange={(ev)=> setSearch(ev.target.value)}/>
+                <SearchTwoToneIcon/>
             </div>
             <div className="courtsBoxClient">
                 <div>

@@ -1,4 +1,4 @@
-import {IoMdColorFilter} from "react-icons/io";
+import SavingsTwoToneIcon from '@mui/icons-material/SavingsTwoTone';
 import Select from "react-select";
 import DateTimePicker from "react-datetime-picker";
 import NewContainerMap from "../Shared/NewMapContainer";
@@ -21,7 +21,8 @@ const AddBalanceModal = (props) => {
   return(
       <>
       <div className="btn rounded-pill btn-outline-success bg-primary pe-5" data-bs-toggle="modal" data-bs-target="#new-edit-modal2" >
-          <IoMdColorFilter/>
+          Add Balance
+         <SavingsTwoToneIcon></SavingsTwoToneIcon>
       </div>
     <div className="modal fade" id="new-edit-modal2" tabIndex="-1">
         <div className="modal-dialog">

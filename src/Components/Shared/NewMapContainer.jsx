@@ -14,7 +14,7 @@ const containerStyle = {
 const API_KEY = process.env.REACT_APP_API_KEY
 
 function NewContainerMap(props) {
-
+    console.log("PROPS: "+ props.coordinates)
     useEffect(()=>{
         let options = {
             enableHighAccuracy: true,
@@ -65,7 +65,11 @@ function NewContainerMap(props) {
         setY(y)
         props.setLocation([x,y])
     }
-
+    useEffect(()=>{
+        if (props.coordinates){
+            setCoordinates(props.coordinates)
+        }
+    },[props.coordinates])
     useEffect(()=> {
         console.log("props.input:  " + props.address)
         Geocode.fromAddress(props.address).then(
@@ -83,7 +87,9 @@ function NewContainerMap(props) {
         );
     },[props.address])
     useEffect(()=>{
-        props.changeCenter(center)
+        if (props.changeCenter){
+            props.changeCenter(center)
+        }
     },[center])
 
     return (
@@ -94,7 +100,7 @@ function NewContainerMap(props) {
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={1000}
+                zoom={10}
                 onClick={e=>{
                     addMarker(e.latLng,e.pixel.x,e.pixel.y)
                 }}
