@@ -1,9 +1,3 @@
-.courtsBoxClient{
-    padding: 30px;
-    width: 900px;
-    background-color: rgba(0,0,0,0.8);
-}
-
 .searchCourt{
     background-color: lightgray;
     padding-left: 2px;
@@ -17,4 +11,39 @@
 
 .searchCourt::placeholder{
     color: black;
+}
+
+.courtsBox{
+    /*py-3 w-100 bg-dark bg-opacity-50*/
+    padding: 30px;
+    width: auto;
+    margin: 30px;
+    background-color: rgba(34,139,34,0.7);
+}
+
+.courts-search-modals-container{
+    display: flex;
+}
+
+.filter-balance-modal-container{
+    width: 15%;
+}
+
+.courts-search-container{
+    width: 85%;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.search-container{
+    text-align: center;
+    padding: 10px;
+    color: lightgrey;
+}
+
+.courtsBoxClient{
+    display: grid;
+    margin-top: 25px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
 }

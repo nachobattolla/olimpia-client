@@ -3,8 +3,13 @@ import "../../pages/AdminProfilePage"
 import {deleteRequest, post} from "../../utils/http";
 import EditCourtModal from "./EditCourtModal"
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
+import DeleteIcon from '@mui/icons-material/Delete';
+import {Card, CardActions, CardContent, CardMedia, Typography} from "@mui/material";
 
-
+const deletedCourt = () => {
+    toast.success('Borraste una cancha!');
+}
 
 const CourtCard = ({court: {adminId,name, sport, location,address, description, price,reserves:{
     Monday:{
@@ -40,23 +45,31 @@ const CourtCard = ({court: {adminId,name, sport, location,address, description, 
     const onDelete = useCallback(()=> {
         deleteRequest('adminDashboard/delete-court', {name}, {options: {withCredentials: true}}).then(()=> {
             onDeleteCourt()
+            deletedCourt()
         })
     })
 
+
     return (
-        <div className="card">
-                <div className="card-body">
-                    <h5 className="card-title">{name}</h5>
-                    <div>
-                        <h6 className="card-subtitle mb-2 text-muted">Sport: {sport}</h6>
-                        <h6 className="card-subtitle mb-2 text-muted">Price per Hour: {price}</h6>
+        <div className="card" style={{maxWidth: '400px', margin: '15px'}}>
+                <div className="card-body" style={{textAlign:"center"}}>
+                    <div style={{display: 'flex',justifyContent: 'space-between'}}>
+                    <h2 className="card-title" style={{color:"forestgreen"}}>{name}</h2>
+                    <div style={{display: 'flex',justifyContent: 'space-between'}}>
+                        {!userMode && <EditCourtModal courtData={{name, sport, location,address, description, price,openHourMon,closeHourMon,openHourTue,closeHourTue,openHourWed,closeHourWed,openHourThur,closeHourThur,openHourFri,closeHourFri,openHourSat,closeHourSat,openHourSun,closeHourSun,_id}} onEdit={onEditCourt} />}
+                    </div>
                     </div>
                     <p className="card-text">Description: {description}</p>
-                    {!userMode && <a href="#" className="btn btn-success" onClick={onDelete}>Delete</a>}
+                    <div style={{textAlign:"left"}}>
+                        <h4 className="card-subtitle mb-2 text-muted">Sport: {sport}</h4>
+                        <h4 className="card-subtitle mb-2 text-muted">Price per Hour: {price}</h4>
+                    </div>
+                    <div style={{display: 'flex',justifyContent: "right"}}>
+                    {!userMode && <a href="#" className="btn btn-success" onClick={onDelete}><DeleteIcon/></a>}
                     {/*<a href="#" className="btn btn-success">Edit</a>*/}
-                    {!userMode && <EditCourtModal courtData={{name, sport, location,address, description, price,openHourMon,closeHourMon,openHourTue,closeHourTue,openHourWed,closeHourWed,openHourThur,closeHourThur,openHourFri,closeHourFri,openHourSat,closeHourSat,openHourSun,closeHourSun,_id}} onEdit={onEditCourt} />}
                     {userMode && <div className="btn btn-success" onClick={()=>{navigate(`/${adminId}`)}}>View Establishment</div>}
                     {userMode && <div className="btn btn-success" onClick={()=>{navigate(`/reserve/${_id}`)}}>Reserve</div>}
+                    </div>
                 </div>
         </div>
     );

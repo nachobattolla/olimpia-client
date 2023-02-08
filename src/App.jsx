@@ -13,10 +13,22 @@ import {useEffect} from "react";
 import MyReservations from "./pages/MyReservations";
 import ProfilePage from "./pages/ProfilePage";
 import Payment from './pages/Payment';
+import {ToastContainer} from "react-toastify";
 function App() {
     useEffect(()=>{})
     return(
         <div>
+            <ToastContainer
+                style={{top:'9vh', fontSize: "18px"}}
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                pauseOnHover
+            />
             <Router>
                 <Routes>
                     <Route exact path="/" element={<LoginPage/>} />

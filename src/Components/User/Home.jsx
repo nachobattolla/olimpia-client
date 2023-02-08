@@ -7,6 +7,7 @@ import "./Home.css"
 import {FilterModal} from "./FilterModal";
 import AddBalanceModal from "./AddBalanceModal";
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
+import AddCourtModal from "../Admin/AddCourtModal";
 const Home = () => {
 
     const [search, setSearch] = useState('')
@@ -104,20 +105,28 @@ const Home = () => {
     const filterModal = FilterModal({changeSport,changeEndDate,changeStartDate,changePrice,toggleRefresh,changeRadius,changeCenter,radius})
     const addBalanceModal = AddBalanceModal()
         return(
-        <div>
-            {filterModal}
+        <div className="courtsBox">
             <div>
-                {addBalanceModal}
-            </div>
-            <div>
-                <input className="searchCourt" placeholder="search court" type="text" onChange={(ev)=> setSearch(ev.target.value)}/>
-                <SearchTwoToneIcon/>
-            </div>
-            <div className="courtsBoxClient">
-                <div>
-                {
-                    courts.map((court)=> <CourtCard court={court} userMode={true} profileMode={false}/>)
-                }
+                <div className="courts-search-modals-container">
+                    <div className='filter-balance-modal-container'>
+                        <div className="filter-container">
+                            {filterModal}
+                        </div>
+                        <div className='add-balance-container'>
+                            {addBalanceModal}
+                        </div>
+                    </div>
+                    <div className="courts-search-container">
+                        <div className="search-container">
+                            <input className="searchCourt" placeholder="search court" type="text" onChange={(ev)=> setSearch(ev.target.value)}/>
+                            <SearchTwoToneIcon/>
+                        </div>
+                        <div className="courtsBoxClient">
+                            {
+                                courts.map((court)=> <CourtCard court={court} userMode={true} profileMode={false}/>)
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

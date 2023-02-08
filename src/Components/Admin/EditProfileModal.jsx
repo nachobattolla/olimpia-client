@@ -2,6 +2,7 @@ import React, {useCallback, useState} from 'react';
 import "../../pages/AdminCourtsPage"
 import {get, post} from "../../utils/http";
 import {FaUserEdit} from "@react-icons/all-files/fa/FaUserEdit";
+import {toast} from "react-toastify";
 
 const EditProfileModal  = ({data,onEditProfile}) => {
 
@@ -11,11 +12,16 @@ const EditProfileModal  = ({data,onEditProfile}) => {
 
     console.log(data)
 
+    const editedProfile = () => {
+        toast.success('Editaste tu perfil!');
+    }
+
     const onClick = useCallback(()=> {  //falta el end point
         const newData = {username, email, phone}
         post('dashboard/editProfile',{newData} , {options: {withCredentials: true}}).then(()=> {
             onEditProfile(newData)
             console.log( "newData: "+ newData)
+            editedProfile()
         })
         this.hide();
     })

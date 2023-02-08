@@ -1,7 +1,34 @@
 .courtsBox{
     /*py-3 w-100 bg-dark bg-opacity-50*/
     padding: 30px;
-    width: 1125px;
-    margin-top: 30px;
-    background-color: rgba(0,0,0,0.7);
+    width: auto;
+    margin: 30px;
+    background-color: rgba(34,139,34,0.7);
+}
+
+.courts-add-button-container{
+    display: flex;
+}
+
+.add-court-button-container{
+    width: 15%;
+}
+
+.my-courts-container{
+    width: 85%;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.my-courts-title{
+    text-align: center;
+    padding: 10px;
+    color: lightgrey;
+}
+
+.my-courts{
+    display: grid;
+    margin-top: 25px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
 }

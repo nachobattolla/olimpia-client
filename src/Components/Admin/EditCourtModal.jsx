@@ -1,10 +1,13 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import "../../pages/AdminCourtsPage"
 import {IoAdd} from "@react-icons/all-files/io5/IoAdd";
 import {GiSoccerField} from "@react-icons/all-files/gi/GiSoccerField";
 import AdminCourts from "./AdminCourts";
 import { post} from "../../utils/http";
 import NewContainerMap from "../Shared/NewMapContainer";
+import {toast} from "react-toastify";
+import EditIcon from '@mui/icons-material/Edit';
+
 function numToTime(num) {
     if(num<10){
         return "0"+num+":00"
@@ -31,10 +34,16 @@ const EditCourtModal  = ({courtData,onEdit}) => {
     const [closeHourSat,setCloseHourSat] = useState(numToTime(courtData.closeHourSat))
     const [openHourSun,setOpenHourSun] = useState(numToTime(courtData.openHourSun))
     const [closeHourSun,setCloseHourSun] = useState(numToTime(courtData.closeHourSun))
+
     const _id = courtData._id
     console.log(courtData)
     console.log(name,sport)
     console.log(openHourSun)
+
+    const editedCourt = () => {
+        toast.success('Editaste una cancha!');
+    }
+    
     const onClick = useCallback(()=> {
         const newCourtData = {name, sport, location:  {
                 type: 'Point',
@@ -56,15 +65,21 @@ const EditCourtModal  = ({courtData,onEdit}) => {
             openHourSun: parseInt(openHourSun),
             closeHourSun: parseInt(closeHourSun),
         _id}
-        post('adminDashboard/edit-court',newCourtData , {options: {withCredentials: true}}).then(()=> {
-            onEdit(newCourtData)
+        
+        post('adminDashboard/edit-court',
+              newCourtData ,
+        {options: {withCredentials: true}}).then(()=> {
+                onEdit(newCourtData)
+                editedCourt()
         })
     })
+    
     console.log(name)
+    
     return (
         <>
             <div className="btn rounded-pill btn-outline-success bg-primary pe-5" data-bs-toggle="modal" data-bs-target={`#new-edit-modal${_id}`} >
-                Edit
+                <EditIcon/>
             </div>
             <div className="modal fade" id={`new-edit-modal${_id}`} tabIndex="-1">
                 <div className="modal-dialog">
@@ -198,7 +213,7 @@ const EditCourtModal  = ({courtData,onEdit}) => {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
                             <button type="button" className="btn btn-success" data-bs-toggle="modal" onClick={onClick}>Save changes</button>
                         </div>
                     </div>

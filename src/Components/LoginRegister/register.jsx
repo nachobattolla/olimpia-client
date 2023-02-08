@@ -29,15 +29,13 @@ const RegisterBox = () => {
     }
 
 
-
-    
     const Login = () => {
         navigate('/login')
     }
 
     return (
         <div className="register-contain">
-            <a href="/login" className="d-flex justify-content-start"><ArrowLeftIcon className="arrow"/></a>
+            <a href="/" className="d-flex justify-content-start"><ArrowLeftIcon className="arrow"/></a>
             <label typeof="title" className="title">REGISTER</label>
             <div>
                 <IoIosPerson/>
