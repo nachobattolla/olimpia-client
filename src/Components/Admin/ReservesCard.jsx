@@ -21,7 +21,7 @@ const ReservesCard= ({reserve: {_id, courtId, isAccepted,isRejected
     console.log(isRejected
 )
     return (
-        <div className="card">
+        <div className="card" style={{maxWidth:'400px', margin: '10px'}}>
             <div className="card-body">
                 <h5 className="card-title">{courtName}</h5>
                 <div>
@@ -61,10 +61,10 @@ const ReservesCard= ({reserve: {_id, courtId, isAccepted,isRejected
                 </div>
                 {   (!isRejected
 )?
-                    <div>
-                        {!userMode && <a href="#" className="btn btn-success" onClick={onAccept}>Accept</a>}
-                        {!userMode && <a href="#" className="btn btn-success" onClick={onReject}>Reject</a>}
-                        {userMode && <a href="#" className="btn btn-success" onClick={onReject}>Cancel Reservation</a> }
+                    <div style={{}}>
+                        {!userMode && <a href="#" className="btn btn-success w-50" onClick={onAccept}>Accept</a>}
+                        {!userMode && <a href="#" className="btn btn-success w-50" onClick={onReject}>Reject</a>}
+                        {userMode && <a href="#" className="btn btn-success w-100" onClick={onReject}>Cancel Reservation</a> }
                     </div>:<></>
                 }
 

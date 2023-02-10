@@ -43,16 +43,23 @@ const AdminProfile = () => {
             <header className="Profile-header">
                 <div className="content-profile">
                     <div className="profile-box">
+                        <div className='username-edit-container'>
+                        <div></div>
                         <div className="h1"> {username}'s Establishment  </div>
-                        <div className="col-form-label"> <MailIcon/> : {email} </div>
-                        <div className="col-form-label"> <AiTwotonePhone/> : {phone} </div>
                         {/*{!userMode}&&*/ <EditProfileModal data={{username, email, phone}} onEditProfile={() => {setRefreshProfile(!refreshProfile)}} />}
+                        </div>
+                        <div style={{display:'block', justifyContent:"start", textAlign: "start", padding: '20px', marginLeft:'30px' }}>
+                            <div style={{marginBottom:'10px'}}> <MailIcon/> : {email} </div>
+                            <div> <AiTwotonePhone/> : {phone} </div>
+                        </div>
                     </div>
-                    <div className= "courtsBox">
-                        <label className="justify-content-center">RENT A COURT</label>
-                        {
-                            courts.map((el)=> <ProfileCourtCard court={el} isAdmin = {true}/>)
-                        }
+                    <div className='title-courts-container'>
+                        <label className='title-profile'>COURTS</label>
+                        <div className= "courtsBoxProfile">
+                            {
+                                courts.map((el)=> <ProfileCourtCard court={el} isAdmin = {true}/>)
+                            }
+                        </div>
                     </div>
                 </div>
             </header>

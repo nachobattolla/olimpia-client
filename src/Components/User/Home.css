@@ -29,6 +29,14 @@
     width: 15%;
 }
 
+.filter-container{
+    margin: 5px;
+}
+
+.add-balance-container{
+    margin: 5px;
+}
+
 .courts-search-container{
     width: 85%;
     background-color: rgba(0,0,0,0.8);

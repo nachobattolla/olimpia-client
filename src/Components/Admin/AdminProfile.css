@@ -22,7 +22,13 @@
 
 .profile-box{
     margin-top: 40px;
+    padding: 10px;
     background-color: rgba(0,0,0,0.7);
+}
+
+.username-edit-container{
+    display: flex;
+    justify-content: space-between;
 }
 
 .courtsBox-Profile{
@@ -30,4 +36,22 @@
     width: 1140px;
     margin-top: 30px;
     background-color: rgba(0,0,0,0.7);
+}
+
+.title-courts-container{
+    display: block;
+    background-color: rgba(34, 139, 34, 0.7);
+    margin-top: 25px;
+}
+
+.title-profile{
+    text-align: center;
+}
+
+.courtsBoxProfile{
+    display: grid;
+    margin-top: 25px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
 }

@@ -1,0 +1,17 @@
+.requests-title-container{
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.title-container{
+    text-align: center;
+    color: white;
+}
+
+.reserves-cards-container{
+    display: grid;
+    margin-top: 25px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
+}

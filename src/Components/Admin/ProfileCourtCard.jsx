@@ -9,7 +9,7 @@ const ProfileCourtCard = ({court: {name, sport, location, description, price, op
 
     return (
 
-        <div className="card w-50">
+        <div className="card" style={{maxWidth: '400px', margin: '15px'}}>
             <div className="card-body">
                 <h5 className="card-title">{name}</h5>
                 <div>

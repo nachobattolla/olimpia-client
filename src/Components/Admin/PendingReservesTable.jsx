@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {get} from "../../utils/http";
-import AddCourtModal from "./AddCourtModal";
-import CourtCard from "./CourtCard";
 import ReservesCard from "./ReservesCard";
+import "../User/MyReservationsTable.css"
 
 
 const PendingReservesTable = () => {
@@ -18,15 +17,15 @@ const PendingReservesTable = () => {
     }, [refresh])
 
     return(
-        <div className="container-fluid my-5">
-            <div className="row">
-                <div className="col-10">
-                    <div className= "courtsBox">
-                        <label className="justify-content-center">MY REQUESTS</label>
-                        {
-                            reserves.map((el)=> <ReservesCard reserve={el} onAcceptRequest={()=> setRefresh(!refresh)} onRejectRequest={()=> setRefresh(!refresh)}/>)
-                        }
-                    </div>
+        <div className="courtsBox">
+            <div className= "requests-title-container">
+                <div className="title-container">
+                    <h2>MY REQUESTS</h2>
+                </div>
+                <div className="reserves-cards-container">
+                    {
+                        reserves.map((el)=> <ReservesCard reserve={el} onAcceptRequest={()=> setRefresh(!refresh)} onRejectRequest={()=> setRefresh(!refresh)}/>)
+                    }
                 </div>
             </div>
         </div>
