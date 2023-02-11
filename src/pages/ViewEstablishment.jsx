@@ -55,11 +55,13 @@ export const ViewEstablishment = ()=>{
                             <div className="col-form-label"> <MailIcon/> : {admin.email} </div>
                             <div className="col-form-label"> <AiTwotonePhone/> : {admin.phone} </div>
                         </div>
-                        <div className= "courtsBox">
+                        <div className='title-courts-container'>
                             <label className="justify-content-center">RENT A COURT</label>
-                            {
-                                courts.map((el)=> <ProfileCourtCard court={el}/>)
-                            }
+                            <div className= "courtsBoxProfile">
+                                {
+                                    courts.map((el)=> <ProfileCourtCard court={el}/>)
+                                }
+                            </div>
                         </div>
                     </div>
                 </header>

@@ -15,8 +15,10 @@ import {VscRequestChanges} from "@react-icons/all-files/vsc/VscRequestChanges";
 import {toast} from "react-toastify";
 
 export const MakeReserve2 = () => {
+
+    let navigate = useNavigate();
     let courtId = useParams();
-    console.log(courtId)
+    // console.log(courtId)
     courtId = courtId.courtId.toString()
     const[value1,setValue1] = useState(0)
     const [value2,setValue2]= useState(0)
@@ -51,8 +53,8 @@ export const MakeReserve2 = () => {
             setName(res.name)
             setAdminId(res.adminId)
             setCoordinates({lat:res.location.coordinates[0],lng:res.location.coordinates[1]})
-            console.log(typeof adminId)
-            
+            // console.log(typeof adminId)
+
         })
     },[])
     useEffect(()=>{
@@ -68,13 +70,18 @@ export const MakeReserve2 = () => {
     useEffect(()=>{
         if(admin !== null && user !== null){
             if (value2  != 0 && value1 != 0){
-                console.log("1")
+                // console.log("1")
                 let startDate= value1.toString()
                 let   endDate = value2.toString()
-                console.log(startDate)
-                console.log(endDate)
+                // console.log(startDate)
+                // console.log(endDate)
                 post('dashboard/makeReserve',{startDate, endDate, courtId },{options: {withCredentials: true}}).then((res) => {
                     toast.success(res.msg)
+                    setTimeout( function(){
+                        navigate("/home");
+                        }
+                        ,700
+                    )
                 }).catch(() => {
                     toast.error("Not Available!")
                 })
@@ -112,13 +119,13 @@ export const MakeReserve2 = () => {
                             </div>
                         </div>
                         <div style={{display:"flex",flexDirection:"row",justifyContent:"space-evenly",backgroundColor:"lightgray",height:"auto",overflow:"scroll",borderTop:"2px solid black"}}>
-                            <DayAvailability style={{marginTop:"20px"}} day={"monday"} isToday={date === 1}></DayAvailability>
-                            <DayAvailability style={{marginTop:"20px"}} day={"tuesday"} isToday={date === 2}></DayAvailability>
-                            <DayAvailability style={{marginTop:"20px"}} day={"wednesday"} isToday={date === 3}></DayAvailability>
-                            <DayAvailability style={{marginTop:"20px"}} day={"thursday"} isToday={date === 4}></DayAvailability>
-                            <DayAvailability style={{marginTop:"20px"}} day={"friday"} isToday={date === 5}></DayAvailability>
-                            <DayAvailability style={{marginTop:"20px"}} day={"saturday"} isToday={date === 6}></DayAvailability>
-                            <DayAvailability style={{marginTop:"20px"}} day={"sunday"} isToday={date === 0}></DayAvailability>
+                            <DayAvailability style={{marginTop:"20px"}} day={"monday"} isToday={date === 1} courtId={courtId} admin={admin} user={user} name={name}></DayAvailability>
+                            <DayAvailability style={{marginTop:"20px"}} day={"tuesday"} isToday={date === 2} courtId={courtId} admin={admin} user={user} name={name}></DayAvailability>
+                            <DayAvailability style={{marginTop:"20px"}} day={"wednesday"} isToday={date === 3} courtId={courtId} admin={admin} user={user} name={name}></DayAvailability>
+                            <DayAvailability style={{marginTop:"20px"}} day={"thursday"} isToday={date === 4} courtId={courtId} admin={admin} user={user} name={name}></DayAvailability>
+                            <DayAvailability style={{marginTop:"20px"}} day={"friday"} isToday={date === 5} courtId={courtId} admin={admin} user={user} name={name}></DayAvailability>
+                            <DayAvailability style={{marginTop:"20px"}} day={"saturday"} isToday={date === 6} courtId={courtId} admin={admin} user={user} name={name}></DayAvailability>
+                            <DayAvailability style={{marginTop:"20px"}} day={"sunday"} isToday={date === 0} courtId={courtId} admin={admin} user={user} name={name}></DayAvailability>
                         </div>
                     </div>
                 </div>

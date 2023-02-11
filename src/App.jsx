@@ -14,6 +14,7 @@ import MyReservations from "./pages/MyReservations";
 import ProfilePage from "./pages/ProfilePage";
 import Payment from './pages/Payment';
 import {ToastContainer} from "react-toastify";
+
 function App() {
     useEffect(()=>{})
     return(

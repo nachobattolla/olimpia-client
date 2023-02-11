@@ -5,7 +5,6 @@ import EditCourtModal from "./EditCourtModal"
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import DeleteIcon from '@mui/icons-material/Delete';
-import {Card, CardActions, CardContent, CardMedia, Typography} from "@mui/material";
 
 const deletedCourt = () => {
     toast.success('Borraste una cancha!');
@@ -51,7 +50,7 @@ const CourtCard = ({court: {adminId,name, sport, location,address, description, 
 
 
     return (
-        <div className="card" style={{maxWidth: '400px', margin: '15px'}}>
+        <div className="card" style={{maxWidth: '450px', margin: '15px', borderRadius:'25px'}}>
                 <div className="card-body" style={{textAlign:"center", width:''}}>
                     <div style={{display: 'flex',justifyContent: 'space-between'}}>
                     <h2 className="card-title" style={{color:"forestgreen"}}>{name}</h2>

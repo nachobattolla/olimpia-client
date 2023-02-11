@@ -11,10 +11,6 @@ import {Alert} from "react-bootstrap";
 
 const LoginBox = () => {
 
-    const submitLogin = () => {
-
-    }
-
     let navigate = useNavigate();
     const [user, setUser] = useState({email:"",password:"",isAdmin2:false})
     const [passwordShown, setPasswordShown] = useState(false);
@@ -30,7 +26,6 @@ const LoginBox = () => {
                 }else {
                     navigate("/adminHome/courts");
                 }
-
             })
             .catch(error => {
                 setAlert(error.data.message)

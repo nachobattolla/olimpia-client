@@ -3,33 +3,27 @@ import "./DayAvailability.css";
 import login from "../LoginRegister/Login";
 import {post} from "../../utils/http";
 import {toast} from "react-toastify";
+import {ConfirmationReservationModal} from "./ConfirmationReservationModal";
 
 export const DayAvailability = (props) => {
 
     const json=JSON.parse(window.localStorage.getItem(props.day));
     const time=json.time;
 
-
-    const reserveHour = (hour) =>{
-        // hacer modal de confirmacion para reservar
-
-        // post('dashboard/makeReserve',{startDate, endDate, courtId },{options: {withCredentials: true}}).then((res) => {
-        //     toast.success(res.msg)
-        // }).catch(() => {
-        //     toast.error("Not Available!")
-        // })
-
-        console.log (hour)
-    }
-
-
-    let dayHour = "00:00"//arreglar el tema horas
-
     function showAvailableHours(hour,index) {
         return(
             !hour ?
-                <div className={"hour"} onClick={(hour) = reserveHour}>
-                    {hours[index]}
+                <div>
+                    <ConfirmationReservationModal
+                        courtId={props.courtId}
+                        hours={hours}
+                        index={index}
+                        day={props.day}
+                        isToday={props.isToday}
+                        admin={props.admin}
+                        user={props.user}
+                        name={props.name}
+                    />
                 </div>
                 :
                 <></>
