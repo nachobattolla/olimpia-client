@@ -8,6 +8,10 @@ import {DayAvailability, dayAvailability} from "../Components/User/DayAvailabili
 import NavBar from "../Components/User/NavBarClient";
 import {Alert} from "react-bootstrap";
 import MapModal from "../Components/User/MapModal";
+import WatchLaterTwoToneIcon from '@mui/icons-material/WatchLaterTwoTone';
+import KeyboardDoubleArrowRightTwoToneIcon from '@mui/icons-material/KeyboardDoubleArrowRightTwoTone';
+import {Button} from "@mui/material";
+import {VscRequestChanges} from "@react-icons/all-files/vsc/VscRequestChanges";
 
 export const MakeReserve2 = () => {
     let courtId = useParams();
@@ -85,37 +89,46 @@ export const MakeReserve2 = () => {
 
             <div>
                 <NavBar></NavBar>
-                <div className="text-success bg-white p-2">
-
-                        <h2 className="court-name" >{name}</h2>
-                    <div className="form-label">INITIAL TIME</div>
-                    <DateTimePicker onChange={setValue1} value={value1}/>
-                    <div className="form-label">FINAL TIME</div>
-                    <DateTimePicker onChange={setValue2} value={value2} minDate={value1} />
-                    <button onClick={()=> setRefresh(!refresh)}> Reserve</button>
-                    <MapModal coordinates = {coordinates}/>
-                    <div className= "msg">
-                        { (msg!=="")?
-                            <Alert key= "success" variant="success">
-                                {msg}
-                            </Alert>:<></>
-                        }
-
+                <div className="text-success p-3 m-4" style={{backgroundColor:'rgba(0,0,0,0.9)'}}>
+                    <div style={{backgroundColor:'rgba(34,139,34,0.5)', padding: '10px'}}>
+                        <h2 className="court-name" >{name}'s Establishment</h2>
+                        <div style={{display:"flex", justifyContent:"start", marginTop:"70px", marginLeft: '50px', marginBottom:'50px'}}>
+                            <div>
+                                <div className="form-label text-white">INITIAL TIME</div>
+                                <DateTimePicker onChange={setValue1} value={value1}/>
+                            </div>
+                            <div style={{display:'flex', marginLeft:'20px', marginRight:'20px'}}>
+                                <KeyboardDoubleArrowRightTwoToneIcon/>
+                                <WatchLaterTwoToneIcon/>
+                                <KeyboardDoubleArrowRightTwoToneIcon/>
+                            </div>
+                            <div>
+                                <div className="form-label text-white">FINAL TIME</div>
+                                <DateTimePicker onChange={setValue2} value={value2} minDate={value1} />
+                            </div>
+                            <div style={{display:'flex', justifyContent: "center", marginLeft:'80px'}}>
+                                <a className="btn btn-success" style={{marginRight:'30px'}} onClick={()=> setRefresh(!refresh)}>Reserve</a>
+                                <MapModal coordinates = {coordinates}/>
+                            </div>
+                        </div>
+                        <div className= "msg" style={{marginLeft:'20px', justifyContent:'end'}}>
+                            { (msg!=="")?
+                                <Alert key= "success" variant="success">
+                                    {msg}
+                                </Alert>:<></>
+                            }
+                        </div>
+                        <div style={{display:"flex",flexDirection:"row",justifyContent:"space-evenly",backgroundColor:"lightgray",height:"auto",overflow:"scroll",borderTop:"2px solid black"}}>
+                            <DayAvailability style={{marginTop:"20px"}} day={"monday"} isToday={date === 1}></DayAvailability>
+                            <DayAvailability style={{marginTop:"20px"}} day={"tuesday"} isToday={date === 2}></DayAvailability>
+                            <DayAvailability style={{marginTop:"20px"}} day={"wednesday"} isToday={date === 3}></DayAvailability>
+                            <DayAvailability style={{marginTop:"20px"}} day={"thursday"} isToday={date === 4}></DayAvailability>
+                            <DayAvailability style={{marginTop:"20px"}} day={"friday"} isToday={date === 5}></DayAvailability>
+                            <DayAvailability style={{marginTop:"20px"}} day={"saturday"} isToday={date === 6}></DayAvailability>
+                            <DayAvailability style={{marginTop:"20px"}} day={"sunday"} isToday={date === 0}></DayAvailability>
+                        </div>
                     </div>
-
                 </div>
-                <div style={{display:"flex",flexDirection:"row",justifyContent:"space-evenly",backgroundColor:"lightgray",height:"150vh",overflow:"scroll",borderTop:"2px solid black"}}>
-                    <DayAvailability style={{marginTop:"20px"}} day={"monday"} isToday={date === 1}></DayAvailability>
-                    <DayAvailability style={{marginTop:"20px"}} day={"tuesday"} isToday={date === 2}></DayAvailability>
-                    <DayAvailability style={{marginTop:"20px"}} day={"wednesday"} isToday={date === 3}></DayAvailability>
-                    <DayAvailability style={{marginTop:"20px"}} day={"thursday"} isToday={date === 4}></DayAvailability>
-                    <DayAvailability style={{marginTop:"20px"}} day={"friday"} isToday={date === 5}></DayAvailability>
-                    <DayAvailability style={{marginTop:"20px"}} day={"saturday"} isToday={date === 6}></DayAvailability>
-                    <DayAvailability style={{marginTop:"20px"}} day={"sunday"} isToday={date === 0}></DayAvailability>
-                </div>
-
-
-
 
             </div>: null
 

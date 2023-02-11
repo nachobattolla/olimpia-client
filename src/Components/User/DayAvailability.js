@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import "./DayAvailability.css";
+import login from "../LoginRegister/Login";
 
 export const DayAvailability = (props) => {
 
@@ -12,21 +13,30 @@ export const DayAvailability = (props) => {
     }
 
 
-
     let dayHour = "00:00"//arreglar el tema horas
 
+    function showAvailableHours(hour,index) {
+        return(
+            !hour ?
+                <div className={"hour"} onClick={(hour) = reserveHour}>
+                    {hours[index]}
+                </div>
+                :
+                <></>
+        )
+    }
+
     return (
-        <div className={"dayContainer"} style={{backgroundColor:props.isToday?"white":null}}>
+        <div className={"dayContainer"} style={{backgroundColor:props.isToday?"papayawhip":"white"}}>
             <h3>{props.isToday?"Today":"Next "+props.day} ↓</h3>
             {
-                time.map((hour, index) => (
-                    <div className={hour ? "hourRed" : "hour"} onClick={(hour) = reserveHour}>
-                        {hours[index]}
-                    </div>
-                ))
-
+                // time.map((hour, index) => (
+                //     // <div className={hour ? "hourRed" : "hour"} onClick={(hour) = reserveHour}>
+                //     //     {hours[index]}
+                //     // </div>
+                // ))
+                time.map((hour, index) => showAvailableHours(hour, index))
             }
-
         </div>
     );
 };
