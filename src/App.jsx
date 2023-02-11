@@ -35,6 +35,8 @@ function App() {
                     <Route exact path="/" element={<LoginPage/>} />
                     <Route exact path="/register" element={<RegisterPage/>} />
                     <Route exact path="/home" element={<HomePage/>} />
+                    <Route exact path="/home/:status" element={<HomePage/>} />
+                    <Route exact path="/paymentCompleted" element={<HomePage/>} />
                     <Route exact path="/adminHome/profile" element={<AdminProfilePage/>} />
                     <Route exact path="/home/profile" element={<ProfilePage/>} />
                     <Route exact path="/adminHome/courts" element={<AdminCourtsPage/>} />

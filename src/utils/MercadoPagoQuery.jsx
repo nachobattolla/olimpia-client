@@ -11,11 +11,19 @@ export const createPayment = async (userId, balance) => {
                 quantity: 1,
                 unit_price: balance
             }
-        ],
+        ],   payer: {
+            first_name: "Test",
+            last_name: "Test",
+            phone: {
+                area_code: 11,
+                number: "987654321"
+            },
+            "address": {}
+        },
         back_urls: {
-            failure: "http://localhost:3000/home",
-            pending: "http://localhost:3000/home",
-            success: "http://localhost:3000/home"
+            failure: "http://localhost:3000/home/failure",
+            pending: "http://localhost:3000/home/pending",
+            success: "http://localhost:3000/home/success"
         },
         external_reference: userId,
         auto_return: "approved",
