@@ -6,6 +6,7 @@ import {BiLogOut, BiUserCircle} from "react-icons/bi";
 import {GiSoccerField} from "react-icons/gi";
 import {VscRequestChanges} from "@react-icons/all-files/vsc/VscRequestChanges";
 import {get, post} from "../../utils/http";
+import {useParams} from "react-router-dom";
 
 const NavBarHome = () => {
     const [balance ,setBalance]= useState(0)
@@ -14,6 +15,18 @@ const NavBarHome = () => {
             localStorage.clear()
         } )
     }
+    const {status} = useParams()
+
+    useEffect(()=>{
+            if (status == 'success'){
+                const  newBalance = localStorage.getItem("balance")
+                post('dashboard/editProfile',{balance:newBalance} , {options: {withCredentials: true}}).then(()=> {
+                    setBalance(Number(newBalance))
+                })
+            }
+
+        }
+        , [status])
     useEffect(()=>{
         get("dashboard/getBalance",{options: {withCredentials: true}}).then(r => {
             setBalance(r.balance)

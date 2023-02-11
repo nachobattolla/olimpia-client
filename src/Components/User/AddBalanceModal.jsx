@@ -15,8 +15,13 @@ const AddBalanceModal = (props) => {
         })
     })
     const handleConfirm = async () => {
+        localStorage.setItem("balance", balance);
         const res = await createPayment(id, Number(balance))
-        window.location.href = res.init_point;
+        console.log(res);
+       window.open(
+            res.init_point,
+            '_blank' // <- This is what makes it open in a new window.
+        );
     }
   return(
       <>
