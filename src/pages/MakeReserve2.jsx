@@ -12,6 +12,7 @@ import WatchLaterTwoToneIcon from '@mui/icons-material/WatchLaterTwoTone';
 import KeyboardDoubleArrowRightTwoToneIcon from '@mui/icons-material/KeyboardDoubleArrowRightTwoTone';
 import {Button} from "@mui/material";
 import {VscRequestChanges} from "@react-icons/all-files/vsc/VscRequestChanges";
+import {toast} from "react-toastify";
 
 export const MakeReserve2 = () => {
     let courtId = useParams();
@@ -21,7 +22,6 @@ export const MakeReserve2 = () => {
     const [value2,setValue2]= useState(0)
     const [refresh,setRefresh] = useState(false)
     const[name, setName]=useState("")
-    const[msg,setMessage] = useState("");
     const [loading,setLoading]=useState(true)
     const[adminId,setAdminId]=useState('')
     const[admin,setAdmin] = useState(null)
@@ -73,10 +73,10 @@ export const MakeReserve2 = () => {
                 let   endDate = value2.toString()
                 console.log(startDate)
                 console.log(endDate)
-                post('dashboard/makeReserve',{startDate, endDate, courtId },{options: {withCredentials: true}}).then((res) =>{
-                    console.log(res.msg)
-                    setMessage(res.msg)
-                    console.log(msg)
+                post('dashboard/makeReserve',{startDate, endDate, courtId },{options: {withCredentials: true}}).then((res) => {
+                    toast.success(res.msg)
+                }).catch(() => {
+                    toast.error("Not Available!")
                 })
             }
         }
@@ -110,13 +110,6 @@ export const MakeReserve2 = () => {
                                 <a className="btn btn-success" style={{marginRight:'30px'}} onClick={()=> setRefresh(!refresh)}>Reserve</a>
                                 <MapModal coordinates = {coordinates}/>
                             </div>
-                        </div>
-                        <div className= "msg" style={{marginLeft:'20px', justifyContent:'end'}}>
-                            { (msg!=="")?
-                                <Alert key= "success" variant="success">
-                                    {msg}
-                                </Alert>:<></>
-                            }
                         </div>
                         <div style={{display:"flex",flexDirection:"row",justifyContent:"space-evenly",backgroundColor:"lightgray",height:"auto",overflow:"scroll",borderTop:"2px solid black"}}>
                             <DayAvailability style={{marginTop:"20px"}} day={"monday"} isToday={date === 1}></DayAvailability>

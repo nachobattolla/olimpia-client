@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import "./DayAvailability.css";
 import login from "../LoginRegister/Login";
+import {post} from "../../utils/http";
+import {toast} from "react-toastify";
 
 export const DayAvailability = (props) => {
 
@@ -9,6 +11,14 @@ export const DayAvailability = (props) => {
 
 
     const reserveHour = (hour) =>{
+        // hacer modal de confirmacion para reservar
+
+        // post('dashboard/makeReserve',{startDate, endDate, courtId },{options: {withCredentials: true}}).then((res) => {
+        //     toast.success(res.msg)
+        // }).catch(() => {
+        //     toast.error("Not Available!")
+        // })
+
         console.log (hour)
     }
 
