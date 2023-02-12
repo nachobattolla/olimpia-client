@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import {post} from "../../utils/http";
 import {toast} from "react-toastify";
 import './DayAvailability.css'
+import {useNavigate} from "react-router-dom";
 
 const style = {
     position:'absolute',
@@ -22,17 +23,11 @@ const style = {
 };
 
 export const ConfirmationReservationModal = (props) => {
+
+    let navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-    // const today = new Date()
-    // console.log(today.getDate())
-    // console.log(props.hours[props.index])
-    // console.log(props.hours[props.index].substring(4,5))\
-
-    // const t = "2022-07-23T22:30:00.000Z";
-    // console.log(t.substring(16,24))
 
     function calculateDate(reserveDay, today, date) {
         switch (today === 0){
@@ -48,9 +43,6 @@ export const ConfirmationReservationModal = (props) => {
                 return date + 5;
             case reserveDay === "saturday":
                 return date + 6;
-            default:
-                toast.error("Not Available!");
-                break
         }
         switch (today === 1){
             case reserveDay === "sunday" :
@@ -65,9 +57,6 @@ export const ConfirmationReservationModal = (props) => {
                 return date + 4;
             case reserveDay === "saturday":
                 return date + 5;
-            default:
-                toast.error("Not Available!");
-                break
         }
         switch (today === 2){
             case reserveDay === "sunday" :
@@ -82,26 +71,20 @@ export const ConfirmationReservationModal = (props) => {
                 return date + 3;
             case reserveDay === "saturday":
                 return date + 4;
-            default:
-                toast.error("Not Available!");
-                break
         }
         switch (today === 3){
-            case reserveDay === "sunday" :
+            case reserveDay === "sunday":
                 return  date + 4;
-            case reserveDay === "monday" :
+            case reserveDay === "monday":
                 return date + 5;
-            case reserveDay === "tuesday" :
+            case reserveDay === "tuesday":
                 return date + 6;
-            case reserveDay === "thursday" :
+            case reserveDay === "thursday":
                 return date + 1;
-            case reserveDay === "friday" :
+            case reserveDay === "friday":
                 return date + 2;
             case reserveDay === "saturday":
                 return date + 3;
-            default:
-                toast.error("Not Available!");
-                break
         }
         switch (today === 4){
             case reserveDay === "sunday" :
@@ -116,9 +99,6 @@ export const ConfirmationReservationModal = (props) => {
                 return date + 1;
             case reserveDay === "saturday":
                 return date + 2;
-            default:
-                toast.error("Not Available!");
-                break
         }
         switch (today === 5){
             case reserveDay === "sunday" :
@@ -133,9 +113,6 @@ export const ConfirmationReservationModal = (props) => {
                 return date + 6;
             case reserveDay === "saturday":
                 return date + 1;
-            default:
-                toast.error("Not Available!");
-                break
         }
         switch (today === 6){
             case reserveDay === "sunday" :
@@ -150,56 +127,102 @@ export const ConfirmationReservationModal = (props) => {
                 return date + 5;
             case reserveDay === "friday":
                 return date + 6;
-            default:
-                toast.error("Not Available!");
-                break
         }
     }
 
+    const calculateDay = (day) => {
+        switch (day) {
+            case "monday":
+                return "Mon"
+            case "tuesday":
+                return "Tue"
+            case "wednesday":
+                return "Wed"
+            case "thursday":
+                return "Thu"
+            case "friday":
+                return "Fri"
+            case "saturday":
+                return "Sat"
+            case "sunday":
+                return "Sun"
+        }
+    }
+
+    const calculateMonth = (month) => {
+        switch (month) {
+            case 1:
+                return "Jan"
+            case 2:
+                return "Feb"
+            case 3:
+                return "Mar"
+            case 4:
+                return "Apr"
+            case 5:
+                return "May"
+            case 6:
+                return "Jun"
+            case 7:
+                return "Jul"
+            case 8:
+                return "Aug"
+            case 9:
+                return "Sep"
+            case 10:
+                return "Oct"
+            case 11:
+                return "Nov"
+            case 12:
+                return "Dec"
+        }
+    }
+
+
     const calculateStarTime = (day, isToday, hour) => {
         const time = new Date()
-        var timeS = time.getFullYear()
-
-        if (10 > time.getMonth()){
-            timeS = timeS + "-0" + (parseInt(time.getMonth())+1).toString()
-        }else {
-            timeS = timeS + "-" + (parseInt(time.getMonth())+1).toString()
-        }
+        let timeS = calculateDay(day) + " " + calculateMonth(time.getMonth()+1)
 
         if (isToday){
             if (10 > time.getDate()) {
-                timeS = timeS + "-0" + time.getDate() + "T"
+                timeS = timeS + " 0" + time.getDate()
             }else{
-                timeS = timeS + "-" + time.getDate() + "T"
+                timeS = timeS + " " + time.getDate()
             }
         }else{
             if (10 > time.getDate()) {
-                timeS = timeS + "-0" + calculateDate(day,time.getDay(), time.getDate()).toString() + "T"
+                timeS = timeS + " 0" + calculateDate(day,time.getDay(), time.getDate()).toString()
             }else{
-                 timeS = timeS + "-" + calculateDate(day,time.getDay(), time.getDate()).toString() + "T"
+                 timeS = timeS + " " + calculateDate(day,time.getDay(), time.getDate()).toString()
             }
         }
 
-        //time : T21:31:00.000Z
-
-        timeS = timeS + hour.substring(0,4) + (parseInt(hour.substring(4,5))+1).toString() + ":00.000Z"
+        timeS = timeS + " " + time.getFullYear() + " " + hour + ":00 GMT-0300 (Argentina Standard Time)"
 
         return timeS;
     }
 
 
+
     const calculateEndTime = (time) => {
-        if (time.substring(14,16) === "31"){
-            const timeS2 = time.substring(0,14) + "59" + time.substring(16,24)
-            return timeS2
+        if (time.substring(19,21) === "30"){
+            if (parseInt(time.substring(16,18)) < 23) {
+                const timeS2 = time.substring(0, 16) + (parseInt(time.substring(16, 18)) + 1).toString() + ":00" + time.substring(21, 59)
+                return timeS2
+            }else {
+                const timeS2 = time.substring(0, 18) + ":59" + time.substring(21, 59)
+                return timeS2
+            }
         }else{
-            const timeS2 = time.substring(0,14) + "29" + time.substring(16,24)
+            const timeS2 = time.substring(0,19) + "30" + time.substring(21,59)
             return timeS2
         }
     }
 
     const makeReservation = (courtId,day,isToday, hour) => {
-        if (courtId && day && isToday && hour) {
+        console.log(courtId + " " + day + " " + isToday + " " + hour)
+        if (courtId && day && isToday !== null && hour) {
+            console.log("entro")
             const startDate = calculateStarTime(day, isToday, hour);
             const endDate = calculateEndTime(startDate)
             if (props.admin !== null && props.user !== null) {
@@ -209,6 +232,12 @@ export const ConfirmationReservationModal = (props) => {
                     courtId
                 }, {options: {withCredentials: true}}).then((res) => {
                     toast.success(res.msg)
+                    handleClose()
+                    setTimeout( function(){
+                            navigate("/home");
+                        }
+                        ,1000
+                    )
                 }).catch(() => {
                     toast.error("Not Available!")
                 })
@@ -262,3 +291,11 @@ export const ConfirmationReservationModal = (props) => {
         </div>
     );
 }
+
+// var timeS = time.getFullYear()
+//
+
+//
+// //time : T21:31:00.000Z
+//
+// timeS = timeS + hour.substring(0,4) + (parseInt(hour.substring(4,5))+1).toString() + ":00.000Z"
