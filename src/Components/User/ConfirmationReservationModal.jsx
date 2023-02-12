@@ -161,9 +161,9 @@ export const ConfirmationReservationModal = (props) => {
         var timeS = time.getFullYear()
 
         if (10 > time.getMonth()){
-            timeS = timeS + "-0" + time.getMonth()
+            timeS = timeS + "-0" + (parseInt(time.getMonth())+1).toString()
         }else {
-            timeS = timeS + "-" + time.getMonth()
+            timeS = timeS + "-" + (parseInt(time.getMonth())+1).toString()
         }
 
         if (isToday){
@@ -189,7 +189,7 @@ export const ConfirmationReservationModal = (props) => {
 
 
     const calculateEndTime = (time) => {
-        if (time.substring(14,16) === "30"){
+        if (time.substring(14,16) === "31"){
             const timeS2 = time.substring(0,14) + "59" + time.substring(16,24)
             return timeS2
         }else{
