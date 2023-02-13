@@ -11,17 +11,20 @@ import {useParams} from "react-router-dom";
 const NavBarHome = () => {
     const [balance ,setBalance]= useState(0)
     const logOut = () => {
+        localStorage.removeItem('isLogged')
+        localStorage.removeItem('isAdmin')
         post("olimpia/logout/", {}, {options: {withCredentials: true}}).then(r =>{
-            localStorage.clear()
-        } )
+                   } )
     }
     const {status} = useParams()
 
     useEffect(()=>{
-            if (status == 'success'){
+            if (status === 'success'){
                 const  newBalance = localStorage.getItem("balance")
+                newBalance &&
                 post('dashboard/editProfile',{balance:newBalance} , {options: {withCredentials: true}}).then(()=> {
                     setBalance(Number(newBalance))
+                    localStorage.removeItem("balance")
                 })
             }
 

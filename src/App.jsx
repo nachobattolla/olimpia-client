@@ -14,6 +14,8 @@ import MyReservations from "./pages/MyReservations";
 import ProfilePage from "./pages/ProfilePage";
 import Payment from './pages/Payment';
 import {ToastContainer} from "react-toastify";
+import UserRoute from "./Components/Guards/UserRoute";
+import AdminRoute from "./Components/Guards/AdminRoute";
 
 function App() {
     useEffect(()=>{})
@@ -34,18 +36,15 @@ function App() {
                 <Routes>
                     <Route exact path="/" element={<LoginPage/>} />
                     <Route exact path="/register" element={<RegisterPage/>} />
-                    <Route exact path="/home" element={<HomePage/>} />
-                    <Route exact path="/home/:status" element={<HomePage/>} />
-                    <Route exact path="/paymentCompleted" element={<HomePage/>} />
-                    <Route exact path="/adminHome/profile" element={<AdminProfilePage/>} />
-                    <Route exact path="/home/profile" element={<ProfilePage/>} />
-                    <Route exact path="/adminHome/courts" element={<AdminCourtsPage/>} />
-                    <Route exact path="/test" element={<Test/>} />
-                    <Route exact path = "/adminHome/myReserves" element={<PendingReserves/>}/>
+                   <Route exact path="/home" element={<UserRoute  element={<HomePage/>} />}/>
+                    <Route exact path="/home/:status" element={<UserRoute  element={<HomePage/>} />} />
+                    <Route  exact path="/adminHome/profile" element={<AdminRoute element={<AdminProfilePage/>} />} />
+                    <Route  exact path="/home/profile" element={ <UserRoute  element={<ProfilePage/>} />} />
+                    <Route exact path="/adminHome/courts" element={<AdminRoute element={<AdminCourtsPage/>} />} />
+                    <Route  exact path = "/adminHome/myReserves" element={<AdminRoute   element={<PendingReserves/>}/>}/>
                     <Route exact path= "/:id" element={<ViewEstablishment/>}/>
-                    <Route exact path= "/payment/:id" element={<Payment/>}/>
-                    <Route exact path="/reserve/:courtId" element={<MakeReserve2/>}/>
-                    <Route exact path = "/home/myReserves" element={<MyReservations/>}/>
+                    <Route  exact path="/reserve/:courtId" element={<UserRoute element={<MakeReserve2/>}/>}/>
+                    <Route exact path = "/home/myReserves" element={<UserRoute  element={<MyReservations/>}/>}/>
                 </Routes>
             </Router>
         </div>

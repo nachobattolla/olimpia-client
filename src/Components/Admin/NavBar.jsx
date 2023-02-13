@@ -12,6 +12,8 @@ import {post} from "../../utils/http";
 const NavBar = () => {
 
     const logOut = () => {
+        localStorage.removeItem('isLogged')
+        localStorage.removeItem('isAdmin')
         post("olimpia/logout/", {}, {options: {withCredentials: true}}).then(r =>{
             localStorage.clear()
         } )

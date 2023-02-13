@@ -19,8 +19,7 @@ const AddBalanceModal = (props) => {
         const res = await createPayment(id, Number(balance))
         console.log(res);
        window.open(
-            res.init_point,
-            '_blank' // <- This is what makes it open in a new window.
+            res.init_point
         );
     }
   return(
