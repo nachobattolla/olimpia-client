@@ -4,13 +4,14 @@
     color: black;
     border-radius: 10px;
     border: 2px solid black;
-    width: 30%;
+    width: 70%;
     display: inline;
     margin: 10px auto;
 }
 
 .searchCourt::placeholder{
     color: black;
+    width: 100%;
 }
 
 .courtsBox{
@@ -23,6 +24,7 @@
 
 .courts-search-modals-container{
     display: flex;
+    justify-content: center;
 }
 
 .filter-balance-modal-container{
@@ -30,11 +32,11 @@
 }
 
 .filter-container{
-    margin: 5px;
+    margin: 20px;
 }
 
 .add-balance-container{
-    margin: 5px;
+    margin: 20px;
 }
 
 .courts-search-container{
@@ -46,6 +48,7 @@
     text-align: center;
     padding: 10px;
     color: lightgrey;
+    width: 65%;
 }
 
 .courtsBoxClient{
