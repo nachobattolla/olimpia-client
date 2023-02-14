@@ -50,11 +50,11 @@ const Home = () => {
     function filterCourts(courts) {
         let courtsAux=[]
         allCourts.map(court=> {
-            if (court.name.toLowerCase().includes(search.toLowerCase()) && locationCourts.length<=0) {
-
+            if (court.name.toLowerCase().includes(search.toLowerCase())&& locationCourts.length<=0) {
+                courtsAux.push(court)
             } else if (locationCourts.length>=0){
                 locationCourts.map(court2 =>{
-                    if (court2._id === court._id){
+                    if (court2._id === court._id && court.name.toLowerCase().includes(search.toLowerCase())){
                         if ((court.price <= price || isNaN(price)) && sport == null) {
                             courtsAux.push(court)
                         }
@@ -111,19 +111,21 @@ const Home = () => {
         <div className="courtsBox">
             <div>
                 <div className="courts-search-modals-container">
-                    <div className='filter-balance-modal-container'>
-                        <div className="filter-container">
-                            {filterModal}
-                        </div>
-                        <div className='add-balance-container'>
-                            {addBalanceModal}
-                        </div>
-                    </div>
+
                     <div className="courts-search-container">
-                        <div className="search-container">
-                            <input className="searchCourt" placeholder="search court" type="text" onChange={(ev)=> setSearch(ev.target.value)}/>
-                            <SearchTwoToneIcon/>
+                        <div style={{display: 'flex', justifyContent: 'space-evenly',alignItems: 'center'}}>
+                            <div className="filter-container">
+                                {filterModal}
+                            </div>
+                            <div className="search-container">
+                                <input className="searchCourt" placeholder="search court" type="text" onChange={(ev)=> setSearch(ev.target.value)}/>
+                                <SearchTwoToneIcon/>
+                            </div>
+                            <div className='add-balance-container'>
+                                {addBalanceModal}
+                            </div>
                         </div>
+
                         <div className="courtsBoxClient">
                             {
                                 courts.map((court)=> <CourtCard court={court} userMode={true} profileMode={false}/>)
