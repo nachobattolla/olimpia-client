@@ -3,22 +3,18 @@ import DateTimePicker from "react-datetime-picker";
 import React, {useEffect, useState} from "react";
 import {post,get} from "../utils/http";
 import "./MakeReserve.css"
-import ReservesTable from "../Components/User/ReservesTable";
 import {DayAvailability, dayAvailability} from "../Components/User/DayAvailability";
 import NavBar from "../Components/User/NavBarClient";
-import {Alert} from "react-bootstrap";
 import MapModal from "../Components/User/MapModal";
 import WatchLaterTwoToneIcon from '@mui/icons-material/WatchLaterTwoTone';
 import KeyboardDoubleArrowRightTwoToneIcon from '@mui/icons-material/KeyboardDoubleArrowRightTwoTone';
-import {Button} from "@mui/material";
-import {VscRequestChanges} from "@react-icons/all-files/vsc/VscRequestChanges";
 import {toast} from "react-toastify";
+import * as emailjs from "emailjs-com";
 
 export const MakeReserve2 = () => {
 
     let navigate = useNavigate();
     let courtId = useParams();
-    // console.log(courtId)
     courtId = courtId.courtId.toString()
     const[value1,setValue1] = useState(0)
     const [value2,setValue2]= useState(0)
@@ -66,6 +62,17 @@ export const MakeReserve2 = () => {
         }
 
     },[adminId])
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs.sendForm('gmail', 'template_y3ap1r5', e.target, 'T7x0pVZoUZqudMJqp')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+    };
 
     useEffect(()=>{
         if(admin !== null && user !== null){

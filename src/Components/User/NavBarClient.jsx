@@ -7,8 +7,12 @@ import {GiSoccerField} from "react-icons/gi";
 import {VscRequestChanges} from "@react-icons/all-files/vsc/VscRequestChanges";
 import {get, post} from "../../utils/http";
 import {useParams} from "react-router-dom";
+import {Badge} from "@mui/material";
 
 const NavBarHome = () => {
+
+    const [count, setCount] = React.useState(0);
+
     const [balance ,setBalance]= useState(0)
     const logOut = () => {
         localStorage.removeItem('isLogged')
@@ -46,10 +50,20 @@ const NavBarHome = () => {
                     </button>
                     <div>
                         <a className="navbar-brand" href="#"> Your Balance: ${balance}</a>
-                        <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/home/myReserves"><VscRequestChanges size={35}/></a>
-                        <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/home"><GiSoccerField size={40}/></a>
-                        <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/home/profile"><BiUserCircle size={40}/></a>
-                        <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/" onClick={logOut}><BiLogOut size={40}/></a>
+                        <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/home/myReserves">
+                            <Badge color="success" badgeContent={count}>
+                                <VscRequestChanges size={35}/>
+                            </Badge>
+                        </a>
+                        <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/home">
+                            <GiSoccerField size={40}/>
+                        </a>
+                        <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/home/profile">
+                            <BiUserCircle size={40}/>
+                        </a>
+                        <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/" onClick={logOut}>
+                            <BiLogOut size={40}/>
+                        </a>
                     </div>
                 </div>
             </nav>
