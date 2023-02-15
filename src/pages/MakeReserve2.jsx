@@ -73,6 +73,7 @@ export const MakeReserve2 = () => {
                              to_name: admin.username,
                              from_name: user.username,
                              message: "Court: " + name + " From:" + value1.toString().substring(0,21) + " To: " + value2.toString().substring(0,21),
+                             link_reserves:"http://localhost:3000/adminHome/myReserves",
                              user_email: admin.email
                         }
                         , 'T7x0pVZoUZqudMJqp')

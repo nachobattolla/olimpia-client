@@ -250,6 +250,7 @@ export const ConfirmationReservationModal = (props) => {
                 to_name: props.admin.username,
                 from_name: props.user.username,
                 message: "Court: " + props.name + " From:" + startTime.substring(0,21) + " To: " + endTime.substring(0,21),
+                link_reserves:"http://localhost:3000/adminHome/myReserves",
                 user_email: props.admin.email
             }
             , 'T7x0pVZoUZqudMJqp')
