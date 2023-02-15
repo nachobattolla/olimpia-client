@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./AdminProfile";
 import "../../pages/AdminProfilePage"
 import logo from "../../resources/logo.png";
@@ -12,6 +12,7 @@ import {Badge} from "@mui/material";
 
 const NavBar = () => {
     const [count, setCount] = React.useState(0);
+    const [balance ,setBalance]= useState(0)
 
     const logOut = () => {
         localStorage.removeItem('isLogged')
@@ -20,6 +21,11 @@ const NavBar = () => {
             localStorage.clear()
         } )
     }
+    useEffect(()=>{
+        get("dashboard/getBalance",{options: {withCredentials: true}}).then(r => {
+            setBalance(r.balance)
+        })
+    },[])
 
     useEffect(()=> {
         get('adminDashboard/requests-table',{options: {withCredentials: true}}).then(
@@ -41,6 +47,7 @@ const NavBar = () => {
                         <img src={logo} width='80'className="m-3"/>
                     </button>
                     <div style={{ width:'35%',display: 'flex', justifyContent: 'space-around'}}>
+                        <a className="navbar-brand" href="#"> Your Balance:  ${' '+balance}</a>
                         <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/adminHome/myReserves">
                             <Badge color="success" badgeContent={count}>
                                 <VscRequestChanges size={35}/>
