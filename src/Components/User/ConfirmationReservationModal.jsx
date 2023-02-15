@@ -272,8 +272,8 @@ export const ConfirmationReservationModal = (props) => {
                     handleClose()
                     sendEmail()
                     setTimeout( function(){
+                        navigate("/home",1000)
                         }
-                        ,1000
                     )
                 }).catch(() => {
                     toast.error("Not Available!")
