@@ -98,7 +98,7 @@ const AddCourtModal = ({onNewCourt}) => {
     })
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid p-3">
             <div className="btn rounded-pill btn-outline-success bg-primary pe-5" data-bs-toggle="modal"
                  data-bs-target="#new-modal">
                 <IoAdd size={40}/>
