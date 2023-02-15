@@ -7,7 +7,6 @@ const ReservesCard= ({reserve: {_id, courtId, isAccepted,isRejected
 
     const onAccept = useCallback(()=> {
         post('adminDashboard/accept-request', {_id}, {options: {withCredentials: true}}).then((res)=> {
-            console.log(res)
             onAcceptRequest()
         })
     })
@@ -18,8 +17,7 @@ const ReservesCard= ({reserve: {_id, courtId, isAccepted,isRejected
 
         })
     })
-    console.log(isRejected
-)
+
     return (
         <div className="card" style={{maxWidth:'400px', margin: '10px'}}>
             <div className="card-body">
@@ -59,10 +57,9 @@ const ReservesCard= ({reserve: {_id, courtId, isAccepted,isRejected
                         }
                     </div>
                 </div>
-                {   (!isRejected
-)?
-                    <div style={{}}>
-                        {!userMode && <a href="#" className="btn btn-success w-50" onClick={onAccept}>Accept</a>}
+                {   (!isRejected )?
+                    <div style={{display:"flex", justifyContent:"center"}}>
+                        {(!userMode && !isAccepted) && <a href="#" className="btn btn-success w-50" onClick={onAccept}>Accept</a>}
                         {!userMode && <a href="#" className="btn btn-success w-50" onClick={onReject}>Reject</a>}
                         {userMode && <a href="#" className="btn btn-success w-100" onClick={onReject}>Cancel Reservation</a> }
                     </div>:<></>

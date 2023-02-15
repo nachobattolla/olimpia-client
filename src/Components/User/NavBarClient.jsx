@@ -40,6 +40,17 @@ const NavBarHome = () => {
         })
     },[])
 
+    useEffect(()=> {
+        get('dashboard/myReservations',{options: {withCredentials: true}}).then(
+            data=>{
+                let auxCounter = 0
+                data.map(r => {
+                    if (r.hasntUserSeen) auxCounter++
+                })
+                setCount(auxCounter)
+            })
+    },[])
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
