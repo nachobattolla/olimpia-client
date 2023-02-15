@@ -23,7 +23,6 @@ const ReservesCard= ({reserve: {_id, courtId, isAccepted,isRejected
 
     const onAccept = useCallback(()=> {
         post('adminDashboard/accept-request', {_id}, {options: {withCredentials: true}}).then((res)=> {
-            console.log(res)
             onAcceptRequest()
             toast.success("You Accepted a request!")
             sendEmail("ACCEPTED")
@@ -37,6 +36,7 @@ const ReservesCard= ({reserve: {_id, courtId, isAccepted,isRejected
             sendEmail("REJECTED")
         })
     })
+
 
     const sendEmail = (state) => {
         emailjs.send('service_wuassrr',
@@ -95,10 +95,9 @@ const ReservesCard= ({reserve: {_id, courtId, isAccepted,isRejected
                         }
                     </div>
                 </div>
-                {   (!isRejected
-)?
-                    <div style={{}}>
-                        {!userMode && <a href="#" className="btn btn-success w-50" onClick={onAccept}>Accept</a>}
+                {   (!isRejected )?
+                    <div style={{display:"flex", justifyContent:"center"}}>
+                        {(!userMode && !isAccepted) && <a href="#" className="btn btn-success w-50" onClick={onAccept}>Accept</a>}
                         {!userMode && <a href="#" className="btn btn-success w-50" onClick={onReject}>Reject</a>}
                         {userMode && <a href="#" className="btn btn-success w-100" onClick={onReject}>Cancel Reservation</a> }
                     </div>:<></>

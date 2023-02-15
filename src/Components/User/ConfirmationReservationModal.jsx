@@ -252,7 +252,8 @@ export const ConfirmationReservationModal = (props) => {
                 post('dashboard/makeReserve', {
                     startDate,
                     endDate,
-                    courtId
+                    courtId,
+                    adminId: props.admin._id
                 }, {options: {withCredentials: true}}).then((res) => {
                     toast.success(res.msg)
                     handleClose()
