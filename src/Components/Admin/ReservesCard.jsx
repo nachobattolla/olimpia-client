@@ -11,14 +11,11 @@ const ReservesCard= ({reserve: {_id, courtId, isAccepted,isRejected
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        return () => {
             post('dashboard/getProfile', {userId}, {options: {withCredentials: true}}).then((res)=> {
                 setUser(res)
-                console.log(user)
             }).catch( () => {
                 console.log("no consigo el user")
             })
-        };
     }, []);
 
     const onAccept = useCallback(()=> {
@@ -43,10 +40,10 @@ const ReservesCard= ({reserve: {_id, courtId, isAccepted,isRejected
             'template_pegvuzl',
             {
                 state: state,
-                user_name: user.user_name,
-                message: "Court: " + courtName + " From:" + startTime + " To: " + endTime,
-                from_name: admin.user_name,
-                user_email: user.user_email,
+                user_name: user.username,
+                message: "Court: " + courtName + " From:" + startTime.substring(0,21) + " To: " + endTime.substring(0,21) + " STATE: " + state,
+                from_name: admin.username,
+                user_email: user.email,
             }
             , 'T7x0pVZoUZqudMJqp')
             .then((result) => {
