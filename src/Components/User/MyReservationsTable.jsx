@@ -96,7 +96,7 @@ const MyReservationsTable = () => {
                         </div>
                     )
                     :
-                    <h2 className="title-container mt-5">NO HAY RESERVAS</h2>
+                    <h2 className="title-container mt-5">NO RESERVATIONS</h2>
             }
         </div>
     )
