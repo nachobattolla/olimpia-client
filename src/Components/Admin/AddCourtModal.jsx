@@ -15,7 +15,7 @@ const AddCourtModal = ({onNewCourt}) => {
     const [location, setLocation] = useState([])
     const [address, setAddress] = useState('')
     const [description, setDescription] = useState('')
-    const [price, setPrice] = useState()
+    const [price, setPrice] = useState(0)
     const [openHourMon, setOpenHourMon] = useState("09:00")
     const [closeHourMon, setCloseHourMon] = useState("22:00")
     const [openHourTue, setOpenHourTue] = useState("09:00")
@@ -33,7 +33,7 @@ const AddCourtModal = ({onNewCourt}) => {
     const [view, setView] = useState(false)
 
     const createdCourt = () => {
-            toast.success('Creaste una cancha!');
+            toast.success('Court Created!');
     }
 
     // function toggleModal() {
@@ -72,6 +72,26 @@ const AddCourtModal = ({onNewCourt}) => {
                 }
             ).then(() => createdCourt())
             onNewCourt()
+            setName("")
+            setSport("")
+            setLocation([])
+            setAddress('')
+            setDescription("")
+            setPrice(0)
+            setOpenHourMon("09:00")
+            setOpenHourTue("09:00")
+            setOpenHourWed("09:00")
+            setOpenHourThur("09:00")
+            setOpenHourFri("09:00")
+            setOpenHourSat("09:00")
+            setOpenHourSun("09:00")
+            setCloseHourMon("22:00")
+            setCloseHourTue("22:00")
+            setCloseHourWed("22:00")
+            setCloseHourThur("22:00")
+            setCloseHourFri("22:00")
+            setCloseHourSat("22:00")
+            setCloseHourSun("22:00")
         } catch (e) {
 
         }

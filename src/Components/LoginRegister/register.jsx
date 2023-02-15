@@ -6,25 +6,22 @@ import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import PhoneIcon from '@mui/icons-material/Phone';
 import {useEffect, useState} from "react";
 import {post} from "../../utils/http";
+import {toast} from "react-toastify";
 
 const RegisterBox = () => {
 
     let navigate = useNavigate();
     const [user, setUser] = useState({username:"",email:"",password:"",password2:"",phone:"",isAdmin:false})
     const [errorMessage, setErrorMessage] = useState("");
-    const [errored, setErrored] = useState(false);
 
     const RegisterRequest = () => {
         post("olimpia/register/", user)
             .then((res) => {
                 navigate("/");
-                setErrored(false);
+                toast.success("SUCCESSFULLY REGISTERED!", {position: "bottom-right"})
             })
             .catch(err => {
-                //console.log("err" + err);
-                //setErrorMessage(err)
-                //navigate("/register");
-                setErrored(true);
+                toast.error(err.data.errors[0].msg, {position: "bottom-right"})
             })
     }
 
@@ -92,14 +89,10 @@ const RegisterBox = () => {
                     onChange={e => setUser({...user,phone: e.target.value})}
                 />
             </div>
-            {errored ? (<div className="alert alert-danger" role="alert">
-                ERROR!
-            </div>) : <div/>}
             <div>
                 <input type='checkbox' className="tik" onChange={e => setUser({...user,isAdmin: !user.isAdmin})}/>
                 <label className= "isWorker ml-2">Rental court?</label>
             </div>
-            {errorMessage && <div className="error"> {errorMessage} </div>}
             <button
                 type="button"
                 className="Register-button"

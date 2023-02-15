@@ -7,6 +7,7 @@ import {get, post} from "../../utils/http";
 import Axios from 'axios';
 import data from "bootstrap/js/src/dom/data";
 import {Alert} from "react-bootstrap";
+import {toast} from "react-toastify";
 
 
 const LoginBox = () => {
@@ -20,7 +21,6 @@ const LoginBox = () => {
         post("olimpia/login/", user, {options: {withCredentials: true}})
             .then((res) => {
                 localStorage.setItem("isLogged", true)
-                setAlert(res.message)
                 console.log(alert)
                 if (!res.isAdmin) {
                     navigate("/home");
@@ -30,8 +30,7 @@ const LoginBox = () => {
                 }
             })
             .catch(error => {
-                setAlert(error.data.message)
-
+                toast.error("Incorrect password or email",{position: 'bottom-right'})
             })
     }
 
