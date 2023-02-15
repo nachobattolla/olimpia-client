@@ -18,6 +18,7 @@ const EditCourtModal  = ({courtData,onEdit}) => {
     const [name, setName] = useState(courtData.name)
     const [sport, setSport] = useState(courtData.sport)
     const [location, setLocation] = useState(courtData.address)
+    const [address, setAddress] = useState('')
     const [description, setDescription] = useState(courtData.description)
     const [price, setPrice] = useState(courtData.price)
     const [openHourMon,setOpenHourMon] = useState(numToTime(courtData.openHourMon))
@@ -41,14 +42,18 @@ const EditCourtModal  = ({courtData,onEdit}) => {
     console.log(openHourSun)
 
     const editedCourt = () => {
-        toast.success('Editaste una cancha!');
+        toast.success('Edit Completed!');
     }
     
     const onClick = useCallback(()=> {
-        const newCourtData = {name, sport, location:  {
+        const newCourtData = {
+            name,
+            sport,
+            location:  {
                 type: 'Point',
                 coordinates: [14,32],
-            }, description,
+            },
+            description,
             price: parseInt(price),
             openHourMon: parseInt(openHourMon),
             closeHourMon: parseInt(closeHourMon),
