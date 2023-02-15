@@ -13,11 +13,8 @@ const MyReservationsTable = () => {
         get('dashboard/myReservations',{options: {withCredentials: true}}).then(
             data=>{
                 setReserves(data || [])
-                console.log(reserves)
             })
-        console.log(reserves)
     }, [refresh])
-    console.log(reserves)
 
     return(
         <div className="courtsBox">

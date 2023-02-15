@@ -1,6 +1,6 @@
 import {useNavigate, useParams} from "react-router-dom";
 import DateTimePicker from "react-datetime-picker";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {post,get} from "../utils/http";
 import "./MakeReserve.css"
 import {DayAvailability, dayAvailability} from "../Components/User/DayAvailability";
@@ -34,6 +34,8 @@ export const MakeReserve2 = () => {
         })
     },[])
 
+    console.log(user)
+
     useEffect(()=>{
         post('dashboard/getCourt',{courtId},{options: {withCredentials: true}}).then(res =>{
 
@@ -53,6 +55,7 @@ export const MakeReserve2 = () => {
 
         })
     },[])
+
     useEffect(()=>{
 
         if (adminId != ''){
@@ -63,14 +66,20 @@ export const MakeReserve2 = () => {
 
     },[adminId])
 
-    const sendEmail = (e) => {
-        e.preventDefault();
-
-        emailjs.sendForm('gmail', 'template_y3ap1r5', e.target, 'T7x0pVZoUZqudMJqp')
+    const sendEmail = () => {
+        emailjs.send('service_wuassrr',
+                'template_olimpia_rp',
+            {
+                             to_name: admin.username,
+                             from_name: user.username,
+                             message: "Court: " + name + " From:" + value1.toString().substring(0,21) + " To: " + value2.toString().substring(0,21),
+                             user_email: admin.email
+                        }
+                        , 'T7x0pVZoUZqudMJqp')
             .then((result) => {
-                console.log(result.text);
+                console.log("se mando el mail")
             }, (error) => {
-                console.log(error.text);
+                console.log("no se mando el mail");
             });
     };
 
@@ -84,14 +93,19 @@ export const MakeReserve2 = () => {
                 // console.log(endDate)
                 post('dashboard/makeReserve',{startDate, endDate, courtId },{options: {withCredentials: true}}).then((res) => {
                     toast.success(res.msg)
+                    console.log("se hizo la reserva")
+                    sendEmail()
+                    console.log("se mando el mail")
                     setTimeout( function(){
                         navigate("/home");
                         }
                         ,700
                     )
                 }).catch(() => {
+                    console.log("no se hizo la reserva")
                     toast.error("Not Available!")
                 })
+
             }
         }
 

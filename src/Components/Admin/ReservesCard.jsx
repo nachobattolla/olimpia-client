@@ -1,25 +1,61 @@
-import React, {useCallback} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {deleteRequest, post} from "../../utils/http";
 import {Alert} from "react-bootstrap";
+import * as emailjs from "emailjs-com";
+import {toast} from "react-toastify";
+import login from "../LoginRegister/Login";
 
 const ReservesCard= ({reserve: {_id, courtId, isAccepted,isRejected
-,startTime,endTime,courtName}, onAcceptRequest,onRejectRequest,userMode,}) => {
+,startTime,endTime,courtName,userId}, onAcceptRequest,onRejectRequest,userMode,admin}) => {
+
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        return () => {
+            post('dashboard/getProfile', {userId}, {options: {withCredentials: true}}).then((res)=> {
+                setUser(res)
+                console.log(user)
+            }).catch( () => {
+                console.log("no consigo el user")
+            })
+        };
+    }, []);
 
     const onAccept = useCallback(()=> {
         post('adminDashboard/accept-request', {_id}, {options: {withCredentials: true}}).then((res)=> {
             console.log(res)
             onAcceptRequest()
+            toast.success("You Accepted a request!")
+            sendEmail("ACCEPTED")
         })
     })
 
     const onReject = useCallback(()=> {
         deleteRequest('dashboard/deleteReserve',{_id},{options: {withCredentials: true}}).then((res)=> {
             onRejectRequest()
-
+            toast.success("You Rejected a request!")
+            sendEmail("REJECTED")
         })
     })
-    console.log(isRejected
-)
+
+    const sendEmail = (state) => {
+        emailjs.send('service_wuassrr',
+            'template_pegvuzl',
+            {
+                state: state,
+                user_name: user.user_name,
+                message: "Court: " + courtName + " From:" + startTime + " To: " + endTime,
+                from_name: admin.user_name,
+                user_email: user.user_email,
+            }
+            , 'T7x0pVZoUZqudMJqp')
+            .then((result) => {
+                console.log("se mando el mail")
+            }, (error) => {
+                console.log("no se mando el mail");
+            });
+    };
+
     return (
         <div className="card" style={{maxWidth:'400px', margin: '10px'}}>
             <div className="card-body">

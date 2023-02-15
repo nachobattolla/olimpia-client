@@ -20,8 +20,6 @@ const RentCourts = () => {
             })
     }, [])
 
-
-    console.log(response)
     return (
         <div className="RentCourts">
             <header className="RentCourts-header">

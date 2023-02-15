@@ -9,6 +9,8 @@ import {post} from "../../utils/http";
 import {toast} from "react-toastify";
 import './DayAvailability.css'
 import {useNavigate} from "react-router-dom";
+import * as emailjs from "emailjs-com";
+import {useState} from "react";
 
 const style = {
     position:'absolute',
@@ -28,6 +30,8 @@ export const ConfirmationReservationModal = (props) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    let startTime = " ";
+    let endTime = " ";
 
     function calculateDate(reserveDay, today, date) {
         switch (today === 0){
@@ -219,12 +223,31 @@ export const ConfirmationReservationModal = (props) => {
         }
     }
 
+    const sendEmail = () => {
+        emailjs.send('service_wuassrr',
+            'template_olimpia_rp',
+            {
+                to_name: props.admin.username,
+                from_name: props.user.username,
+                message: "Court: " + props.name + " From:" + startTime.substring(0,21) + " To: " + endTime.substring(0,21),
+                user_email: props.admin.email
+            }
+            , 'T7x0pVZoUZqudMJqp')
+            .then((result) => {
+                console.log("se mando el mail")
+            }, (error) => {
+                console.log("no se mando el mail");
+            });
+    };
+
     const makeReservation = (courtId,day,isToday, hour) => {
         console.log(courtId + " " + day + " " + isToday + " " + hour)
         if (courtId && day && isToday !== null && hour) {
             console.log("entro")
             const startDate = calculateStarTime(day, isToday, hour);
             const endDate = calculateEndTime(startDate)
+            startTime = startDate
+            endTime = endDate
             if (props.admin !== null && props.user !== null) {
                 post('dashboard/makeReserve', {
                     startDate,
@@ -233,6 +256,7 @@ export const ConfirmationReservationModal = (props) => {
                 }, {options: {withCredentials: true}}).then((res) => {
                     toast.success(res.msg)
                     handleClose()
+                    sendEmail()
                     setTimeout( function(){
                             navigate("/home");
                         }

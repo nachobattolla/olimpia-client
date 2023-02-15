@@ -3,18 +3,25 @@ import {get} from "../../utils/http";
 import ReservesCard from "./ReservesCard";
 import "../User/MyReservationsTable.css"
 
-
 const PendingReservesTable = () => {
 
      const [reserves,setReserves] = useState([])
     const [refresh, setRefresh] = useState(true)
+    const[admin,setAdmin] = useState(null)
 
     useEffect(()=> {
         get('adminDashboard/requests-table',{options: {withCredentials: true}}).then(
             data=>{
                 setReserves(data.result || [])
             })
+        console.log(reserves)
     }, [refresh])
+
+    useEffect(()=>{
+        get('dashboard/profile',{options: {withCredentials: true}}).then(res =>{
+            setAdmin(res)
+        })
+    },[])
 
     return(
         <div className="courtsBox">
@@ -24,7 +31,7 @@ const PendingReservesTable = () => {
                 </div>
                 <div className="reserves-cards-container">
                     {
-                        reserves.map((el)=> <ReservesCard reserve={el} onAcceptRequest={()=> setRefresh(!refresh)} onRejectRequest={()=> setRefresh(!refresh)}/>)
+                        reserves.map((el)=> <ReservesCard reserve={el} admin={admin} onAcceptRequest={()=> setRefresh(!refresh)} onRejectRequest={()=> setRefresh(!refresh)}/>)
                     }
                 </div>
             </div>
