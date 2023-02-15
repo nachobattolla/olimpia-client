@@ -94,16 +94,13 @@ export const MakeReserve2 = () => {
                 // console.log(endDate)
                 post('dashboard/makeReserve',{startDate, endDate, courtId },{options: {withCredentials: true}}).then((res) => {
                     toast.success(res.msg)
-                    console.log("se hizo la reserva")
                     sendEmail()
-                    console.log("se mando el mail")
                     setTimeout( function(){
                         navigate("/home");
                         }
                         ,700
                     )
                 }).catch(() => {
-                    console.log("no se hizo la reserva")
                     toast.error("Not Available!")
                 })
 

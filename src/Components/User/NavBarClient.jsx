@@ -61,8 +61,8 @@ const NavBarHome = () => {
                         <img src={logo} width='80'className="m-3"/>
                         <a href="/home"/>
                     </button>
-                    <div>
-                        <a className="navbar-brand" href="#"> Your Balance: ${balance}</a>
+                    <div style={{ width:'35%',display: 'flex', justifyContent: 'space-around'}}>
+                        <a className="navbar-brand" href="#"> Your Balance:  ${' '+balance}</a>
                         <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/home/myReserves">
                             <Badge color="success" badgeContent={count}>
                                 <VscRequestChanges size={35}/>

@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import "../../pages/AdminCourtsPage"
 import {get, post} from "../../utils/http";
 import {FaUserEdit} from "@react-icons/all-files/fa/FaUserEdit";
@@ -10,8 +10,11 @@ const EditProfileModal  = ({data,onEditProfile}) => {
     const [email, setEmail] = useState(data.email)
     const [phone, setPhone] = useState(data.phone)
 
-    console.log(data)
-
+    useEffect(()=>{
+        setUsername(data.username)
+        setEmail(data.email)
+        setPhone(data.phone)
+    },[data])
     const editedProfile = () => {
         toast.success('Editaste tu perfil!');
     }

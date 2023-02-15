@@ -7,6 +7,7 @@ import {createPayment} from "../../utils/MercadoPagoQuery";
 import {get} from "../../utils/http";
 
 const AddBalanceModal = (props) => {
+    const [currentBalance, setCurrentBalance] = useState(localStorage.getItem('balance'))
     const [balance, setBalance] = useState(0)
     const [id,setId]=useState()
     useEffect(()=>{
@@ -14,12 +15,19 @@ const AddBalanceModal = (props) => {
             setId(res)
         })
     })
+    useEffect(()=>{
+        get("dashboard/getBalance",{options: {withCredentials: true}}).then(r => {
+            setCurrentBalance(r.balance)
+        })
+    },[])
     const handleConfirm = async () => {
-        localStorage.setItem("balance", balance);
+        const  newBalance = balance + currentBalance
+        localStorage.setItem("balance", newBalance);
         const res = await createPayment(id, Number(balance))
         console.log(res);
        window.open(
-            res.init_point
+            res.init_point,
+           '_self'
         );
     }
   return(

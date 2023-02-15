@@ -30,12 +30,11 @@ const Profile= ()=>{
             <header className="Profile-header">
                 <div className="content-profile">
                     <div className="profile-box">
-                        <div className='username-edit-container'>
-                            <div></div>
-                            <div className="h1"> <PersonIcon/> {username} </div>
+                            <div className='username-edit-container'>
+                            <div> <PersonIcon/> {username} </div>
                             {/*{!userMode}&&*/ <EditProfileModal data={{username, email, phone}} onEditProfile={() => {setRefreshProfile(!refreshProfile)} } />}
                         </div>
-                        <div style={{display:'block', justifyContent:"start", textAlign: "start", padding: '20px', marginLeft:'30px' }}>
+                        <div style={{display:'block', justifyContent:"start", textAlign: "start"}}>
                             <div style={{marginBottom:'10px'}}> <MailIcon/> : {email} </div>
                             <div> <AiTwotonePhone/> : {phone} </div>
                         </div>

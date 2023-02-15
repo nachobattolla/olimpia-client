@@ -8,7 +8,8 @@ import {FilterModal} from "./FilterModal";
 import AddBalanceModal from "./AddBalanceModal";
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import AddCourtModal from "../Admin/AddCourtModal";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {toast} from "react-toastify";
 const Home = () => {
 
     const [search, setSearch] = useState('')
@@ -22,8 +23,27 @@ const Home = () => {
     const [refresh, setRefresh] = useState(true)
     const [radius, setRadius] = useState(100)
     const[center, setCenter] = useState({lat:0,lng:0})
-
-
+    const navigate = useNavigate();
+    const {status}= useParams()
+        useEffect(()=>{
+        if (status ==='failure'){
+            console.log("here")
+            toast.error(' Pago Rechazado')
+            setTimeout( function(){
+                    navigate("/home");
+                }
+                ,700
+            )
+        }
+        if(status=== 'success'){
+            toast.success('Pago Aprobado');
+            setTimeout( function(){
+                    navigate("/home");
+                }
+                ,700
+            )
+        }
+    },[status])
      const changeSport = e => {
         setSport(e)
     };

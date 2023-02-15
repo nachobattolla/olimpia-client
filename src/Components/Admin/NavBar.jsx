@@ -40,7 +40,7 @@ const NavBar = () => {
                     <button className="border-0">
                         <img src={logo} width='80'className="m-3"/>
                     </button>
-                    <div>
+                    <div style={{ width:'35%',display: 'flex', justifyContent: 'space-around'}}>
                         <a className="navbar-brand rounded-pill border-end border-success border-5 shadow-sm btn-outline-success" href="/adminHome/myReserves">
                             <Badge color="success" badgeContent={count}>
                                 <VscRequestChanges size={35}/>
