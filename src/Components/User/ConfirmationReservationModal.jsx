@@ -25,7 +25,6 @@ const style = {
 };
 
 export const ConfirmationReservationModal = (props) => {
-
     let navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -34,104 +33,123 @@ export const ConfirmationReservationModal = (props) => {
     let endTime = " ";
 
     function calculateDate(reserveDay, today, date) {
-        switch (today === 0){
-            case reserveDay === "monday" :
-                return  date + 1;
-            case reserveDay === "tuesday" :
-                return date + 2;
-            case reserveDay === "wednesday" :
-                return date + 3;
-            case reserveDay === "thursday" :
-                return date + 4;
-            case reserveDay === "friday" :
-                return date + 5;
-            case reserveDay === "saturday":
-                return date + 6;
+        console.log('reserveDay',reserveDay)
+        console.log('today',today)
+        console.log('date',date)
+        if (today === 0){
+            switch(reserveDay) {
+                case "monday" :
+                    return date + 1;
+                case "tuesday" :
+                    return date + 2;
+                case "wednesday" :
+                    return date + 3;
+                case "thursday" :
+                    return date + 4;
+                case "friday" :
+                    return date + 5;
+                case "saturday":
+                    return date + 6;
+            }
         }
-        switch (today === 1){
-            case reserveDay === "sunday" :
-                return  date + 6;
-            case reserveDay === "tuesday" :
-                return date + 1;
-            case reserveDay === "wednesday" :
-                return date + 2;
-            case reserveDay === "thursday" :
-                return date + 3;
-            case reserveDay === "friday" :
-                return date + 4;
-            case reserveDay === "saturday":
-                return date + 5;
+        if (today === 1){
+            switch(reserveDay) {
+                case "sunday" :
+                    return date + 6;
+                case "tuesday" :
+                    return date + 1;
+                case "wednesday" :
+                    return date + 2;
+                case "thursday" :
+                    return date + 3;
+                case "friday" :
+                    return date + 4;
+                case "saturday":
+                    return date + 5;
+            }
         }
-        switch (today === 2){
-            case reserveDay === "sunday" :
-                return  date + 5;
-            case reserveDay === "monday" :
-                return date + 6;
-            case reserveDay === "wednesday" :
-                return date + 1;
-            case reserveDay === "thursday" :
-                return date + 2;
-            case reserveDay === "friday" :
-                return date + 3;
-            case reserveDay === "saturday":
-                return date + 4;
+      
+        if (today === 2){
+            switch(reserveDay) {
+                case "sunday" :
+                    return date + 5;
+                case "monday" :
+                    return date + 6;
+                case "wednesday" :
+                    return date + 1;
+                case "thursday" :
+                    return date + 2;
+                case "friday" :
+                    return date + 3;
+                case "saturday":
+                    return date + 4;
+            }
         }
-        switch (today === 3){
-            case reserveDay === "sunday":
-                return  date + 4;
-            case reserveDay === "monday":
-                return date + 5;
-            case reserveDay === "tuesday":
-                return date + 6;
-            case reserveDay === "thursday":
-                return date + 1;
-            case reserveDay === "friday":
-                return date + 2;
-            case reserveDay === "saturday":
-                return date + 3;
+        if (today === 3){
+            switch(reserveDay) {
+                case "sunday":
+                    return date + 4;
+                case "monday":
+                    return date + 5;
+                case "tuesday":
+                    return date + 6;
+                case "thursday":
+                    return date + 1;
+                case "friday":
+                    return date + 2;
+                case "saturday":
+                    return date + 3;
+            }
         }
-        switch (today === 4){
-            case reserveDay === "sunday" :
-                return  date + 3;
-            case reserveDay === "monday" :
-                return date + 4;
-            case reserveDay === "tuesday" :
-                return date + 5;
-            case reserveDay === "wednesday" :
-                return date + 6;
-            case reserveDay === "friday" :
-                return date + 1;
-            case reserveDay === "saturday":
-                return date + 2;
+        if (today === 4){
+            switch(reserveDay) {
+                case "sunday" :
+                    return date + 3;
+                case "monday" :
+                    return date + 4;
+                case "tuesday" :
+                    return date + 5;
+                case "wednesday" :
+                    return date + 6;
+                case "friday" :
+                    return date + 1;
+                case "saturday":
+                    return date + 2;
+            }
         }
-        switch (today === 5){
-            case reserveDay === "sunday" :
-                return  date + 2;
-            case reserveDay === "monday" :
-                return date + 3;
-            case reserveDay === "tuesday" :
-                return date + 4;
-            case reserveDay === "wednesday" :
-                return date + 5;
-            case reserveDay === "thursday" :
-                return date + 6;
-            case reserveDay === "saturday":
-                return date + 1;
+        if (today === 5){
+            switch(reserveDay) {
+                case "sunday" :
+                    return date + 2;
+                case "monday" :
+                    return date + 3;
+                case "tuesday" :
+                    return date + 4;
+                case "wednesday" :
+                    return date + 5;
+                case "thursday" :
+                    return date + 6;
+                case "saturday":
+                    return date + 1;
+            }
         }
-        switch (today === 6){
-            case reserveDay === "sunday" :
-                return  date + 1;
-            case reserveDay === "monday" :
-                return date + 2;
-            case reserveDay === "tuesday" :
-                return date + 3;
-            case reserveDay === "wednesday" :
-                return date + 4;
-            case reserveDay === "thursday" :
-                return date + 5;
-            case reserveDay === "friday":
-                return date + 6;
+        if (today === 6){
+            switch(reserveDay) {
+                case "sunday" :
+                    return date + 1;
+                case "monday" :
+                    return date + 2;
+                case "tuesday" :
+                    return date + 3;
+                case "wednesday" :
+                    return date + 4;
+                case "thursday" :
+                    return date + 5;
+                case "friday":
+                    return date + 6;
+            }
         }
+
     }
 
     const calculateDay = (day) => {
@@ -188,12 +206,14 @@ export const ConfirmationReservationModal = (props) => {
         let timeS = calculateDay(day) + " " + calculateMonth(time.getMonth()+1)
 
         if (isToday){
+            console.log("here???")
             if (10 > time.getDate()) {
                 timeS = timeS + " 0" + time.getDate()
             }else{
                 timeS = timeS + " " + time.getDate()
             }
         }else{
+            console.log(calculateDate(day,time.getDay(), time.getDate()).toString())
             if (10 > time.getDate()) {
                 timeS = timeS + " 0" + calculateDate(day,time.getDay(), time.getDate()).toString()
             }else{
@@ -243,7 +263,6 @@ export const ConfirmationReservationModal = (props) => {
     const makeReservation = (courtId,day,isToday, hour) => {
         console.log(courtId + " " + day + " " + isToday + " " + hour)
         if (courtId && day && isToday !== null && hour) {
-            console.log("entro")
             const startDate = calculateStarTime(day, isToday, hour);
             const endDate = calculateEndTime(startDate)
             startTime = startDate
@@ -259,7 +278,6 @@ export const ConfirmationReservationModal = (props) => {
                     handleClose()
                     sendEmail()
                     setTimeout( function(){
-                            navigate("/home");
                         }
                         ,1000
                     )
@@ -317,10 +335,3 @@ export const ConfirmationReservationModal = (props) => {
     );
 }
 
-// var timeS = time.getFullYear()
-//
-
-//
-// //time : T21:31:00.000Z
-//
-// timeS = timeS + hour.substring(0,4) + (parseInt(hour.substring(4,5))+1).toString() + ":00.000Z"
