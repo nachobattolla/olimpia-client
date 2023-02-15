@@ -133,7 +133,7 @@ const AddCourtModal = ({onNewCourt}) => {
                                 </select>
                             </div>
                             <div>
-                                <label> Location </label>
+                                <label> Address </label>
                                 <input className="form-control" value={address} onChange={(event) => {
                                     setAddress(event.target.value)
                                 }}/>

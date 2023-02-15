@@ -88,11 +88,19 @@ const MyReservationsTable = () => {
                     <DateTimePicker onChange={setToDate} value={toDate} minDate={fromDate} />
                 </div>
             </div>
-            <div className="reserves-cards-container">
-                {
-                    filteredReserves.map((el)=> <ReservesCard reserve={el} onAcceptRequest={()=> setRefresh(!refresh)} onRejectRequest={()=> setRefresh(!refresh)}  userMode={true}/>)
-                }
-            </div>
+            {
+                filteredReserves.length > 0
+                    ?
+                    (
+                        <div className="reserves-cards-container">
+                            {
+                                filteredReserves.map((el)=> <ReservesCard reserve={el} onAcceptRequest={()=> setRefresh(!refresh)} onRejectRequest={()=> setRefresh(!refresh)}  userMode={true}/>)
+                            }
+                        </div>
+                    )
+                    :
+                    <h2 className="title-container mt-5">NO HAY RESERVAS</h2>
+            }
         </div>
     )
 }

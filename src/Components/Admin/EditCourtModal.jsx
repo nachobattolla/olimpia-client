@@ -107,7 +107,7 @@ const EditCourtModal  = ({courtData,onEdit}) => {
                                 </select>
                             </div>
                             <div>
-                                <label> Location </label>
+                                <label> Address </label>
                                 <input className="form-control" value={location} onChange={(event)=> {setLocation(event.target.value)}}/>
                                 <NewContainerMap setLocation={setLocation} input={location} />
                             </div>

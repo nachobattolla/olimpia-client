@@ -93,11 +93,19 @@ const PendingReservesTable = () => {
                     <DateTimePicker onChange={setToDate} value={toDate} minDate={fromDate} />
                 </div>
             </div>
-            <div className="reserves-cards-container">
-                {
-                    filteredReserves.map((el)=> <ReservesCard reserve={el} admin={admin} onAcceptRequest={()=> setRefresh(!refresh)} onRejectRequest={()=> setRefresh(!refresh)}/>)
-                }
-            </div>
+            {
+                filteredReserves.length > 0
+                ?
+                (
+                <div className="reserves-cards-container">
+                    {filteredReserves.map((el) => <ReservesCard reserve={el} admin={admin}
+                                                                onAcceptRequest={() => setRefresh(!refresh)}
+                                                                onRejectRequest={() => setRefresh(!refresh)}/>)}
+                </div>
+                )
+                :
+                <h2 className="title-container mt-5">NO HAY RESERVAS</h2>
+            }
         </div>
     )
 }

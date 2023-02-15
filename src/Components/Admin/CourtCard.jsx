@@ -62,6 +62,7 @@ const CourtCard = ({court: {adminId,name, sport, location,address, description, 
                     <div style={{textAlign:"left", width:''}}>
                         <h4 className="card-subtitle mb-2 text-muted">Sport: {sport}</h4>
                         <h4 className="card-subtitle mb-2 text-muted">Price per Hour: {price}</h4>
+                        <h4  className="card-subtitle mb-2 text-muted">Address: {address}</h4>
                     </div>
                     <div style={{display: 'flex',justifyContent: "space-between"}}>
                     {!userMode && <a href="#" className="btn btn-success" onClick={onDelete}><DeleteIcon/></a>}

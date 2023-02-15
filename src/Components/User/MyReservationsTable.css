@@ -21,6 +21,7 @@
 
 
 .requests-filter-container{
+    background-color: rgba(34, 139, 34, 0.7);
     margin-left: 10%;
     width: 80%;
     display: flex;
