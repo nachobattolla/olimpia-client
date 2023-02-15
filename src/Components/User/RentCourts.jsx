@@ -14,7 +14,6 @@ const RentCourts = () => {
     useEffect(()=> {
         get('dashboard/myReservations', {options: {withCredentials: true}})
             .then(data=>{
-            console.log(data)
             setRentCourts(data.body || [])
                 setResponse(data)
             })

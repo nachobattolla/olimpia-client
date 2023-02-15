@@ -37,9 +37,6 @@ const EditCourtModal  = ({courtData,onEdit}) => {
     const [closeHourSun,setCloseHourSun] = useState(numToTime(courtData.closeHourSun))
 
     const _id = courtData._id
-    console.log(courtData)
-    console.log(name,sport)
-    console.log(openHourSun)
 
     const editedCourt = () => {
         toast.success('Edit Completed!');
@@ -79,8 +76,7 @@ const EditCourtModal  = ({courtData,onEdit}) => {
         })
     })
     
-    console.log(name)
-    
+
     return (
         <>
             <div className="btn rounded-pill btn-outline-success bg-primary pe-5" data-bs-toggle="modal" data-bs-target={`#new-edit-modal${_id}`} >

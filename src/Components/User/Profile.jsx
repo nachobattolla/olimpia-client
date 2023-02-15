@@ -15,7 +15,6 @@ const Profile= ()=>{
     useEffect(() => {
         get('dashboard/profile', {options: {withCredentials: true}})
             .then((data) => {
-                console.log(data)
                 setUsername(data.username);
                 setEmail(data.email)
                 setPhone(data.phone)

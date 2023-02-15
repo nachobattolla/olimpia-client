@@ -4,7 +4,6 @@ import {post} from "../../utils/http";
 import {useState} from "react";
 
 export const HourBox= (props) => {
-console.log(props)
     const navigate = useNavigate()
     const [msg, setMsg] = useState("")
     function Reserve() {

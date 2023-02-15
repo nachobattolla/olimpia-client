@@ -21,13 +21,12 @@ const Home = () => {
     const [endDate, setEndDate] = useState("")
     const[price, setPrice] = useState(999999)
     const [refresh, setRefresh] = useState(true)
-    const [radius, setRadius] = useState(100)
+    const [radius, setRadius] = useState(0)
     const[center, setCenter] = useState({lat:0,lng:0})
     const navigate = useNavigate();
     const {status}= useParams()
         useEffect(()=>{
         if (status ==='failure'){
-            console.log("here")
             toast.error(' Pago Rechazado')
             setTimeout( function(){
                     navigate("/home");
@@ -48,11 +47,9 @@ const Home = () => {
         setSport(e)
     };
     const changeEndDate = e => {
-        console.log("0")
         setEndDate(e)
     };
    const changeStartDate = e => {
-       console.log("0")
         setStartDate(e)
     };
    const changeRadius = e =>{
@@ -68,18 +65,19 @@ const Home = () => {
         setRefresh(!refresh)
     }
     function filterCourts(courts) {
+        console.log(locationCourts)
         let courtsAux=[]
         allCourts.map(court=> {
             if (court.name.toLowerCase().includes(search.toLowerCase())&& locationCourts.length<=0) {
                 courtsAux.push(court)
             } else if (locationCourts.length>=0){
                 locationCourts.map(court2 =>{
-                    if (court2._id === court._id && court.name.toLowerCase().includes(search.toLowerCase())){
+                    if (court2._id === court._id && court2.name.toLowerCase().includes(search.toLowerCase())){
                         if ((court.price <= price || isNaN(price)) && sport == null) {
                             courtsAux.push(court)
                         }
                         if ((court.price <= price || isNaN(price)) && sport != null) {
-                            if (court.sport == sport) {
+                            if (court.sport === sport) {
                                 courtsAux.push(court)
                             }
                         }
@@ -94,7 +92,6 @@ const Home = () => {
        startDate= Date.parse(startDate.toString())
         endDate = Date.parse(endDate.toString())
         post('dashboard/availability', {startDate,endDate},{options: {withCredentials: true}}).then(data=>{
-            console.log(data)
             setAllCourts(data.fieldsAux || [])})
     }
 
@@ -117,7 +114,7 @@ const Home = () => {
     },[endDate,startDate])
 
     function filterByLocation() {
-        post('dashboard/location', {coordinateX:center.lat,coordinateY:center.lng,radius},{options: {withCredentials: true}}).then(data=>{
+        post('dashboard/location', {coordinateX:center.lat,coordinateY:center.lng,radius:(radius? radius:0)},{options: {withCredentials: true}}).then(data=>{
             setLocationCourts(data.result || [])})
     }
 

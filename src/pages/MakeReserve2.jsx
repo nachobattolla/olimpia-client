@@ -34,7 +34,6 @@ export const MakeReserve2 = () => {
         })
     },[])
 
-    console.log(user)
 
     useEffect(()=>{
         post('dashboard/getCourt',{courtId},{options: {withCredentials: true}}).then(res =>{
@@ -51,7 +50,6 @@ export const MakeReserve2 = () => {
             setName(res.name)
             setAdminId(res.adminId)
             setCoordinates({lat:res.location.coordinates[0],lng:res.location.coordinates[1]})
-            // console.log(typeof adminId)
 
         })
     },[])
@@ -78,20 +76,16 @@ export const MakeReserve2 = () => {
                         }
                         , 'T7x0pVZoUZqudMJqp')
             .then((result) => {
-                console.log("se mando el mail")
             }, (error) => {
-                console.log("no se mando el mail");
             });
     };
 
     useEffect(()=>{
         if(admin !== null && user !== null){
             if (value2  != 0 && value1 != 0){
-                // console.log("1")
                 let startDate= value1.toString()
                 let   endDate = value2.toString()
-                // console.log(startDate)
-                // console.log(endDate)
+
                 post('dashboard/makeReserve',{startDate, endDate, courtId },{options: {withCredentials: true}}).then((res) => {
                     toast.success(res.msg)
                     sendEmail()

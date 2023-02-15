@@ -24,7 +24,6 @@ const AddBalanceModal = (props) => {
         const  newBalance = balance + currentBalance
         localStorage.setItem("balance", newBalance);
         const res = await createPayment(id, Number(balance))
-        console.log(res);
        window.open(
             res.init_point,
            '_self'

@@ -1,7 +1,6 @@
 const axios = require('axios').default;
 export const createPayment = async (userId, balance) => {
-    console.log(userId)
-    console.log(balance)
+
     const url = `https://api.mercadopago.com/checkout/preferences`;
 
     const body = {

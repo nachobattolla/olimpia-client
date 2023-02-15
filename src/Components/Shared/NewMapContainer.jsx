@@ -14,7 +14,6 @@ const containerStyle = {
 const API_KEY = process.env.REACT_APP_API_KEY
 
 function NewContainerMap(props) {
-    console.log("PROPS: "+ props.coordinates)
     useEffect(()=>{
         let options = {
             enableHighAccuracy: true,
@@ -57,9 +56,7 @@ function NewContainerMap(props) {
 
     const addMarker = (latLng,x,y) => {
         const location = {lat: latLng.lat(), lng: latLng.lng()}
-        console.log("location:" + location)
-        console.log(location.lat)
-        console.log(location.lng)
+
         setCoordinates(location)
         setX(x)
         setY(y)
@@ -71,7 +68,6 @@ function NewContainerMap(props) {
         }
     },[props.coordinates])
     useEffect(()=> {
-        console.log("props.input:  " + props.address)
         Geocode.fromAddress(props.address).then(
             (response) => {
                 const { lat, lng } = response.results[0].geometry.location;
