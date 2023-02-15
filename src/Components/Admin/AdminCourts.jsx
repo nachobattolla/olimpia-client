@@ -42,13 +42,16 @@ const AdminCourts = () => {
         <div className="courtsBox">
             <div>
                 <div className="courts-add-button-container">
-                    <div className="add-court-button-container">
-                        <AddCourtModal onNewCourt={()=> {setRefresh(!refresh)}}/>
-                    </div>
                     <div className="my-courts-container">
-                        <div className="my-courts-title">
-                            <h2>My Courts</h2>
+                        <div className={'my-courts-header-container'}>
+                            <div className="add-court-button-container">
+                                <AddCourtModal onNewCourt={()=> {setRefresh(!refresh)}}/>
+                            </div>
+                            <div className="my-courts-title">
+                                <h2>My Courts</h2>
+                            </div>
                         </div>
+
                         <div className="my-courts">
                             {
                                 courts.map((el)=> <CourtCard court={el} onDeleteCourt={()=> {setRefresh(!refresh)}} onEditCourt={()=> {setRefresh(!refresh)}} />)

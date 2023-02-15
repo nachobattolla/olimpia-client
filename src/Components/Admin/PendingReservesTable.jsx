@@ -48,7 +48,7 @@ const PendingReservesTable = () => {
                 post('adminDashboard/seenReserve',{_id:reserve._id},{options: {withCredentials: true}}).then()
             }
         })
-    },[reserves])
+    },[filteredReserves])
     return(
         <div className="courtsBox">
             <div className= "requests-title-container">

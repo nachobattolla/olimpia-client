@@ -40,7 +40,6 @@ const AdminProfile = () => {
     // let userMode = false;
     return (
         <div className="Profile">
-            <header className="Profile-header">
                 <div className="content-profile">
                     <div className="profile-box">
                         <div className='username-edit-container'>
@@ -62,7 +61,6 @@ const AdminProfile = () => {
                         </div>
                     </div>
                 </div>
-            </header>
         </div>
     );
 

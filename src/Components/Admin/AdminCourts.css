@@ -8,6 +8,7 @@
 
 .courts-add-button-container{
     display: flex;
+    justify-content: center;
 }
 
 .add-court-button-container{
@@ -18,11 +19,18 @@
     width: 85%;
     background-color: rgba(0,0,0,0.8);
 }
+.my-courts-header-container{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
 
 .my-courts-title{
+    width: 100%;
     text-align: center;
     padding: 10px;
     color: lightgrey;
+    margin-right: 130px;
 }
 
 .my-courts{

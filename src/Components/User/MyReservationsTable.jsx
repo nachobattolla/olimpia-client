@@ -15,11 +15,11 @@ const MyReservationsTable = () => {
     const [filteredReserves,setFilteredReserves] = useState([])
     const [fromDate, setFromDate] = useState(new Date())
     const [toDate, setToDate] = useState()
+    console.log(filteredReserves)
     useEffect(()=> {
         get('dashboard/myReservations',{options: {withCredentials: true}}).then(
             data=>{
                 setReserves(data || [])
-                console.log(reserves)
             })
         console.log(reserves)
     }, [refresh])
@@ -39,10 +39,11 @@ const MyReservationsTable = () => {
     useEffect(()=>{
         filteredReserves.map(reserve=>{
             if (reserve.hasntUserSeen){
+                console.log(reserve)
                 post('dashboard/seenReserve',{_id:reserve._id},{options: {withCredentials: true}}).then()
             }
         })
-        },[reserves])
+        },[filteredReserves])
 
     return(
         <div className="courtsBox">

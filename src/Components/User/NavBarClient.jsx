@@ -45,7 +45,9 @@ const NavBarHome = () => {
             data=>{
                 let auxCounter = 0
                 data.map(r => {
-                    if (r.hasntUserSeen) auxCounter++
+                    if (r.hasntUserSeen){
+                        auxCounter++
+                    }
                 })
                 setCount(auxCounter)
             })
