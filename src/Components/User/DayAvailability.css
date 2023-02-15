@@ -1,6 +1,7 @@
 .dayContainer{
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     color: black;
     font-size: 20px;
     border-left: 2px solid black;
@@ -10,7 +11,8 @@
 }
 
 .dayContainer h3{
-    margin:auto;
+    text-align: center;
+    margin:20px;
     font-size: 18px;
 }
 

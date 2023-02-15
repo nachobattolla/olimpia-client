@@ -11,11 +11,9 @@ const ReservesCard= ({reserve: {_id, courtId, isAccepted,isRejected
     const [getUser, setGetUser] = useState(false);
 
     useEffect(() => {
-        console.log("entre")
         post('dashboard/getProfile', {userId}, {options: {withCredentials: true}}).then((res)=> {
             setUser(res)
         }).catch( () => {
-            console.log("no consigo el user")
         })
     }, [getUser]);
 
@@ -51,9 +49,7 @@ const ReservesCard= ({reserve: {_id, courtId, isAccepted,isRejected
             }
             , 'T7x0pVZoUZqudMJqp')
             .then((result) => {
-                console.log("se mando el mail")
             }, (error) => {
-                console.log("no se mando el mail");
             });
     };
 

@@ -13,17 +13,12 @@ export const ViewEstablishment = ()=>{
     const [courts, setCourts]= useState([])
     const [refreshProfile, setRefreshProfile] = useState(true)
     const[adminId, setAdminId] = useState("")
-    console.log(id)
-    console.log( typeof  id)
 
     useEffect(()=> {
 
 
         post('dashboard/establishment', {id}, {options: {withCredentials: true}}).then(admin =>{
-            console.log("admin:" + admin)
-            console.log("adminId: "+admin._id)
-            console.log(typeof admin._id)
-            console.log("adminId 2: "+admin._id.str)
+
             setAdmin(admin)
             setAdminId(admin._id)
 
@@ -31,7 +26,6 @@ export const ViewEstablishment = ()=>{
     }, [])
 
     useEffect(()=>{
-        console.log("adminId: " + adminId)
         if (adminId !=""){
             post('dashboard/adminCourts', {adminId}, {options: {withCredentials: true}}).then(
                 data=>{
@@ -42,7 +36,6 @@ export const ViewEstablishment = ()=>{
 
 
 
-    console.log(courts)
 
     return(
         <div>

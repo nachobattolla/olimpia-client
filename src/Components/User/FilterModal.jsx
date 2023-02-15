@@ -30,13 +30,11 @@ import NewContainerMap from "../Shared/NewMapContainer";
         }
     },[selectedOption])
      useEffect(()=>{
-         console.log(value1)
          if (value1 != null){
              props.changeStartDate(value1)
          }
      },[value1])
      useEffect(()=>{
-         console.log(value2)
          if (value2 != null){
              props.changeEndDate(value2)
          }

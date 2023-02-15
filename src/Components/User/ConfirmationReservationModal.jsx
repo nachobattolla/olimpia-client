@@ -33,9 +33,7 @@ export const ConfirmationReservationModal = (props) => {
     let endTime = " ";
 
     function calculateDate(reserveDay, today, date) {
-        console.log('reserveDay',reserveDay)
-        console.log('today',today)
-        console.log('date',date)
+
         if (today === 0){
             switch(reserveDay) {
                 case "monday" :
@@ -206,14 +204,12 @@ export const ConfirmationReservationModal = (props) => {
         let timeS = calculateDay(day) + " " + calculateMonth(time.getMonth()+1)
 
         if (isToday){
-            console.log("here???")
             if (10 > time.getDate()) {
                 timeS = timeS + " 0" + time.getDate()
             }else{
                 timeS = timeS + " " + time.getDate()
             }
         }else{
-            console.log(calculateDate(day,time.getDay(), time.getDate()).toString())
             if (10 > time.getDate()) {
                 timeS = timeS + " 0" + calculateDate(day,time.getDay(), time.getDate()).toString()
             }else{
@@ -255,14 +251,11 @@ export const ConfirmationReservationModal = (props) => {
             }
             , 'T7x0pVZoUZqudMJqp')
             .then((result) => {
-                console.log("se mando el mail")
             }, (error) => {
-                console.log("no se mando el mail");
             });
     };
 
     const makeReservation = (courtId,day,isToday, hour) => {
-        console.log(courtId + " " + day + " " + isToday + " " + hour)
         if (courtId && day && isToday !== null && hour) {
             const startDate = calculateStarTime(day, isToday, hour);
             const endDate = calculateEndTime(startDate)

@@ -21,16 +21,13 @@ const AdminProfile = () => {
     useEffect(()=> {
         get('adminDashboard/my-courts', {options: {withCredentials: true}}).then(
             data=>{
-                console.log(data)
                 setCourts(data || [])
-                console.log(courts)
             })
     }, [refresh])
 
     useEffect(() => {
         get('adminDashboard/profile', {options: {withCredentials: true}})
             .then((data) => {
-                console.log(data)
                 setUsername(data.username);
                 setEmail(data.email)
                 setPhone(data.phone)

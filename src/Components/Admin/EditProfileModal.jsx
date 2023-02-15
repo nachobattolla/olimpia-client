@@ -23,7 +23,6 @@ const EditProfileModal  = ({data,onEditProfile}) => {
         const newData = {username, email, phone}
         post('dashboard/editProfile',{newData} , {options: {withCredentials: true}}).then(()=> {
             onEditProfile(newData)
-            console.log( "newData: "+ newData)
             editedProfile()
         })
         this.hide();

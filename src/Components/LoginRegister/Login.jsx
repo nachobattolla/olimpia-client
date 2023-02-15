@@ -21,7 +21,6 @@ const LoginBox = () => {
         post("olimpia/login/", user, {options: {withCredentials: true}})
             .then((res) => {
                 localStorage.setItem("isLogged", true)
-                console.log(alert)
                 if (!res.isAdmin) {
                     navigate("/home");
                 }else {

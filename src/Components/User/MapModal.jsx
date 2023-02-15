@@ -5,7 +5,6 @@ import PlaceTwoToneIcon from '@mui/icons-material/PlaceTwoTone';
 import NewMapContainer from "../Shared/NewMapContainer";
 
 const MapModal = (props) => {
-    console.log("props2: "+props.coordinates)
     return(
         <>
             <div className="btn rounded-pill btn-outline-success bg-primary pe-5" data-bs-toggle="modal" data-bs-target="#new-edit-modal2" >
@@ -16,7 +15,7 @@ const MapModal = (props) => {
                 <div className="modal-dialog">
                     <div className="modal-content text-center">
                         <div className="modal-header text-success ">
-                            <h4 className="modal-title">ADD BALANCE</h4>
+                            <h4 className="modal-title">LOCATION</h4>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
                         </div>
                         <div className="modal-body">
